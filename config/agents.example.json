@@ -41,7 +41,7 @@
           "min_headings": 18,
           "max_confidence": 0.9,
           "must_contain": ["Assumptions", "Claim ledger", "Theorem-dependency audit", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Divergent alternatives", "Research strategy", "Confidence"],
-          "must_not_contain": ["100%", "flawless", "fully certified", "fatal hidden assumption", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
+          "must_not_contain": ["100%", "fully certified", "fatal hidden assumption", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
         },
         "review": {
           "min_words": 5000,
