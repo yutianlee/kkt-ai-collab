@@ -9,6 +9,8 @@ Use this procedure for high-quality manual web runs with ChatGPT and Gemini, or 
 
 Use one persistent conversation per web AI for the whole run.
 
+For A3/A4 API setup, see `docs/api-setup.md`.
+
 ## Research-Mode Rule
 
 This is not a smoke test. Let each model reason carefully. For the KKT conjecture, prefer explicit hypotheses, exact constants, endpoint-variable checks, and gap detection over long but vague proof sketches.

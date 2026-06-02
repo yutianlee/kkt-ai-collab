@@ -48,6 +48,21 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8") if path.exists() else ""
 
 
+def load_env_file(path: Path) -> None:
+    """Load simple KEY=VALUE entries without overriding real environment vars."""
+    if not path.exists():
+        return
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
 def write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8", newline="\n")
@@ -625,7 +640,7 @@ def call_openai_compatible(agent: Agent, prompt: str, timeout: int) -> str:
         raise RuntimeError(f"No model configured for {agent.id}")
 
     endpoint = agent.raw["endpoint"]
-    payload = {
+    payload: dict[str, Any] = {
         "model": model,
         "messages": [
             {
@@ -637,9 +652,20 @@ def call_openai_compatible(agent: Agent, prompt: str, timeout: int) -> str:
             },
             {"role": "user", "content": prompt},
         ],
-        "temperature": float(agent.raw.get("temperature", 0.2)),
     }
-    payload.update(agent.raw.get("extra_payload", {}))
+    if "temperature" in agent.raw:
+        payload["temperature"] = float(agent.raw["temperature"])
+    elif not agent.raw.get("omit_temperature", False):
+        payload["temperature"] = 0.2
+    if "stream" in agent.raw:
+        payload["stream"] = bool(agent.raw["stream"])
+    extra_body = agent.raw.get("extra_body", {})
+    if isinstance(extra_body, dict):
+        payload.update(extra_body)
+    # Backward compatibility with older config files.
+    extra_payload = agent.raw.get("extra_payload", {})
+    if isinstance(extra_payload, dict):
+        payload.update(extra_payload)
     request = urllib.request.Request(
         endpoint,
         data=json.dumps(payload).encode("utf-8"),
@@ -651,6 +677,9 @@ def call_openai_compatible(agent: Agent, prompt: str, timeout: int) -> str:
     )
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
+            if payload.get("stream"):
+                content, reasoning_content = read_streaming_chat_response(response)
+                return format_model_output(agent, content, reasoning_content)
             data = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
@@ -659,9 +688,50 @@ def call_openai_compatible(agent: Agent, prompt: str, timeout: int) -> str:
         raise RuntimeError(f"API call failed for {agent.id}: {exc}") from exc
 
     try:
-        return data["choices"][0]["message"]["content"]
+        message = data["choices"][0]["message"]
+        content = message.get("content") or ""
+        reasoning_content = message.get("reasoning_content") or ""
+        return format_model_output(agent, content, reasoning_content)
     except (KeyError, IndexError, TypeError) as exc:
         raise RuntimeError(f"Unexpected API response for {agent.id}: {data}") from exc
+
+
+def read_streaming_chat_response(response: Any) -> tuple[str, str]:
+    content_parts: list[str] = []
+    reasoning_parts: list[str] = []
+    for raw_line in response:
+        line = raw_line.decode("utf-8", errors="replace").strip()
+        if not line or not line.startswith("data:"):
+            continue
+        data_text = line[len("data:") :].strip()
+        if data_text == "[DONE]":
+            break
+        try:
+            data = json.loads(data_text)
+        except json.JSONDecodeError:
+            continue
+        for choice in data.get("choices", []) or []:
+            delta = choice.get("delta") or {}
+            content = delta.get("content")
+            reasoning = delta.get("reasoning_content")
+            if content:
+                content_parts.append(str(content))
+            if reasoning:
+                reasoning_parts.append(str(reasoning))
+    return "".join(content_parts), "".join(reasoning_parts)
+
+
+def format_model_output(agent: Agent, content: str, reasoning_content: str = "") -> str:
+    content = (content or "").strip()
+    reasoning_content = (reasoning_content or "").strip()
+    if reasoning_content and agent.raw.get("save_reasoning_content", False):
+        return (
+            "# Model Reasoning Content\n\n"
+            f"{reasoning_content}\n\n"
+            "# Final Answer\n\n"
+            f"{content}\n"
+        )
+    return content + ("\n" if content else "")
 
 
 def approximate_word_count(text: str) -> int:
@@ -1116,6 +1186,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     root = Path.cwd()
+    load_env_file(root / ".env")
     config_path = root / args.config
     problem_path = root / args.problem
 

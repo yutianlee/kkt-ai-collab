@@ -99,6 +99,14 @@ handoff/kkt-main/round_012/judge/
 
 Set `DEEPSEEK_API_KEY` for A3 and `QWEN_API_KEY` for A4 before a real API run. Rerun the same command after filling each stage. The orchestrator enforces round barriers.
 
+API key setup and smoke tests are documented in `docs/api-setup.md`. The short version:
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+python -m math_collab.api_smoke --agents A3,A4
+```
+
 ## Human Steering
 
 Edit these files before the next round:

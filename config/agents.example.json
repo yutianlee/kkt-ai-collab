@@ -27,8 +27,13 @@
       "api_key_env": "DEEPSEEK_API_KEY",
       "model_env": "DEEPSEEK_MODEL",
       "default_model": "deepseek-v4-pro",
+      "temperature": 0.1,
+      "save_reasoning_content": true,
       "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a meticulous proof auditor for the KKT Jacobi polynomial conjecture. Separate proved statements from plausible claims and identify exact missing lemmas.",
-      "extra_payload": {
+      "extra_body": {
+        "thinking": {
+          "type": "enabled"
+        },
         "reasoning_effort": "max",
         "max_tokens": 32768
       }
@@ -42,7 +47,14 @@
       "api_key_env": "QWEN_API_KEY",
       "model_env": "QWEN_MODEL",
       "default_model": "qwen-math-plus",
-      "system_prompt": "You are A4, qwen-math-plus, acting as a careful mathematical research collaborator. Be explicit about Jacobi/Laguerre normalizations, parameter ranges, and missing constants."
+      "temperature": 0.0,
+      "stream": true,
+      "save_reasoning_content": true,
+      "system_prompt": "You are A4, qwen-math-plus. You are a harmonic analysis and special-functions research collaborator. For difficult integrals, norms, sharp upper/lower bounds, operator estimates, and Jacobi/Laguerre inequalities, use the built-in Python/code-interpreter capability when it helps; give step-by-step derivations and explicit verification plans.",
+      "extra_body": {
+        "enable_code_interpreter": true,
+        "enable_thinking": true
+      }
     }
   ]
 }

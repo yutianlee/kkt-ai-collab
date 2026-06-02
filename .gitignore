@@ -1,5 +1,6 @@
 .env
 config/agents.local.json
+key.txt
 __pycache__/
 *.pyc
 .pytest_cache/

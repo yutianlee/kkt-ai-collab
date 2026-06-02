@@ -37,8 +37,13 @@
       "api_key_env": "DEEPSEEK_API_KEY",
       "model_env": "DEEPSEEK_MODEL",
       "default_model": "deepseek-v4-pro",
+      "temperature": 0.1,
+      "save_reasoning_content": true,
       "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a slow, meticulous mathematical proof auditor for Jacobi and Laguerre inequalities. Produce explicit sections, formulas, lemma statements, failed proof paths, stress tests, and confidence calibration.",
-      "extra_payload": {
+      "extra_body": {
+        "thinking": {
+          "type": "enabled"
+        },
         "reasoning_effort": "max",
         "max_tokens": 32768
       },
@@ -67,7 +72,14 @@
       "api_key_env": "QWEN_API_KEY",
       "model_env": "QWEN_MODEL",
       "default_model": "qwen-math-plus",
-      "system_prompt": "You are A4, qwen-math-plus, acting as a careful mathematical research collaborator. Be explicit about Jacobi/Laguerre normalizations, parameter ranges, and missing constants.",
+      "temperature": 0.0,
+      "stream": true,
+      "save_reasoning_content": true,
+      "system_prompt": "You are A4, qwen-math-plus. You are a harmonic analysis and special-functions research collaborator. For difficult integrals, norms, sharp upper/lower bounds, operator estimates, and Jacobi/Laguerre inequalities, use the built-in Python/code-interpreter capability when it helps; give step-by-step derivations and explicit verification plans.",
+      "extra_body": {
+        "enable_code_interpreter": true,
+        "enable_thinking": true
+      },
       "quality_gate": {
         "reasoning": {
           "min_words": 1200,
@@ -82,7 +94,7 @@
       },
       "retry_on_quality_gate": true,
       "quality_gate_retries": 1,
-      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. Do not claim the conjecture is solved unless every constant and bridge step is explicit."
+      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. Use the Qwen built-in code interpreter when a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim. Do not claim the conjecture is solved unless every constant and bridge step is explicit."
     }
   ]
 }
