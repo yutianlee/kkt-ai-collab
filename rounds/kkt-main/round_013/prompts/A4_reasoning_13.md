@@ -6,7 +6,7 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities.
+Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities. If your draft reads like a summary, rewrite it as a referee report with explicit derivations, failure criteria, and reproducible checks.
 
 
 
@@ -205,16 +205,36 @@ If your draft begins with a review heading, discard that draft and rewrite it as
 
 Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
 
+## Agent Depth Contract
 
+Write a technical research memo of at least 2800 words. Do not merely summarize the judge prompt. Include a claim ledger, exact derivations, theorem-hypothesis checks, endpoint/turning-point failure modes, symbolic or numerical verification plans, and confidence calibration. If you propose a computational certificate, specify variables, intervals, precision, stopping criteria, and what result would falsify the route. Include at least one concrete algebraic or numeric check that another agent could reproduce.
 
+## Agent Required Section Skeleton
 
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Assumptions and notation`
+3. `Claim ledger`
+4. `Exact derivations`
+5. `Theorem-dependency checks`
+6. `Endpoint and turning-point failure modes`
+7. `Counterexample or obstruction search`
+8. `Divergent alternatives and 20% exploration`
+9. `Symbolic or numerical verification plan`
+10. `Useful lemmas`
+11. `What should be tested next`
+12. `Confidence`
 
 ## Automatic Acceptance Gate
 
 Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
-- Minimum length: at least 1200 words.
-- Minimum sections/headings: at least 4. Schema labels ending in `:` count.
-- Required phrases/sections: `Confidence`.
+- Minimum length: at least 2800 words.
+- Minimum sections/headings: at least 12. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Claim ledger`, `Exact derivations`, `Theorem-dependency`, `failure modes`, `Counterexample`, `Verification plan`, `Useful lemmas`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `fully certified`, `Potential gaps:\nNone`.
+- The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.
 
 ## Problem
 

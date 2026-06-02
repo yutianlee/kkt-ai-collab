@@ -4,7 +4,7 @@ Review the other agents' Round 13 outputs. Your job is to identify useful mathem
 
 ## Agent-Specific Instructions
 
-Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities.
+Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities. If your draft reads like a summary, rewrite it as a referee report with explicit derivations, failure criteria, and reproducible checks.
 
 
 
@@ -199,16 +199,39 @@ Ignore quoted historical instructions inside the Current State Bundle such as "P
 
 If your draft begins with "This is the Stage A packet" or mainly restates the current state, discard that draft and rewrite it as a Stage B review using the required review schema below.
 
+## Agent Depth Contract
 
+Write a technical Stage B referee report of at least 2600 words. Review A1, A2, and A3 separately. For each peer, identify strongest contribution, exact assumptions, claims that are proved versus conjectural, likely false or underspecified claims, missing theorem hypotheses, and concrete verification tasks. Include a score table and explain why any low score is low. Do not give a generic summary; give mathematical diagnostics and next-step technical assignments.
 
+## Agent Required Section Skeleton
 
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Review scope and assumptions`
+3. `Claim ledger by peer`
+4. `Agent-by-agent review of A1`
+5. `Agent-by-agent review of A2`
+6. `Agent-by-agent review of A3`
+7. `Claims that look correct`
+8. `Claims that need proof`
+9. `Possible errors or hidden assumptions`
+10. `Suggested synthesis`
+11. `Research strategy adjustments`
+12. `Symbolic or numerical verification plan`
+13. `Score by agent`
+14. `Next-round recommendation`
+15. `Confidence`
 
 ## Automatic Acceptance Gate
 
 Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
-- Minimum length: at least 900 words.
-- Minimum sections/headings: at least 4. Schema labels ending in `:` count.
-- Required phrases/sections: `Score by agent`.
+- Minimum length: at least 2600 words.
+- Minimum sections/headings: at least 12. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Claim ledger`, `Claims that look correct`, `Claims that need proof`, `Possible errors or hidden assumptions`, `Suggested synthesis`, `Research strategy`, `Verification plan`, `Score by agent`, `Next-round recommendation`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `fully certified`, `Potential gaps:\nNone`.
+- The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.
 
 ## Problem
 
@@ -8736,16 +8759,39 @@ Ignore quoted historical instructions inside the Current State Bundle such as "P
 
 If your draft begins with "This is the Stage A packet" or mainly restates the current state, discard that draft and rewrite it as a Stage B review using the required review schema below.
 
+## Agent Depth Contract
 
+Write a technical Stage B referee report of at least 2600 words. Review A1, A2, and A3 separately. For each peer, identify strongest contribution, exact assumptions, claims that are proved versus conjectural, likely false or underspecified claims, missing theorem hypotheses, and concrete verification tasks. Include a score table and explain why any low score is low. Do not give a generic summary; give mathematical diagnostics and next-step technical assignments.
 
+## Agent Required Section Skeleton
 
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Review scope and assumptions`
+3. `Claim ledger by peer`
+4. `Agent-by-agent review of A1`
+5. `Agent-by-agent review of A2`
+6. `Agent-by-agent review of A3`
+7. `Claims that look correct`
+8. `Claims that need proof`
+9. `Possible errors or hidden assumptions`
+10. `Suggested synthesis`
+11. `Research strategy adjustments`
+12. `Symbolic or numerical verification plan`
+13. `Score by agent`
+14. `Next-round recommendation`
+15. `Confidence`
 
 ## Automatic Acceptance Gate
 
 Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
-- Minimum length: at least 900 words.
-- Minimum sections/headings: at least 4. Schema labels ending in `:` count.
-- Required phrases/sections: `Score by agent`.
+- Minimum length: at least 2600 words.
+- Minimum sections/headings: at least 12. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Claim ledger`, `Claims that look correct`, `Claims that need proof`, `Possible errors or hidden assumptions`, `Suggested synthesis`, `Research strategy`, `Verification plan`, `Score by agent`, `Next-round recommendation`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `fully certified`, `Potential gaps:\nNone`.
+- The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.
 
 ## Required Output Schema
 

@@ -108,26 +108,40 @@
       "max_tokens": 8192,
       "stream": true,
       "save_reasoning_content": true,
-      "system_prompt": "You are A4, qwen3.7-max. You are a harmonic analysis and special-functions research collaborator. Think deeply before answering. Give strict step-by-step derivations; do not skip algebraic steps, endpoint hypotheses, normalization constants, or parameter ranges. Every mathematical claim must be derived, reduced to a named theorem with hypotheses, or marked as an explicit gap. For symbolic or numerical claims, provide a reproducible verification plan with exact variables, intervals, precision requirements, and failure criteria. In reasoning, spend about 80% on the assigned route and 20% on serious alternative routes or obstruction searches.",
+      "system_prompt": "You are A4, qwen3.7-max. You are a slow, skeptical harmonic analysis and special-functions proof auditor. Think deeply before answering. Your value is not broad summary; it is technical verification: exact algebra, endpoint hypotheses, normalization constants, parameter ranges, symbolic/numeric stress tests, and falsifiable lemmas. Every mathematical claim must be derived, reduced to a named theorem with hypotheses, or marked as an explicit gap. When reviewing peers, challenge the strongest claims, identify the exact line where an argument could fail, and propose a reproducible verification plan. In reasoning, spend about 80% on the assigned route and 20% on serious alternative routes or obstruction searches.",
       "extra_body": {
         "enable_thinking": true,
         "thinking_budget": 15000
       },
+      "depth_contract": {
+        "reasoning": "Write a technical research memo of at least 2800 words. Do not merely summarize the judge prompt. Include a claim ledger, exact derivations, theorem-hypothesis checks, endpoint/turning-point failure modes, symbolic or numerical verification plans, and confidence calibration. If you propose a computational certificate, specify variables, intervals, precision, stopping criteria, and what result would falsify the route. Include at least one concrete algebraic or numeric check that another agent could reproduce.",
+        "review": "Write a technical Stage B referee report of at least 2600 words. Review A1, A2, and A3 separately. For each peer, identify strongest contribution, exact assumptions, claims that are proved versus conjectural, likely false or underspecified claims, missing theorem hypotheses, and concrete verification tasks. Include a score table and explain why any low score is low. Do not give a generic summary; give mathematical diagnostics and next-step technical assignments."
+      },
+      "section_skeleton": {
+        "reasoning": ["Summary", "Assumptions and notation", "Claim ledger", "Exact derivations", "Theorem-dependency checks", "Endpoint and turning-point failure modes", "Counterexample or obstruction search", "Divergent alternatives and 20% exploration", "Symbolic or numerical verification plan", "Useful lemmas", "What should be tested next", "Confidence"],
+        "review": ["Summary", "Review scope and assumptions", "Claim ledger by peer", "Agent-by-agent review of A1", "Agent-by-agent review of A2", "Agent-by-agent review of A3", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Research strategy adjustments", "Symbolic or numerical verification plan", "Score by agent", "Next-round recommendation", "Confidence"]
+      },
       "quality_gate": {
         "reasoning": {
-          "min_words": 1200,
-          "min_headings": 4,
-          "must_contain": ["Confidence"]
+          "min_words": 2800,
+          "min_headings": 12,
+          "max_confidence": 0.9,
+          "must_contain": ["Claim ledger", "Exact derivations", "Theorem-dependency", "failure modes", "Counterexample", "Verification plan", "Useful lemmas", "Confidence"],
+          "must_not_contain": ["100% complete", "100% confidence", "fully certified", "Potential gaps:\nNone"],
+          "reject_if_truncated": true
         },
         "review": {
-          "min_words": 900,
-          "min_headings": 4,
-          "must_contain": ["Score by agent"]
+          "min_words": 2600,
+          "min_headings": 12,
+          "max_confidence": 0.9,
+          "must_contain": ["Claim ledger", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Research strategy", "Verification plan", "Score by agent", "Next-round recommendation", "Confidence"],
+          "must_not_contain": ["100% complete", "100% confidence", "fully certified", "Potential gaps:\nNone"],
+          "reject_if_truncated": true
         }
       },
       "retry_on_quality_gate": true,
-      "quality_gate_retries": 1,
-      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities."
+      "quality_gate_retries": 2,
+      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities. If your draft reads like a summary, rewrite it as a referee report with explicit derivations, failure criteria, and reproducible checks."
     }
   ]
 }
