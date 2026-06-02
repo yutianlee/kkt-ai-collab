@@ -23,6 +23,7 @@ STATE_FILES = [
     "manifests/reading_packet.md",
     "manifests/legacy_outputs.md",
     "manifests/round_011_seed.md",
+    "manifests/round_011_bootstrap_judge.md",
 ]
 
 HUMAN_FILES = [

@@ -58,6 +58,7 @@ manifests/
   reading_packet.md
   legacy_outputs.md
   round_011_seed.md
+  round_011_bootstrap_judge.md
 rounds/
   legacy-review-reason/
   ...
@@ -67,7 +68,7 @@ handoff/
 
 The existing `A1-*`, `A2-*`, `A3-*`, `A4-*`, `*-Strategy.md`, and `*-S1.md` files are preserved as legacy research artifacts. Available pre-normalized rounds are mirrored under `rounds/legacy-review-reason/`.
 
-The normalized workflow starts at round 12. It uses `A1-11.md`, `A2-11.md`, `A3-11.md`, `A4-11.md`, `A1-Strategy.md`, and `A2-Strategy.md` as the seed context in `manifests/round_011_seed.md`.
+The normalized workflow starts with a bootstrap judge before round 12. A1/GPT judges `A1-11.md`, `A2-11.md`, `A3-11.md`, `A4-11.md`, `A1-Strategy.md`, and `A2-Strategy.md`, then the result is stored in `manifests/round_011_bootstrap_judge.md`.
 
 ## Quick Start
 
@@ -77,7 +78,19 @@ Smoke test the file layout without calling any external API:
 python -m math_collab.orchestrator --config config/agents.example.json --problem problems/kkt_conjecture.md --rounds 1 --dry-run --run-id smoke --no-state-update
 ```
 
-Generate prompts for the first normalized manual web/API mixed round:
+Recommended: generate the A1/GPT bootstrap judge prompt first:
+
+```powershell
+python -m math_collab.bootstrap_judge --run-id kkt-main
+```
+
+Paste `rounds/kkt-main/round_011/prompts/bootstrap_judge.md` into ChatGPT Extended Pro, save the copied response to `handoff/kkt-main/round_011/judge/bootstrap_judge.md`, then rerun:
+
+```powershell
+python -m math_collab.bootstrap_judge --run-id kkt-main
+```
+
+Then generate prompts for the first normalized manual web/API mixed round:
 
 ```powershell
 python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --skip-missing-api

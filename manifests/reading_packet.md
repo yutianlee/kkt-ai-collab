@@ -8,7 +8,7 @@ Study KKT Conjecture 6.1 for the weighted normalized Jacobi expression $g_n^{(\a
 
 The full real-parameter statement appears open. Existing legacy AI work has narrowed attention to endpoint-cap analysis after central-region and energy reductions. The remaining obstacle is an explicit endpoint/Laguerre certificate with constants and a finite-$\beta$ bridge.
 
-Round 12 should start from `manifests/round_011_seed.md`, which contains `A1-11.md`, `A2-11.md`, `A3-11.md`, `A4-11.md`, `A1-Strategy.md`, and `A2-Strategy.md`.
+Round 12 should start from the A1/GPT bootstrap judge result in `manifests/round_011_bootstrap_judge.md`. That judge result is based on `manifests/round_011_seed.md`, which contains `A1-11.md`, `A2-11.md`, `A3-11.md`, `A4-11.md`, `A1-Strategy.md`, and `A2-Strategy.md`.
 
 ## Most Important Gaps
 
@@ -19,7 +19,7 @@ Round 12 should start from `manifests/round_011_seed.md`, which contains `A1-11.
 
 ## Suggested Next Round
 
-Ask each active AI to make a fresh Stage A reasoning attempt from the Round 11 seed and latest strategies:
+Ask each active AI to make a fresh Stage A reasoning attempt from the bootstrap judge result:
 
 - A1 should synthesize the endpoint-cap strategy and later judge the round.
 - A2 should stress-test the certified hybrid strategy and hidden hypotheses.

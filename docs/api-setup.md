@@ -89,7 +89,13 @@ python -m math_collab.api_smoke --agents A4
 
 ## 4. Run Round 12
 
-Generate/advance the first normalized round:
+Before Round 12, it is best to let A1/GPT judge the Round 11 seed and the two latest strategies:
+
+```powershell
+python -m math_collab.bootstrap_judge --run-id kkt-main
+```
+
+After saving and ingesting the bootstrap judge response, generate/advance the first normalized round:
 
 ```powershell
 python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --skip-missing-api

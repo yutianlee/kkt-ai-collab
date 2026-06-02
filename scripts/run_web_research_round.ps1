@@ -18,6 +18,7 @@ $Python = "python"
 
 Write-Host ""
 Write-Host "Next:"
+Write-Host "0. If this is the first normalized run, first run: python -m math_collab.bootstrap_judge --run-id $RunId"
 Write-Host "1. Open prompt files under rounds/$RunId/round_$($Round.ToString('000'))/prompts."
 Write-Host "   Prompt filenames include the round suffix, e.g. *_$Round.md."
 Write-Host "2. Paste A1 prompts into ChatGPT Extended Pro and A2 prompts into Gemini Pro DeepThink."

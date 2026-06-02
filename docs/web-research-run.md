@@ -35,7 +35,25 @@ After each stage is filled, rerun the orchestrator command for that same round. 
 
 ## Commands
 
-Generate or advance a KKT research-mode round, starting at the first normalized round after the legacy 11-round run:
+First, generate the A1/GPT bootstrap judge prompt for the legacy Round 11 material and the two latest strategies:
+
+```powershell
+python -m math_collab.bootstrap_judge --run-id kkt-main
+```
+
+Paste `rounds/kkt-main/round_011/prompts/bootstrap_judge.md` into ChatGPT Extended Pro. Save the copied answer to:
+
+```text
+handoff/kkt-main/round_011/judge/bootstrap_judge.md
+```
+
+Then rerun the same command to ingest it:
+
+```powershell
+python -m math_collab.bootstrap_judge --run-id kkt-main
+```
+
+Now generate or advance a KKT research-mode round, starting at the first normalized round after the bootstrap judge:
 
 ```powershell
 python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --skip-missing-api

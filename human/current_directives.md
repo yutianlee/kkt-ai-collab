@@ -10,4 +10,4 @@ Required focus:
 4. state the finite-$\beta$ bridge as an explicit theorem with hypotheses;
 5. label every inherited claim as certified, plausible, or rejected.
 
-A1 is responsible for the judge synthesis and must output next-round prompts for A1, A2, A3, and A4.
+A1 should first produce a bootstrap judge synthesis from the legacy Round 11 seed and the two latest strategies. After that, A1 remains responsible for the normal round judge synthesis and must output next-round prompts for A1, A2, A3, and A4.

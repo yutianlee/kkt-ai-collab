@@ -38,7 +38,7 @@ The old KKT workflow used combined review-then-reason responses. The new workflo
 2. Stage B review of the other Stage A responses;
 3. Stage C A1/GPT judge synthesis and next-round prompts for all four AIs.
 
-Round 12 should use `manifests/round_011_seed.md`, which contains the most useful round-11 outputs and the latest `A1-Strategy.md` and `A2-Strategy.md`.
+Before Round 12, A1/GPT should first produce a bootstrap judge synthesis from `manifests/round_011_seed.md`. The result is stored in `manifests/round_011_bootstrap_judge.md` and becomes the clean starting decision for Round 12.
 
 ## Current Best Direction
 

@@ -30,4 +30,4 @@ This workspace already contains a multi-AI KKT run in flat files at the reposito
 
 ## Reading Rule
 
-Do not paste all legacy files into every prompt. Round 12 includes `manifests/round_011_seed.md`; later rounds should usually rely on `manifests/reading_packet.md` plus selectively attached legacy files.
+Do not paste all legacy files into every prompt. First use `manifests/round_011_seed.md` to generate the A1/GPT bootstrap judge in `manifests/round_011_bootstrap_judge.md`; Round 12 should then rely on the bootstrap judge plus `manifests/reading_packet.md`.
