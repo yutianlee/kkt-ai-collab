@@ -926,6 +926,19 @@ def looks_truncated(text: str) -> bool:
     return False
 
 
+def is_section_heading_line(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped:
+        return False
+    if stripped.startswith("#"):
+        return True
+    if len(stripped) > 90 or not stripped.endswith(":"):
+        return False
+    if stripped.startswith(("-", "*", "|")):
+        return False
+    return bool(re.match(r"^[A-Z][A-Za-z0-9 /&(),'\-]+:$", stripped))
+
+
 def quality_gate_issues(agent: Agent, stage: str, output: str) -> list[str]:
     gates = agent.raw.get("quality_gate", {})
     gate = gates.get(stage, {}) if isinstance(gates, dict) else {}
@@ -942,7 +955,7 @@ def quality_gate_issues(agent: Agent, stage: str, output: str) -> list[str]:
 
     min_headings = int(gate.get("min_headings", 0) or 0)
     if min_headings:
-        headings = sum(1 for line in target.splitlines() if line.lstrip().startswith("#"))
+        headings = sum(1 for line in target.splitlines() if is_section_heading_line(line))
         if headings < min_headings:
             issues.append(f"heading count {headings} is below required minimum {min_headings}")
 
