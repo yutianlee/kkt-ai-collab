@@ -915,7 +915,9 @@ def looks_truncated(text: str) -> bool:
         return True
     if tail.endswith(("$", "\\", "{", "[", "(", ",", ":", ";")):
         return True
-    if re.search(r"(\*\*|__)[^*_]*$", tail):
+    if len(re.findall(r"(?<!\\)\*\*", tail)) % 2:
+        return True
+    if len(re.findall(r"(?<!\\)__", tail)) % 2:
         return True
     if tail.count("$$") % 2:
         return True
@@ -1078,18 +1080,19 @@ def run_agent(
     write_text(prompt_path, prompt)
 
     if generate_prompts_only:
-        if agent.provider == "web_manual":
-            existing = usable_web_response(handoff_response_path) or usable_web_response(output_path)
-            if existing:
-                write_quality_gate_revision_prompt(
-                    agent=agent,
-                    stage=stage,
-                    prompt=prompt,
-                    prompt_path=prompt_path,
-                    previous_output=existing,
-                )
-            elif not handoff_response_path.exists():
-                write_text(handoff_response_path, WEB_RESPONSE_MARKER + "\n\n")
+        existing = usable_web_response(output_path) or usable_web_response(handoff_response_path)
+        if existing:
+            if not write_quality_gate_revision_prompt(
+                agent=agent,
+                stage=stage,
+                prompt=prompt,
+                prompt_path=prompt_path,
+                previous_output=existing,
+            ):
+                return None
+            return existing
+        if agent.provider == "web_manual" and not handoff_response_path.exists():
+            write_text(handoff_response_path, WEB_RESPONSE_MARKER + "\n\n")
         return None
 
     if dry_run:
@@ -1346,7 +1349,11 @@ def run_round(
     reviews: dict[str, str] = {}
     if len(responses) >= 2:
         for agent in agents:
-            peer_outputs = {k: v for k, v in responses.items() if k != agent.id}
+            peer_outputs = {
+                k: response_quality_text(v)
+                for k, v in responses.items()
+                if k != agent.id
+            }
             if not peer_outputs:
                 continue
             if exclusions:
@@ -1395,16 +1402,22 @@ def run_round(
 
     judge_text: str | None = None
     if responses and reviews:
-        prompt_responses = responses
-        prompt_reviews = reviews
+        prompt_responses = {
+            agent_id: response_quality_text(text)
+            for agent_id, text in responses.items()
+        }
+        prompt_reviews = {
+            agent_id: response_quality_text(text)
+            for agent_id, text in reviews.items()
+        }
         if exclusions:
             prompt_responses = {
                 agent_id: scrub_excluded_agent_text(text, exclusions)
-                for agent_id, text in responses.items()
+                for agent_id, text in prompt_responses.items()
             }
             prompt_reviews = {
                 agent_id: scrub_excluded_agent_text(text, exclusions)
-                for agent_id, text in reviews.items()
+                for agent_id, text in prompt_reviews.items()
             }
         prompt = build_judge_prompt(
             judge=judge,
