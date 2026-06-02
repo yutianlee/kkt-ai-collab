@@ -222,6 +222,10 @@ Exploration budget: spend about 80% of the answer on the assigned route and abou
 
 Write a deep long-form reasoning attempt, not a summary. Include exact claim statements, parameter ranges, derivations, gap labels, falsification tests, and a 20% section for divergent alternatives such as other coordinates, product formulas, hypergroup positivity, Sturm comparison, Christoffel bounds, or computable certificates.
 
+
+
+
+
 ## Problem
 
 # KKT Jacobi Polynomial Conjecture

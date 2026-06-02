@@ -453,6 +453,55 @@ def agent_depth_contract(agent: Agent, stage: str) -> str:
     return ""
 
 
+def agent_section_skeleton(agent: Agent, stage: str) -> str:
+    skeletons = agent.raw.get("section_skeleton", {})
+    if not isinstance(skeletons, dict):
+        return ""
+    sections = skeletons.get(stage, [])
+    if not sections:
+        return ""
+    section_lines = "\n".join(f"{index}. `{section}`" for index, section in enumerate(sections, 1))
+    return f"""## Agent Required Section Skeleton
+
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+{section_lines}"""
+
+
+def quality_gate_prompt(agent: Agent, stage: str) -> str:
+    gates = agent.raw.get("quality_gate", {})
+    gate = gates.get(stage, {}) if isinstance(gates, dict) else {}
+    if not isinstance(gate, dict) or not gate:
+        return ""
+
+    lines = [
+        "## Automatic Acceptance Gate",
+        "",
+        "Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.",
+    ]
+    min_words = gate.get("min_words")
+    if min_words:
+        lines.append(f"- Minimum length: at least {min_words} words.")
+    min_headings = gate.get("min_headings")
+    if min_headings:
+        lines.append(f"- Minimum sections/headings: at least {min_headings}. Schema labels ending in `:` count.")
+    max_confidence = gate.get("max_confidence")
+    if max_confidence is not None:
+        lines.append(f"- Confidence calibration: no confidence value may exceed {max_confidence}.")
+    def gate_item(item: object) -> str:
+        return str(item).replace("\n", "\\n")
+
+    must_contain = gate.get("must_contain", []) or []
+    if must_contain:
+        lines.append("- Required phrases/sections: " + ", ".join(f"`{gate_item(item)}`" for item in must_contain) + ".")
+    must_not_contain = gate.get("must_not_contain", []) or []
+    if must_not_contain:
+        lines.append("- Forbidden overclaim phrases: " + ", ".join(f"`{gate_item(item)}`" for item in must_not_contain) + ".")
+    if gate.get("reject_if_truncated", False):
+        lines.append("- The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.")
+    return "\n".join(lines)
+
+
 def reasoning_stage_guardrail() -> str:
     return """## Reasoning-Stage Guardrail
 
@@ -541,6 +590,10 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 {agent_depth_contract(agent, "reasoning")}
 
+{agent_section_skeleton(agent, "reasoning")}
+
+{quality_gate_prompt(agent, "reasoning")}
+
 ## Problem
 
 {problem}
@@ -611,6 +664,10 @@ Review the other agents' Round {round_index} outputs. Your job is to identify us
 
 {agent_depth_contract(agent, "review")}
 
+{agent_section_skeleton(agent, "review")}
+
+{quality_gate_prompt(agent, "review")}
+
 ## Problem
 
 {problem}
@@ -632,6 +689,10 @@ Human instructions override prior AI suggestions when they are about research di
 {review_stage_guardrail(round_index)}
 
 {agent_depth_contract(agent, "review")}
+
+{agent_section_skeleton(agent, "review")}
+
+{quality_gate_prompt(agent, "review")}
 
 ## Required Output Schema
 
@@ -683,6 +744,10 @@ Synthesize Round {round_index}. Prefer precise, checkable progress over impressi
 {research_quality_rubric()}
 
 {agent_depth_contract(judge, "judge")}
+
+{agent_section_skeleton(judge, "judge")}
+
+{quality_gate_prompt(judge, "judge")}
 
 ## Problem
 

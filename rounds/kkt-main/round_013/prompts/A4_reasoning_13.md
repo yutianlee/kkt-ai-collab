@@ -207,6 +207,15 @@ Exploration budget: spend about 80% of the answer on the assigned route and abou
 
 
 
+
+
+## Automatic Acceptance Gate
+
+Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
+- Minimum length: at least 1200 words.
+- Minimum sections/headings: at least 4. Schema labels ending in `:` count.
+- Required phrases/sections: `Confidence`.
+
 ## Problem
 
 # KKT Jacobi Polynomial Conjecture

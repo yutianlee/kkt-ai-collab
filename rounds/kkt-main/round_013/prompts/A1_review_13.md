@@ -216,6 +216,10 @@ If your draft begins with "This is the Stage A packet" or mainly restates the cu
 
 Write a deep referee report on A2, A3, and A4. Include a score table, hidden assumptions, exact claims needing proof, concrete verification tasks, and a research-strategy adjustment recommendation based on which agents look trustworthy.
 
+
+
+
+
 ## Problem
 
 # KKT Jacobi Polynomial Conjecture
@@ -6834,6 +6838,10 @@ If your draft begins with "This is the Stage A packet" or mainly restates the cu
 ## Agent Depth Contract
 
 Write a deep referee report on A2, A3, and A4. Include a score table, hidden assumptions, exact claims needing proof, concrete verification tasks, and a research-strategy adjustment recommendation based on which agents look trustworthy.
+
+
+
+
 
 ## Required Output Schema
 

@@ -222,6 +222,34 @@ Exploration budget: spend about 80% of the answer on the assigned route and abou
 
 Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a full research memo of at least 5500 words with `##` Markdown section headings. The answer must include a claim ledger, theorem-dependency audit, step-by-step derivations for every central formula, parameter ranges, endpoint and finite-beta failure modes, obstruction/counterexample tests, reproducible symbolic or numerical verification plans, and calibrated confidence. Spend about 80% on the judge-assigned route and about 20% on serious divergent alternatives. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false. Do not use rhetorical closure phrases such as `mathematical illusion`, `zero reduction`, or `analytically dead` unless you have supplied a complete derivation and failure criterion.
 
+## Agent Required Section Skeleton
+
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Assumptions`
+3. `Claim ledger`
+4. `Theorem-dependency audit`
+5. `Main claim or direction`
+6. `Detailed derivations`
+7. `Potential gaps`
+8. `Counterexample or obstruction search`
+9. `Divergent alternatives and 20% exploration`
+10. `Verification plan`
+11. `Research strategy`
+12. `Useful lemmas`
+13. `What should be tested next`
+14. `Confidence`
+
+## Automatic Acceptance Gate
+
+Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
+- Minimum length: at least 5500 words.
+- Minimum sections/headings: at least 18. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Assumptions`, `Claim ledger`, `Theorem-dependency audit`, `Derivation`, `Potential gaps`, `Counterexample`, `Verification plan`, `Divergent alternatives`, `Research strategy`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `100% certified`, `fully certified`, `fatal hidden assumption`, `Potential gaps:\nNone`, `mathematical illusion`, `zero reduction`, `analytically dead`.
+
 ## Problem
 
 # KKT Jacobi Polynomial Conjecture

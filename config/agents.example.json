@@ -35,20 +35,24 @@
         "reasoning": "Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a full research memo of at least 5500 words with `##` Markdown section headings. The answer must include a claim ledger, theorem-dependency audit, step-by-step derivations for every central formula, parameter ranges, endpoint and finite-beta failure modes, obstruction/counterexample tests, reproducible symbolic or numerical verification plans, and calibrated confidence. Spend about 80% on the judge-assigned route and about 20% on serious divergent alternatives. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false. Do not use rhetorical closure phrases such as `mathematical illusion`, `zero reduction`, or `analytically dead` unless you have supplied a complete derivation and failure criterion.",
         "review": "Use Gemini Pro Deep Think for a slow, deep, long-form Stage B referee report of at least 5000 words in raw Markdown source. Review A1, A3, and A4 separately and in detail. For each reviewed agent, include a claim ledger, strongest mathematical contribution, exact assumptions used, claims that are derived versus conjectural, hidden hypotheses, likely false or underspecified statements, theorem-dependency checks, numerical/symbolic verification tasks, confidence calibration, and research-strategy implications. Include explicit equations and derivations when rejecting or repairing a claim; do not merely summarize. End with a concrete next-round strategy allocation and explain which agent should test which mathematical obstruction."
       },
+      "section_skeleton": {
+        "reasoning": ["Summary", "Assumptions", "Claim ledger", "Theorem-dependency audit", "Main claim or direction", "Detailed derivations", "Potential gaps", "Counterexample or obstruction search", "Divergent alternatives and 20% exploration", "Verification plan", "Research strategy", "Useful lemmas", "What should be tested next", "Confidence"],
+        "review": ["Summary", "Assumptions and scope", "Claim ledger", "Theorem-dependency audit", "Most valuable input from others", "Agent-by-agent review of A1", "Agent-by-agent review of A3", "Agent-by-agent review of A4", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Research strategy adjustments", "Verification plan", "Score by agent", "Next-round recommendation", "Confidence"]
+      },
       "quality_gate": {
         "reasoning": {
           "min_words": 5500,
           "min_headings": 18,
           "max_confidence": 0.9,
           "must_contain": ["Assumptions", "Claim ledger", "Theorem-dependency audit", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Divergent alternatives", "Research strategy", "Confidence"],
-          "must_not_contain": ["100%", "fully certified", "fatal hidden assumption", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
+          "must_not_contain": ["100% complete", "100% confidence", "100% certified", "fully certified", "fatal hidden assumption", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
         },
         "review": {
           "min_words": 5000,
           "min_headings": 18,
           "max_confidence": 0.9,
           "must_contain": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Score by agent", "Next-round recommendation", "Assumptions", "Claim ledger", "Theorem-dependency audit", "Verification plan", "Research strategy", "Confidence"],
-          "must_not_contain": ["100%", "fully certified", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
+          "must_not_contain": ["100% complete", "100% confidence", "100% certified", "fully certified", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
         }
       },
       "enforce_quality_gate": true,

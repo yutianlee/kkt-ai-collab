@@ -216,6 +216,37 @@ If your draft begins with "This is the Stage A packet" or mainly restates the cu
 
 Use Gemini Pro Deep Think for a slow, deep, long-form Stage B referee report of at least 5000 words in raw Markdown source. Review A1, A3, and A4 separately and in detail. For each reviewed agent, include a claim ledger, strongest mathematical contribution, exact assumptions used, claims that are derived versus conjectural, hidden hypotheses, likely false or underspecified statements, theorem-dependency checks, numerical/symbolic verification tasks, confidence calibration, and research-strategy implications. Include explicit equations and derivations when rejecting or repairing a claim; do not merely summarize. End with a concrete next-round strategy allocation and explain which agent should test which mathematical obstruction.
 
+## Agent Required Section Skeleton
+
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Assumptions and scope`
+3. `Claim ledger`
+4. `Theorem-dependency audit`
+5. `Most valuable input from others`
+6. `Agent-by-agent review of A1`
+7. `Agent-by-agent review of A3`
+8. `Agent-by-agent review of A4`
+9. `Claims that look correct`
+10. `Claims that need proof`
+11. `Possible errors or hidden assumptions`
+12. `Suggested synthesis`
+13. `Research strategy adjustments`
+14. `Verification plan`
+15. `Score by agent`
+16. `Next-round recommendation`
+17. `Confidence`
+
+## Automatic Acceptance Gate
+
+Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
+- Minimum length: at least 5000 words.
+- Minimum sections/headings: at least 18. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Most valuable input from others`, `Claims that look correct`, `Claims that need proof`, `Possible errors or hidden assumptions`, `Suggested synthesis`, `Score by agent`, `Next-round recommendation`, `Assumptions`, `Claim ledger`, `Theorem-dependency audit`, `Verification plan`, `Research strategy`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `100% certified`, `fully certified`, `Potential gaps:\nNone`, `mathematical illusion`, `zero reduction`, `analytically dead`.
+
 ## Problem
 
 # KKT Jacobi Polynomial Conjecture
@@ -8415,6 +8446,37 @@ If your draft begins with "This is the Stage A packet" or mainly restates the cu
 
 Use Gemini Pro Deep Think for a slow, deep, long-form Stage B referee report of at least 5000 words in raw Markdown source. Review A1, A3, and A4 separately and in detail. For each reviewed agent, include a claim ledger, strongest mathematical contribution, exact assumptions used, claims that are derived versus conjectural, hidden hypotheses, likely false or underspecified statements, theorem-dependency checks, numerical/symbolic verification tasks, confidence calibration, and research-strategy implications. Include explicit equations and derivations when rejecting or repairing a claim; do not merely summarize. End with a concrete next-round strategy allocation and explain which agent should test which mathematical obstruction.
 
+## Agent Required Section Skeleton
+
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Assumptions and scope`
+3. `Claim ledger`
+4. `Theorem-dependency audit`
+5. `Most valuable input from others`
+6. `Agent-by-agent review of A1`
+7. `Agent-by-agent review of A3`
+8. `Agent-by-agent review of A4`
+9. `Claims that look correct`
+10. `Claims that need proof`
+11. `Possible errors or hidden assumptions`
+12. `Suggested synthesis`
+13. `Research strategy adjustments`
+14. `Verification plan`
+15. `Score by agent`
+16. `Next-round recommendation`
+17. `Confidence`
+
+## Automatic Acceptance Gate
+
+Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
+- Minimum length: at least 5000 words.
+- Minimum sections/headings: at least 18. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.9.
+- Required phrases/sections: `Most valuable input from others`, `Claims that look correct`, `Claims that need proof`, `Possible errors or hidden assumptions`, `Suggested synthesis`, `Score by agent`, `Next-round recommendation`, `Assumptions`, `Claim ledger`, `Theorem-dependency audit`, `Verification plan`, `Research strategy`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `100% certified`, `fully certified`, `Potential gaps:\nNone`, `mathematical illusion`, `zero reduction`, `analytically dead`.
+
 ## Required Output Schema
 
 Most valuable input from others:
@@ -8440,7 +8502,6 @@ Your previous review response was not accepted:
 - missing required phrase: Theorem-dependency audit
 - missing required phrase: Verification plan
 - missing required phrase: Confidence
-- contains forbidden overconfident phrase: 100%
 
 Return a full replacement answer, not an addendum. Preserve any correct mathematics from the previous answer, but expand it into the required depth, with explicit sections, lemma/claim boxes, failure modes, stress tests, score table when the stage is review, and confidence calibration.
 
