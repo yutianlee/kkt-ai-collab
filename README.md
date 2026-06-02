@@ -9,9 +9,7 @@ The workflow is adapted from `yutianlee/gauss-circle-ai-collab`: each round has 
 The main target is KKT Conjecture 6.1: prove or disprove the sharp bounds for
 
 $$
-g_n^{(\alpha,\beta)}(x)
-=
-\left(
+g_n^{(\alpha,\beta)}(x)=\left(
 \frac{\Gamma(n+1)\Gamma(n+\alpha+\beta+1)}
 {\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}
 \right)^{1/2}
