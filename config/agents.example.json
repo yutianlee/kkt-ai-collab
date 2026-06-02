@@ -8,7 +8,21 @@
       "role": "broad strategist, proof synthesizer, and final judge",
       "web_url": "https://chatgpt.com/",
       "copy_response_mode": "raw_markdown_fence",
-      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. In reasoning, make fresh progress on the KKT conjecture from the Round 11 seed. In review, audit the other agents. As judge, synthesize the round and write explicit next-round prompts for A1, A2, A3, and A4."
+      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. In reasoning, make fresh progress on the KKT conjecture and spend about 20% of the answer exploring serious alternative routes. In review, audit the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis and explicit next-round prompts for A1, A2, A3, and A4.",
+      "depth_contract": {
+        "reasoning": "Write a deep long-form reasoning attempt with exact claims, derivations, gap labels, falsification tests, and a 20% divergent alternatives section.",
+        "review": "Write a deep referee report with a score table, hidden assumptions, concrete verification tasks, and research-strategy adjustment recommendations.",
+        "judge": "Write a long-form judge synthesis with selected route, exact gaps, new lemmas, research-strategy adjustment, confidence calibration, and deep next-round prompts for all agents."
+      },
+      "quality_gate": {
+        "judge": {
+          "min_words": 3500,
+          "min_headings": 10,
+          "must_contain": ["Selected main route", "Known gaps", "Research strategy adjustment", "Next-round prompts by agent", "For A1", "For A2", "For A3", "For A4", "Confidence"]
+        }
+      },
+      "enforce_quality_gate": true,
+      "enforce_quality_gate_stages": ["judge"]
     },
     {
       "id": "A2",
@@ -16,7 +30,23 @@
       "provider": "web_manual",
       "role": "independent strategist, obstruction finder, and referee-style reviewer",
       "web_url": "https://gemini.google.com/",
-      "instructions": "Use Gemini Pro DeepThink. Look for hidden hypotheses, endpoint counterexamples, normalization errors, and alternate routes via product formulas, hypergroups, Sturm-Liouville theory, Christoffel bounds, or effective asymptotics."
+      "copy_response_mode": "raw_markdown_fence",
+      "quality_gate": {
+        "reasoning": {
+          "min_words": 3500,
+          "min_headings": 10,
+          "must_contain": ["Assumptions", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Confidence"],
+          "must_not_contain": ["100%", "flawless", "fully certified", "fatal hidden assumption"]
+        },
+        "review": {
+          "min_words": 4000,
+          "min_headings": 14,
+          "must_contain": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Score by agent", "Next-round recommendation", "Assumptions", "Verification plan", "Confidence"],
+          "must_not_contain": ["100%", "fully certified"]
+        }
+      },
+      "enforce_quality_gate": true,
+      "instructions": "Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Look for hidden hypotheses, endpoint counterexamples, normalization errors, and alternate routes via product formulas, hypergroups, Sturm-Liouville theory, Christoffel bounds, or effective asymptotics. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Write a long-form referee-style answer with `##` Markdown section headings, not a short summary, and avoid 100% confidence unless the proof is complete. In review stage, answer only as raw Markdown source inside the required fenced Markdown block."
     },
     {
       "id": "A3",
@@ -29,31 +59,47 @@
       "default_model": "deepseek-v4-pro",
       "temperature": 0.1,
       "save_reasoning_content": true,
-      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a meticulous proof auditor for the KKT Jacobi polynomial conjecture. Separate proved statements from plausible claims and identify exact missing lemmas.",
+      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a meticulous proof auditor for the KKT Jacobi polynomial conjecture. Think deeply before answering. Separate proved statements from plausible claims, identify exact missing lemmas, and include serious alternative proof routes or obstruction searches when in reasoning stage.",
       "extra_body": {
         "thinking": {
           "type": "enabled"
         },
         "reasoning_effort": "max",
         "max_tokens": 32768
-      }
+      },
+      "max_continuations": 2,
+      "quality_gate": {
+        "reasoning": {
+          "min_words": 1800,
+          "must_contain": ["Summary", "Potential gaps", "Counterexample", "Useful lemmas", "What should be tested next", "Confidence"],
+          "reject_if_truncated": true
+        },
+        "review": {
+          "min_words": 1400,
+          "must_contain": ["Claims that look correct", "Claims that need proof", "Score by agent", "Confidence"],
+          "reject_if_truncated": true
+        }
+      },
+      "retry_on_quality_gate": true,
+      "quality_gate_retries": 1
     },
     {
       "id": "A4",
-      "display_name": "A4 qwen-math-plus",
+      "display_name": "A4 qwen3.7-max",
       "provider": "openai_compatible",
       "role": "API-based technical lemma generator and symbolic/numeric check planner",
       "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
       "api_key_env": "QWEN_API_KEY",
       "model_env": "QWEN_MODEL",
-      "default_model": "qwen-math-plus",
+      "default_model": "qwen3.7-max",
       "temperature": 0.0,
+      "max_tokens": 8192,
       "stream": true,
       "save_reasoning_content": true,
-      "system_prompt": "You are A4, qwen-math-plus. You are a harmonic analysis and special-functions research collaborator. For difficult integrals, norms, sharp upper/lower bounds, operator estimates, and Jacobi/Laguerre inequalities, use the built-in Python/code-interpreter capability when it helps; give step-by-step derivations and explicit verification plans.",
+      "system_prompt": "You are A4, qwen3.7-max. You are a harmonic analysis and special-functions research collaborator. Think deeply before answering. Give strict step-by-step derivations; do not skip algebraic steps, endpoint hypotheses, normalization constants, or parameter ranges. Every mathematical claim must be derived, reduced to a named theorem with hypotheses, or marked as an explicit gap. For symbolic or numerical claims, provide a reproducible verification plan with exact variables, intervals, precision requirements, and failure criteria. In reasoning, spend about 80% on the assigned route and 20% on serious alternative routes or obstruction searches.",
       "extra_body": {
-        "enable_code_interpreter": true,
-        "enable_thinking": true
+        "enable_thinking": true,
+        "thinking_budget": 15000
       }
     }
   ]

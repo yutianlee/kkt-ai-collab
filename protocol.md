@@ -7,7 +7,7 @@ The default four-agent panel is:
 1. `A1`: ChatGPT Extended Pro through the web UI.
 2. `A2`: Gemini Pro DeepThink through the web UI.
 3. `A3`: Deepseek V4 Pro think_max through an OpenAI-compatible API.
-4. `A4`: qwen-math-plus through an OpenAI-compatible API.
+4. `A4`: qwen3.7-max through an OpenAI-compatible API.
 
 Any agent can be replaced as long as it follows the same output schema.
 
@@ -42,6 +42,7 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
+Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
@@ -61,6 +62,7 @@ Claims that look correct:
 Claims that need proof:
 Possible errors or hidden assumptions:
 Suggested synthesis:
+Research strategy adjustments:
 Score by agent:
 Next-round recommendation:
 ```
@@ -78,6 +80,7 @@ Rejected or risky ideas:
 Known gaps:
 New lemmas to add:
 Counterexample checks to run:
+Research strategy adjustment:
 Next-round prompts by agent:
 For A1:
 For A2:

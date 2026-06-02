@@ -6,9 +6,22 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Use Gemini Pro DeepThink. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Consider product-formula/hypergroup routes, Sturm-Liouville/Sonin energy routes, Christoffel-function bounds, and effective Laguerre asymptotics.
+Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Avoid rhetorical certainty and do not give 100% confidence unless a formal proof is complete. Prefer a detailed referee-style derivation over a short executive summary, and include an explicit list of assumptions, verification steps, possible failure modes, and calibrated confidence. In review stage, answer only as raw Markdown source inside the required fenced Markdown block.
 
+## Raw Markdown Copy-Response Safety Rule
 
+Your final answer must be one single fenced Markdown code block:
+
+````text
+```markdown
+Summary:
+...
+```
+````
+
+Do not write anything before or after that outer fence. Inside the fence, write normal Markdown and raw LaTeX source using `$...$` and `$$...$$`.
+
+Do not use additional triple-backtick fences inside your answer. This rule is required because web Copy response can corrupt rendered display math, turning `=` into `====` and minus/fraction bars into long dashed lines.
 
 ## Active Agents For This Run
 
@@ -17,7 +30,7 @@ Only these agents are active in this run:
 - `A1` (A1 ChatGPT Extended Pro): broad strategist, proof synthesizer, and final judge
 - `A2` (A2 Gemini Pro DeepThink): independent strategist, obstruction finder, and referee-style reviewer
 - `A3` (A3 Deepseek V4 Pro think_max): API-based proof critic, algebra checker, and endpoint-reduction auditor
-- `A4` (A4 qwen-math-plus): API-based technical lemma generator and symbolic/numeric check planner
+- `A4` (A4 qwen3.7-max): API-based technical lemma generator and symbolic/numeric check planner
 
 Do not mention, score, or assign tasks to inactive agents. If older state text refers to inactive agents, treat it as historical context and reassign any still-useful mathematical check to one of the active agents.
 
@@ -32,7 +45,7 @@ The default four-agent panel is:
 1. `A1`: ChatGPT Extended Pro through the web UI.
 2. `A2`: Gemini Pro DeepThink through the web UI.
 3. `A3`: Deepseek V4 Pro think_max through an OpenAI-compatible API.
-4. `A4`: qwen-math-plus through an OpenAI-compatible API.
+4. `A4`: qwen3.7-max through an OpenAI-compatible API.
 
 Any agent can be replaced as long as it follows the same output schema.
 
@@ -67,6 +80,7 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
+Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
@@ -86,6 +100,7 @@ Claims that look correct:
 Claims that need proof:
 Possible errors or hidden assumptions:
 Suggested synthesis:
+Research strategy adjustments:
 Score by agent:
 Next-round recommendation:
 ```
@@ -103,6 +118,7 @@ Rejected or risky ideas:
 Known gaps:
 New lemmas to add:
 Counterexample checks to run:
+Research strategy adjustment:
 Next-round prompts by agent:
 For A1:
 For A2:
@@ -176,11 +192,15 @@ This is a research-mode run, not a smoke test. Take enough time to reason carefu
 
 Before writing the final response, internally check your proposal against known barriers, missing hypotheses, possible counterexamples, and literature-status uncertainty. In the final answer, report the refined result rather than hidden chain-of-thought.
 
+Anti-hallucination rule: do not present a new identity, theorem, numerical constant, or global monotonicity claim as true unless you either derive it in the answer, cite a named theorem with hypotheses, or mark it as a conjectural check. Avoid absolute language such as "flawless", "fully certified", or "100% confidence" unless a complete proof is included.
+
 For reasoning stages, include: main route, precise lemmas, theorem dependencies, hidden assumptions, obstruction or counterexample checks, what would falsify the route, and confidence.
 
-For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations.
+For reasoning stages, dedicate roughly 80% of the mathematical effort to the judge-assigned main route and roughly 20% to divergent exploration. The exploratory part should consider genuinely different proof routes, reductions, counterexample mechanisms, dual formulations, special-function tools, or computational certificates. Mark these as exploratory unless they are fully derived.
 
-For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, next-round tasks, and confidence.
+For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations. Also include a research-strategy adjustment section: say whether the next round should continue the main route, pivot variables, split into subproblems, test a counterexample, build a computation, or allocate one agent to an exploratory alternative.
+
+For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, research-strategy adjustment, next-round tasks, and confidence. The judge should write next-round prompts that force depth: exact hypotheses, derivations, verification plans, confidence calibration, and one exploratory allocation when useful.
 
 ## Reasoning-Stage Guardrail
 
@@ -196,9 +216,11 @@ Use the previous rounds only as background state and judge instructions. Do not 
 
 If your draft begins with a review heading, discard that draft and rewrite it as independent reasoning using the required reasoning schema below. Start from a new mathematical claim, derivation, obstruction check, lemma statement, or concrete test.
 
+Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
+
 ## Agent Depth Contract
 
-Use Gemini Pro DeepThink as a mathematical referee, not a summary writer. Include precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, and concrete stress tests for the KKT Jacobi/Laguerre reductions.
+Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a long-form answer of at least 3500 words with `##` Markdown section headings, precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, explicit derivations, uncertainty calibration, and concrete stress tests for the KKT Jacobi/Laguerre reductions. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false.
 
 ## Problem
 
@@ -3368,6 +3390,7 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
+Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:

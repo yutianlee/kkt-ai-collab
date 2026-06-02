@@ -14,7 +14,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=int, default=120)
     parser.add_argument(
         "--prompt",
-        default="用两三句话说明你已经可以参与KKT Jacobi不等式研究，并写出一个下一步可验证的小任务。",
+        default=(
+            "In two or three sentences, confirm that you can participate in "
+            "research on the KKT Jacobi inequality and name one concrete "
+            "next verification task."
+        ),
     )
     args = parser.parse_args(argv)
 

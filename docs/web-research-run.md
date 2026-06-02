@@ -17,6 +17,23 @@ This is not a smoke test. Let each model reason carefully. For the KKT conjectur
 
 All copied responses should be Markdown source. Use each web UI's own Copy response button when possible.
 
+From Round 12 judge onward, prompts include a stronger depth rule for every agent:
+
+- Reasoning: spend roughly 80% of the answer on the judge-assigned main route and roughly 20% on serious divergent alternatives or obstruction searches.
+- Review: audit other agents and also recommend research-strategy adjustments based on which claims look reliable.
+- Judge: synthesize the round, decide whether the strategy should continue or pivot, and write next-round prompts with exact derivations, verification tasks, confidence calibration, and exploratory allocations when useful.
+
+For A2/Gemini, the default config is deliberately conservative: it asks for long low-hallucination referee-style responses with explicit assumptions, derivations, verification plans, possible failure modes, and calibrated confidence. In review stage, A2 is asked for a deep raw-Markdown referee report of at least 4000 words, with separate audits of A1/A3/A4.
+
+If A2 gives a short or overconfident response, the orchestrator keeps the round barrier active and writes a replacement prompt such as:
+
+```text
+rounds/<run-id>/round_XXX/prompts/A2_reasoning_<round>_revise.md
+rounds/<run-id>/round_XXX/prompts/A2_review_<round>_revise.md
+```
+
+Paste that `_revise.md` prompt back into Gemini Pro Deep Think and replace the matching A2 handoff file with the new answer.
+
 ## Round Barrier
 
 Do not start the next stage until every file required by the current stage has a real response.
@@ -102,6 +119,7 @@ Reasoning:
 ```text
 rounds/<run-id>/round_XXX/prompts/A1_reasoning_<round>.md
 rounds/<run-id>/round_XXX/prompts/A2_reasoning_<round>.md
+rounds/<run-id>/round_XXX/prompts/A2_reasoning_<round>_revise.md  # only if generated
 ```
 
 Review:
@@ -109,6 +127,7 @@ Review:
 ```text
 rounds/<run-id>/round_XXX/prompts/A1_review_<round>.md
 rounds/<run-id>/round_XXX/prompts/A2_review_<round>.md
+rounds/<run-id>/round_XXX/prompts/A2_review_<round>_revise.md  # only if generated
 ```
 
 Judge:

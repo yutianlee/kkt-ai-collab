@@ -6,7 +6,7 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries.
+Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification.
 
 
 
@@ -17,7 +17,7 @@ Only these agents are active in this run:
 - `A1` (A1 ChatGPT Extended Pro): broad strategist, proof synthesizer, and final judge
 - `A2` (A2 Gemini Pro DeepThink): independent strategist, obstruction finder, and referee-style reviewer
 - `A3` (A3 Deepseek V4 Pro think_max): API-based proof critic, algebra checker, and endpoint-reduction auditor
-- `A4` (A4 qwen-math-plus): API-based technical lemma generator and symbolic/numeric check planner
+- `A4` (A4 qwen3.7-max): API-based technical lemma generator and symbolic/numeric check planner
 
 Do not mention, score, or assign tasks to inactive agents. If older state text refers to inactive agents, treat it as historical context and reassign any still-useful mathematical check to one of the active agents.
 
@@ -32,7 +32,7 @@ The default four-agent panel is:
 1. `A1`: ChatGPT Extended Pro through the web UI.
 2. `A2`: Gemini Pro DeepThink through the web UI.
 3. `A3`: Deepseek V4 Pro think_max through an OpenAI-compatible API.
-4. `A4`: qwen-math-plus through an OpenAI-compatible API.
+4. `A4`: qwen3.7-max through an OpenAI-compatible API.
 
 Any agent can be replaced as long as it follows the same output schema.
 
@@ -67,6 +67,7 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
+Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
@@ -86,6 +87,7 @@ Claims that look correct:
 Claims that need proof:
 Possible errors or hidden assumptions:
 Suggested synthesis:
+Research strategy adjustments:
 Score by agent:
 Next-round recommendation:
 ```
@@ -103,6 +105,7 @@ Rejected or risky ideas:
 Known gaps:
 New lemmas to add:
 Counterexample checks to run:
+Research strategy adjustment:
 Next-round prompts by agent:
 For A1:
 For A2:
@@ -176,11 +179,15 @@ This is a research-mode run, not a smoke test. Take enough time to reason carefu
 
 Before writing the final response, internally check your proposal against known barriers, missing hypotheses, possible counterexamples, and literature-status uncertainty. In the final answer, report the refined result rather than hidden chain-of-thought.
 
+Anti-hallucination rule: do not present a new identity, theorem, numerical constant, or global monotonicity claim as true unless you either derive it in the answer, cite a named theorem with hypotheses, or mark it as a conjectural check. Avoid absolute language such as "flawless", "fully certified", or "100% confidence" unless a complete proof is included.
+
 For reasoning stages, include: main route, precise lemmas, theorem dependencies, hidden assumptions, obstruction or counterexample checks, what would falsify the route, and confidence.
 
-For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations.
+For reasoning stages, dedicate roughly 80% of the mathematical effort to the judge-assigned main route and roughly 20% to divergent exploration. The exploratory part should consider genuinely different proof routes, reductions, counterexample mechanisms, dual formulations, special-function tools, or computational certificates. Mark these as exploratory unless they are fully derived.
 
-For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, next-round tasks, and confidence.
+For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations. Also include a research-strategy adjustment section: say whether the next round should continue the main route, pivot variables, split into subproblems, test a counterexample, build a computation, or allocate one agent to an exploratory alternative.
+
+For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, research-strategy adjustment, next-round tasks, and confidence. The judge should write next-round prompts that force depth: exact hypotheses, derivations, verification plans, confidence calibration, and one exploratory allocation when useful.
 
 ## Reasoning-Stage Guardrail
 
@@ -195,6 +202,8 @@ Use the previous rounds only as background state and judge instructions. Do not 
 - `Suggested synthesis`
 
 If your draft begins with a review heading, discard that draft and rewrite it as independent reasoning using the required reasoning schema below. Start from a new mathematical claim, derivation, obstruction check, lemma statement, or concrete test.
+
+Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
 
 
 
@@ -3382,6 +3391,7 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
+Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:

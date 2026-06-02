@@ -8,12 +8,21 @@
       "role": "broad strategist, proof synthesizer, and final judge",
       "web_url": "https://chatgpt.com/",
       "copy_response_mode": "raw_markdown_fence",
-      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. As judge, write concrete next-round prompts for A1, A2, A3, and A4.",
+      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. In reasoning, spend about 80% on the judge-assigned main route and about 20% on serious alternative proof routes or obstruction searches. In review, assess the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis with concrete next-round prompts for A1, A2, A3, and A4.",
       "depth_contract": {
-        "reasoning": "Start from the Round 11 seed but do not only summarize it. Produce a fresh KKT reasoning attempt with exact claim statements and gap labels.",
-        "review": "Review A2, A3, and A4. Include a score table and concrete verification tasks.",
-        "judge": "Synthesize all reasoning and reviews, then include explicit next-round prompts for A1, A2, A3, and A4."
-      }
+        "reasoning": "Write a deep long-form reasoning attempt, not a summary. Include exact claim statements, parameter ranges, derivations, gap labels, falsification tests, and a 20% section for divergent alternatives such as other coordinates, product formulas, hypergroup positivity, Sturm comparison, Christoffel bounds, or computable certificates.",
+        "review": "Write a deep referee report on A2, A3, and A4. Include a score table, hidden assumptions, exact claims needing proof, concrete verification tasks, and a research-strategy adjustment recommendation based on which agents look trustworthy.",
+        "judge": "Write a long-form judge synthesis. Do not merely summarize. Select a route, state exact gaps, add or reject lemmas, calibrate confidence, decide whether the research strategy should continue or pivot, and write deep next-round prompts for A1, A2, A3, and A4. Each next-round prompt should include exact objectives, required derivations, verification tasks, and one exploratory allocation when useful."
+      },
+      "quality_gate": {
+        "judge": {
+          "min_words": 3500,
+          "min_headings": 10,
+          "must_contain": ["Selected main route", "Known gaps", "Research strategy adjustment", "Next-round prompts by agent", "For A1", "For A2", "For A3", "For A4", "Confidence"]
+        }
+      },
+      "enforce_quality_gate": true,
+      "enforce_quality_gate_stages": ["judge"]
     },
     {
       "id": "A2",
@@ -21,12 +30,28 @@
       "provider": "web_manual",
       "role": "independent strategist, obstruction finder, and referee-style reviewer",
       "web_url": "https://gemini.google.com/",
+      "copy_response_mode": "raw_markdown_fence",
       "depth_contract": {
-        "reasoning": "Use Gemini Pro DeepThink as a mathematical referee, not a summary writer. Include precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, and concrete stress tests for the KKT Jacobi/Laguerre reductions.",
-        "review": "Write a full referee report. Separately assess A1, A3, and A4, include a score table, identify hidden assumptions, and give concrete verification tasks.",
+        "reasoning": "Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a long-form answer of at least 3500 words with `##` Markdown section headings, precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, explicit derivations, uncertainty calibration, and concrete stress tests for the KKT Jacobi/Laguerre reductions. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false.",
+        "review": "Use Gemini Pro Deep Think for a slow, deep, long-form Stage B referee report of at least 4000 words in raw Markdown source. Review A1, A3, and A4 separately and in detail. For each reviewed agent, list the strongest mathematical contribution, exact assumptions used, claims that are derived versus conjectural, hidden hypotheses, likely false statements, theorem-dependency checks, numerical/symbolic verification tasks, and calibrated confidence. Include explicit equations and derivations when rejecting or repairing a claim; do not merely summarize.",
         "judge": "If used as judge, include selected route, useful fragments by source, rejected/risky ideas, exact gaps, new lemma statements, counterexample checks, and next-round prompts for every active agent."
       },
-      "instructions": "Use Gemini Pro DeepThink. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Consider product-formula/hypergroup routes, Sturm-Liouville/Sonin energy routes, Christoffel-function bounds, and effective Laguerre asymptotics."
+      "quality_gate": {
+        "reasoning": {
+          "min_words": 3500,
+          "min_headings": 10,
+          "must_contain": ["Assumptions", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Confidence"],
+          "must_not_contain": ["100%", "flawless", "fully certified", "fatal hidden assumption"]
+        },
+        "review": {
+          "min_words": 4000,
+          "min_headings": 14,
+          "must_contain": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Score by agent", "Next-round recommendation", "Assumptions", "Verification plan", "Confidence"],
+          "must_not_contain": ["100%", "fully certified"]
+        }
+      },
+      "enforce_quality_gate": true,
+      "instructions": "Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Avoid rhetorical certainty and do not give 100% confidence unless a formal proof is complete. Prefer a detailed referee-style derivation over a short executive summary, and include an explicit list of assumptions, verification steps, possible failure modes, and calibrated confidence. In review stage, answer only as raw Markdown source inside the required fenced Markdown block."
     },
     {
       "id": "A3",
@@ -39,7 +64,7 @@
       "default_model": "deepseek-v4-pro",
       "temperature": 0.1,
       "save_reasoning_content": true,
-      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a slow, meticulous mathematical proof auditor for Jacobi and Laguerre inequalities. Produce explicit sections, formulas, lemma statements, failed proof paths, stress tests, and confidence calibration.",
+      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a slow, meticulous mathematical proof auditor for Jacobi and Laguerre inequalities. Think deeply before answering. Produce explicit sections, formulas, lemma statements, failed proof paths, stress tests, confidence calibration, and research-strategy recommendations. In reasoning, spend about 80% on the assigned route and 20% on serious alternative proof routes or obstruction searches.",
       "extra_body": {
         "thinking": {
           "type": "enabled"
@@ -47,38 +72,40 @@
         "reasoning_effort": "max",
         "max_tokens": 32768
       },
+      "max_continuations": 2,
       "quality_gate": {
         "reasoning": {
           "min_words": 1800,
-          "min_headings": 6,
-          "must_contain": ["Confidence"]
+          "must_contain": ["Summary", "Potential gaps", "Counterexample", "Useful lemmas", "What should be tested next", "Confidence"],
+          "reject_if_truncated": true
         },
         "review": {
           "min_words": 1400,
-          "min_headings": 5,
-          "must_contain": ["Score by agent"]
+          "must_contain": ["Claims that look correct", "Claims that need proof", "Score by agent", "Confidence"],
+          "reject_if_truncated": true
         }
       },
       "retry_on_quality_gate": true,
       "quality_gate_retries": 1,
-      "instructions": "Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries."
+      "instructions": "Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification."
     },
     {
       "id": "A4",
-      "display_name": "A4 qwen-math-plus",
+      "display_name": "A4 qwen3.7-max",
       "provider": "openai_compatible",
       "role": "API-based technical lemma generator and symbolic/numeric check planner",
       "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
       "api_key_env": "QWEN_API_KEY",
       "model_env": "QWEN_MODEL",
-      "default_model": "qwen-math-plus",
+      "default_model": "qwen3.7-max",
       "temperature": 0.0,
+      "max_tokens": 8192,
       "stream": true,
       "save_reasoning_content": true,
-      "system_prompt": "You are A4, qwen-math-plus. You are a harmonic analysis and special-functions research collaborator. For difficult integrals, norms, sharp upper/lower bounds, operator estimates, and Jacobi/Laguerre inequalities, use the built-in Python/code-interpreter capability when it helps; give step-by-step derivations and explicit verification plans.",
+      "system_prompt": "You are A4, qwen3.7-max. You are a harmonic analysis and special-functions research collaborator. Think deeply before answering. Give strict step-by-step derivations; do not skip algebraic steps, endpoint hypotheses, normalization constants, or parameter ranges. Every mathematical claim must be derived, reduced to a named theorem with hypotheses, or marked as an explicit gap. For symbolic or numerical claims, provide a reproducible verification plan with exact variables, intervals, precision requirements, and failure criteria. In reasoning, spend about 80% on the assigned route and 20% on serious alternative routes or obstruction searches.",
       "extra_body": {
-        "enable_code_interpreter": true,
-        "enable_thinking": true
+        "enable_thinking": true,
+        "thinking_budget": 15000
       },
       "quality_gate": {
         "reasoning": {
@@ -94,7 +121,7 @@
       },
       "retry_on_quality_gate": true,
       "quality_gate_retries": 1,
-      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. Use the Qwen built-in code interpreter when a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim. Do not claim the conjecture is solved unless every constant and bridge step is explicit."
+      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. When a concrete computation, interval check, or symbolic/numerical stress test would clarify a claim, specify a reproducible local or short-context verification plan instead of relying on an implicit tool. Do not claim the conjecture is solved unless every constant and bridge step is explicit. In reasoning, include a 20% divergent alternatives section; in review, recommend research-strategy adjustments and next verification priorities."
     }
   ]
 }

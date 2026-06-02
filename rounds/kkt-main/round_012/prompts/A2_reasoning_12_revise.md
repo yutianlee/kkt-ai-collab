@@ -1,4 +1,4 @@
-You are A1 ChatGPT Extended Pro, acting as broad strategist, proof synthesizer, and final judge.
+You are A2 Gemini Pro DeepThink, acting as independent strategist, obstruction finder, and referee-style reviewer.
 
 We are running a public GitHub based multi-AI mathematics research workflow.
 
@@ -6,22 +6,9 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. In reasoning, spend about 80% on the judge-assigned main route and about 20% on serious alternative proof routes or obstruction searches. In review, assess the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis with concrete next-round prompts for A1, A2, A3, and A4.
+Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Avoid rhetorical certainty and do not give 100% confidence unless a formal proof is complete. Prefer a detailed referee-style derivation over a short executive summary, and include an explicit list of assumptions, verification steps, possible failure modes, and calibrated confidence.
 
-## Raw Markdown Copy-Response Safety Rule
 
-Your final answer must be one single fenced Markdown code block:
-
-````text
-```markdown
-Summary:
-...
-```
-````
-
-Do not write anything before or after that outer fence. Inside the fence, write normal Markdown and raw LaTeX source using `$...$` and `$$...$$`.
-
-Do not use additional triple-backtick fences inside your answer. This rule is required because web Copy response can corrupt rendered display math, turning `=` into `====` and minus/fraction bars into long dashed lines.
 
 ## Active Agents For This Run
 
@@ -80,7 +67,6 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
-Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
@@ -100,7 +86,6 @@ Claims that look correct:
 Claims that need proof:
 Possible errors or hidden assumptions:
 Suggested synthesis:
-Research strategy adjustments:
 Score by agent:
 Next-round recommendation:
 ```
@@ -118,7 +103,6 @@ Rejected or risky ideas:
 Known gaps:
 New lemmas to add:
 Counterexample checks to run:
-Research strategy adjustment:
 Next-round prompts by agent:
 For A1:
 For A2:
@@ -196,11 +180,9 @@ Anti-hallucination rule: do not present a new identity, theorem, numerical const
 
 For reasoning stages, include: main route, precise lemmas, theorem dependencies, hidden assumptions, obstruction or counterexample checks, what would falsify the route, and confidence.
 
-For reasoning stages, dedicate roughly 80% of the mathematical effort to the judge-assigned main route and roughly 20% to divergent exploration. The exploratory part should consider genuinely different proof routes, reductions, counterexample mechanisms, dual formulations, special-function tools, or computational certificates. Mark these as exploratory unless they are fully derived.
+For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations.
 
-For review stages, include: valuable ideas from other agents, claims that look correct, claims needing proof, likely false or underspecified claims, missing hypotheses, and concrete synthesis recommendations. Also include a research-strategy adjustment section: say whether the next round should continue the main route, pivot variables, split into subproblems, test a counterexample, build a computation, or allocate one agent to an exploratory alternative.
-
-For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, research-strategy adjustment, next-round tasks, and confidence. The judge should write next-round prompts that force depth: exact hypotheses, derivations, verification plans, confidence calibration, and one exploratory allocation when useful.
+For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, next-round tasks, and confidence.
 
 ## Reasoning-Stage Guardrail
 
@@ -216,11 +198,9 @@ Use the previous rounds only as background state and judge instructions. Do not 
 
 If your draft begins with a review heading, discard that draft and rewrite it as independent reasoning using the required reasoning schema below. Start from a new mathematical claim, derivation, obstruction check, lemma statement, or concrete test.
 
-Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
-
 ## Agent Depth Contract
 
-Write a deep long-form reasoning attempt, not a summary. Include exact claim statements, parameter ranges, derivations, gap labels, falsification tests, and a 20% section for divergent alternatives such as other coordinates, product formulas, hypergroup positivity, Sturm comparison, Christoffel bounds, or computable certificates.
+Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a long-form answer of at least 3500 words with `##` Markdown section headings, precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, explicit derivations, uncertainty calibration, and concrete stress tests for the KKT Jacobi/Laguerre reductions. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false.
 
 ## Problem
 
@@ -3365,17 +3345,18 @@ Keep product-formula and hypergroup routes alive, but require exact positivity a
 
 ## Judge-Assigned Reasoning Prompt For This Agent
 
-Use the Stage A schema. Treat this bootstrap judge as the starting decision. Your task is to synthesize the finite-$\beta$ endpoint-cap proof route into a theorem-level outline.
+Use the Stage A schema. Act as obstruction finder and referee.
 
-Focus on:
+Stress-test the endpoint-cap route. Look for hidden assumptions in:
 
-1. the exact right-endpoint cap $0\le u\le u_\sigma\le n$;
-2. the endpoint ODE;
-3. the certified monotonicity $K_B'(u)\ge1/4$;
-4. the endpoint Sonin first-lobe reduction;
-5. the exact first-lobe Bessel theorem needed to close the residual strip.
+1. the reduction from central region to $x\in[\sigma,1]$;
+2. the definition $u=B(1-x)/2$ and $u_\sigma\le n$;
+3. the exact endpoint ODE;
+4. the step from $K_B'(u)\ge1/4$ to first-lobe dominance;
+5. the proposed bound $|H|<2^{-1/4}$;
+6. the finite residual compactification $\theta=(n+\alpha+1)/B$.
 
-Do not claim the conjecture is solved. State every missing constant and every theorem dependency. Include the fallback finite-$\beta$ bridge theorem only as a fallback if the direct endpoint theorem fails.
+Try edge cases: $n=0$, $n=1$, $\alpha=1/2$, $\alpha=\alpha_E(n)$, $\beta=0$, $\beta\to\infty$, and the semi-discrete case $\beta\in\mathbb N_0$. If you find a flaw, give a concrete counterexample or algebraic obstruction.
 
 ## Your Task For Round 12
 
@@ -3389,7 +3370,65 @@ Detailed reasoning:
 Dependencies:
 Potential gaps:
 Counterexample or obstruction search:
-Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
+
+
+## Automatic Quality Gate Failure
+
+Your previous reasoning response was not accepted:
+
+- word count 1036 is below required minimum 3500
+- heading count 0 is below required minimum 10
+- missing required phrase: Assumptions
+- missing required phrase: Verification plan
+- contains forbidden overconfident phrase: 100%
+- contains forbidden overconfident phrase: flawless
+- contains forbidden overconfident phrase: fully certified
+- contains forbidden overconfident phrase: fatal hidden assumption
+
+Return a full replacement answer, not an addendum. Preserve any correct mathematics from the previous answer, but expand it into the required depth, with explicit sections, lemma/claim boxes, failure modes, stress tests, score table when the stage is review, and confidence calibration.
+
+## Previous Response To Replace
+
+Summary:
+I stress-tested the finite-$\beta$ endpoint-cap route and found it to be a brilliant strategic reduction that successfully isolates the first lobe. The algebraic identities for the endpoint variable, the exact ODE, and the Sonin limits are flawless. However, I found a **fatal hidden assumption** in Phase 6: directly bounding the $u$-coordinate ODE $(p_B H')' + q_B H = 0$ with a standard Bessel model induces an $O(1)$ relative amplitude inflation. I derived the exact algebraic resolution: mapping the independent variable to $v = B \frac{1-x}{1+x}$ absorbs this geometric inflation perfectly, yielding a pure Bessel equation with no prefactor, and saving the proof architecture completely.
+
+Main claim or direction:
+Adopt the finite-$\beta$ endpoint-cap framework, but **replace the $u$-coordinate with the canonical $v$-coordinate $v = B \frac{1-x}{1+x}$ for the final Bessel certificate**. This guarantees the Bessel amplitude limit $M_{n,\alpha,B} B_*$ is exact and avoids a catastrophic geometric inflation factor. Additionally, apply an analytic Taylor model to safely verify the $\beta \to \infty$ compactification limit.
+
+Detailed reasoning:
+1. **Validation of Sonin Reduction (No Hidden Roots):** $K_B(0) = -\alpha^2/4 \le 0$, which seems to break the decreasing Sonin envelope $S_B(u)$. However, because $(p_B H')' = -q_B H \ge 0$ in this classically forbidden region, $p_B H'$ is strictly increasing. Since $H(0)=0$ for $\alpha > 0$, $H'(u)$ remains strictly positive across the forbidden region. Therefore, the first critical point $u_1$ MUST occur in the valid oscillatory region where $K_B > 0$, rigorously restricting the cap maximum to the monotonically decreasing Sonin envelope.
+2. **The $u$-Coordinate Amplitude Inflation (Obstruction):** The $u$-ODE expands to $(u H_u')_u' - \frac{1}{B} (u^2 H_u')_u' + q_B H_u = 0$. Modeling this with a standard Bessel equation $(u W')_u' + Q W = 0$ requires eliminating the first-derivative mismatch. The standard Liouville transformation requires $H(u) = (1-u/B)^{-1/2} W(u)$. Because $(1-u_1/B)^{-1/2} > 1$, the true amplitude is strictly larger than the Bessel model. For $\alpha \sim n$ and $\beta=0$, the first lobe occurs at $u_1/B \sim 1/10$, forcing $(1-u_1/B)^{-1/2} \approx 1.054$. This $5.4\%$ geometric inflation acts as an uncompensated $O(n^{-1/3})$ absolute error, which strictly violates the proposed $O(1/n)$ perturbation bound.
+3. **The Exact $v$-Coordinate Resolution:** If we apply the rational substitution $v = B \frac{1-x}{1+x} = \frac{u}{1-u/B}$, the exact Jacobi ODE transforms into a **pure Bessel-like equation**:
+   $$ (v H_v')_v' + \hat{q}_B(v) H_v = 0 $$
+   where $\hat{q}_B(v) = \frac{c_B}{(1+v/B)^2} - \frac{(\beta v/B - \alpha)^2}{4v(1+v/B)^2}$.
+   Because the first derivative coefficient is exactly $v$, NO amplitude prefactor is required. The raw Bessel envelope $M_{n,\alpha,B} B_*$ perfectly matches the true amplitude scaling without inflation.
+4. **Certified Sonin Monotonicity in $v$:** The new cap interface is $v_\sigma = \frac{nB}{B-1}$. The new effective energy parameter is $\hat{K}_B(v) = v \hat{q}_B(v)$. I have verified algebraically that $\hat{K}_B'(v) > 0$ unconditionally strictly on $[0, v_\sigma]$. While A1-Strategy claimed $K_B' \ge 1/4$ in the $u$-coordinate, strict positivity is all that is required to guarantee $S_v(v)$ is monotonically decreasing.
+
+Dependencies:
+- Liouville transformations for matched asymptotic ODE approximations.
+- Exact algebraic derivation of the $v$-coordinate Jacobi ODE.
+
+Potential gaps:
+- The Gamma ratio bound $1 + C_\Gamma/(n+1)$ must be re-certified using the new $v$-coordinate Bessel frequency $\hat{\Lambda}_B = c_B + \frac{\alpha\beta}{2B}$, rather than the $u$-coordinate frequency $\Lambda_B$. This is a minor update as $\hat{\Lambda}_B / \Lambda_B = 1 - O(1/n^2)$ for small $\alpha$, and $M \le 1$ heavily compensates for large $\alpha$.
+
+Counterexample or obstruction search:
+*Edge-case testing the $u$-coordinate inflation:* Let $n=100, \alpha=100, \beta=0$. We have $B=201$. The first Bessel peak is near $u_1 \approx 20$. The geometric prefactor in $u$-coordinates is $(1-20/201)^{-1/2} \approx 1.054$. The proposed certificate $|H(u)| \le M B_* + C_B/(n+1)$ claims an error of $\sim 1\%$. However, the missing prefactor forces an uncompensated error of $5.4\%$, far exceeding the perturbation tolerance and falsifying the bound. By switching to the $v$-coordinate, the prefactor becomes exactly $1.000$, restoring the explicit $C_B/(n+1)$ bound.
+
+*Testing the $\theta \to 0$ compactification:* Standard interval arithmetic on $(1-u/B)^{\beta/2}$ triggers a $1^\infty$ floating-point singularity as $\beta \to \infty$. To prevent a crash, the finite verification must use the analytic Taylor-model envelope:
+$$ \exp\left( -\frac{u(1-\theta)}{2} \Phi\left(\frac{u\theta}{n+\alpha+1}\right) \right) $$
+where $\Phi(z) = -\frac{\ln(1-z)}{z} = 1 + \frac{z}{2} + \frac{z^2}{3} + \dots$ 
+Since $z \le \frac{n}{n+1.5} < 1$, $\Phi(z)$ is unconditionally analytic on the cap.
+
+Useful lemmas:
+**1. Zero-Prefactor Bessel Reduction Lemma:** Under the independent variable transformation $v = B \frac{1-x}{1+x}$, the Jacobi ODE takes the canonical form $(v H_v')_v' + \hat{q}_B(v) H_v = 0$. The variation-of-constants error bound requires exactly zero geometric prefactor, allowing the exact envelope bound $M_{n,\alpha,B} B_*$.
+**2. Sonin Positivity Constraint:** Even though $K_B(0) = -\alpha^2/4 \le 0$, the ODE structure $(p_B H')' = -q_B H \ge 0$ forces $H'(u) > 0$ across the forbidden region, rigorously confirming that the cap maximum is governed by the monotonically decreasing Sonin region.
+
+What should be tested next:
+- **For A3:** Symbolically re-verify the ODE in the $v$-coordinate, $(v H_v')_v' + \hat{q}_B(v) H_v = 0$, and independently verify $\hat{K}_B'(v) > 0$ on $[0, v_\sigma]$.
+- **For A4:** Use the $v$-coordinate potential $\hat{q}_B(v)$ to derive the exact residual error $\hat{q}_B(v) - (\hat{\Lambda}_B - \frac{\alpha^2}{4v})$ and update the Olver error constant $C_B$. Implement the explicit $\Phi(z)$ Taylor model for the finite verification script.
+
+Confidence:
+100%. The Sonin first-lobe dominance and cap boundary are fully certified algebraic facts. The $u$-coordinate geometric inflation is a concrete, fatal analytic obstruction to Phase 6, but the $v$-coordinate transformation elegantly and canonically repairs the entire architecture.
