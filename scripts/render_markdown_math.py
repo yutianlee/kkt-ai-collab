@@ -132,9 +132,18 @@ HTML_TEMPLATE = """<!doctype html>
 
     function protectDisplayMath(markdown) {{
       const blocks = [];
-      const protectedMarkdown = markdown.replace(/(^|\\n)\\s*\\$\\$\\s*\\n([\\s\\S]*?)\\n\\s*\\$\\$\\s*(?=\\n|$)/g, (match, prefix, body) => {{
+
+      function addMathBlock(body) {{
         const token = `@@MATH_BLOCK_${{blocks.length}}@@`;
         blocks.push(`<div class="math-display">\\\\[${{escapeHtml(body.trim())}}\\\\]</div>`);
+        return token;
+      }}
+
+      let protectedMarkdown = markdown.replace(/(^|\\n)[ \\t]*```math[^\\n]*\\n([\\s\\S]*?)\\n[ \\t]*```[ \\t]*(?=\\n|$)/g, (match, prefix, body) => {{
+        return `${{prefix}}${{addMathBlock(body)}}`;
+      }});
+      protectedMarkdown = protectedMarkdown.replace(/(^|\\n)\\s*\\$\\$\\s*\\n([\\s\\S]*?)\\n\\s*\\$\\$\\s*(?=\\n|$)/g, (match, prefix, body) => {{
+        const token = addMathBlock(body);
         return `${{prefix}}${{token}}`;
       }});
       return {{ protectedMarkdown, blocks }};

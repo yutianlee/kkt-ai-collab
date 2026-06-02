@@ -75,6 +75,48 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
+def fence_display_math_blocks(markdown: str) -> str:
+    """Convert standalone $$ display blocks to GitHub-compatible math fences."""
+    lines = markdown.splitlines()
+    out: list[str] = []
+    in_code_fence = False
+    code_fence_char = ""
+    code_fence_len = 0
+    in_math = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        if not in_math:
+            fence_match = re.match(r"^[ \t]{0,3}(`{3,}|~{3,})", line)
+            if fence_match:
+                marker = fence_match.group(1)
+                fence_char = marker[0]
+                fence_len = len(marker)
+                if in_code_fence:
+                    if fence_char == code_fence_char and fence_len >= code_fence_len:
+                        in_code_fence = False
+                        code_fence_char = ""
+                        code_fence_len = 0
+                else:
+                    in_code_fence = True
+                    code_fence_char = fence_char
+                    code_fence_len = fence_len
+                out.append(line.rstrip())
+                continue
+
+        if not in_code_fence and stripped == "$$":
+            out.append("```math" if not in_math else "```")
+            in_math = not in_math
+            continue
+
+        out.append(line.rstrip())
+
+    if in_math:
+        return markdown
+    return "\n".join(out) + ("\n" if markdown.endswith("\n") else "")
+
+
 def load_config(path: Path) -> tuple[list[Agent], str, dict[str, Any]]:
     data = json.loads(read_text(path))
     agents = [
@@ -1128,7 +1170,8 @@ def update_state_files(root: Path, run_id: str, round_index: int, judge_text: st
     round_ref = f"rounds/{run_id}/{round_name(round_index)}"
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    current = read_text(root / "state/current_state.md").strip()
+    current = fence_display_math_blocks(read_text(root / "state/current_state.md")).strip()
+    judge_block = fence_display_math_blocks((judge_text or "Judge synthesis pending.").strip()).strip()
     addition = f"""
 
 ## Round {round_index} Update
@@ -1137,7 +1180,7 @@ Timestamp: {timestamp}
 
 See `{round_ref}/judge/judge.md`.
 
-{(judge_text or "Judge synthesis pending.").strip()}
+{judge_block}
 """
     write_text(root / "state/current_state.md", current + addition + "\n")
 
@@ -1165,7 +1208,7 @@ Generated after round {round_index} in run `{run_id}`.
 
 Responses, reviews, and judge synthesis are archived under `{round_ref}/`.
 """
-    write_text(root / "manifests/reading_packet.md", packet)
+    write_text(root / "manifests/reading_packet.md", fence_display_math_blocks(packet))
 
 
 def git_commit_and_push(root: Path, message: str, push: bool) -> None:
