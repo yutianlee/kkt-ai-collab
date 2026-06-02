@@ -1091,7 +1091,7 @@ def run_agent(
             ):
                 return None
             return existing
-        if agent.provider == "web_manual" and not handoff_response_path.exists():
+        if not handoff_response_path.exists():
             write_text(handoff_response_path, WEB_RESPONSE_MARKER + "\n\n")
         return None
 
@@ -1100,27 +1100,28 @@ def run_agent(
         write_text(output_path, output)
         return output
 
+    existing_handoff = usable_web_response(handoff_response_path)
+    handoff_is_newer = (
+        existing_handoff
+        and (
+            not output_path.exists()
+            or handoff_response_path.stat().st_mtime > output_path.stat().st_mtime
+        )
+    )
+    if handoff_is_newer:
+        if not write_quality_gate_revision_prompt(
+            agent=agent,
+            stage=stage,
+            prompt=prompt,
+            prompt_path=prompt_path,
+            previous_output=existing_handoff,
+        ):
+            return None
+        write_text(output_path, existing_handoff)
+        return existing_handoff
+
     if agent.provider == "web_manual":
         existing_output = usable_web_response(output_path)
-        existing = usable_web_response(handoff_response_path)
-        handoff_is_newer = (
-            existing
-            and (
-                not output_path.exists()
-                or handoff_response_path.stat().st_mtime > output_path.stat().st_mtime
-            )
-        )
-        if handoff_is_newer:
-            if not write_quality_gate_revision_prompt(
-                agent=agent,
-                stage=stage,
-                prompt=prompt,
-                prompt_path=prompt_path,
-                previous_output=existing,
-            ):
-                return None
-            write_text(output_path, existing)
-            return existing
         if existing_output and not existing_output.startswith("# Pending API Response"):
             if not write_quality_gate_revision_prompt(
                 agent=agent,
