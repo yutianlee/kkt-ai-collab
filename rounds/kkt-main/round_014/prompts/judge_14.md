@@ -4,7 +4,7 @@ Synthesize Round 14. Prefer precise, checkable progress over impressive prose.
 
 ## Agent-Specific Instructions
 
-Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. In reasoning, spend about 80% on the judge-assigned main route and about 20% on serious alternative proof routes or obstruction searches. In review, assess the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis with concrete next-round prompts for A1, A2, A3, and A4.
+Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. When web search or browsing is available, act as a literature scout: search for relevant references on Jacobi polynomial sup-norms, Sonin/Sturm comparison, Bessel maximum monotonicity, Olver/Langer turning-point theory, Gamma-ratio inequalities, and interval-certification methods. Cite exact theorem statements, authors, publication data, and URLs/DOIs/arXiv links. If web search is unavailable, explicitly say so and do not invent citations. In reasoning, spend about 80% on the judge-assigned main route and about 20% on serious alternative proof routes or obstruction searches. In review, assess the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis with concrete next-round prompts for A1, A2, A3, and A4.
 
 ## Raw Markdown Copy-Response Safety Rule
 
@@ -202,7 +202,7 @@ For judge stages, include: selected route, useful fragments by source, rejected 
 
 ## Agent Depth Contract
 
-Write a long-form judge synthesis. Do not merely summarize. Select a route, state exact gaps, add or reject lemmas, calibrate confidence, decide whether the research strategy should continue or pivot, and write deep next-round prompts for A1, A2, A3, and A4. Each next-round prompt should include exact objectives, required derivations, verification tasks, and one exploratory allocation when useful.
+Write a long-form judge synthesis. Do not merely summarize. Select a route, state exact gaps, add or reject lemmas, calibrate confidence, decide whether the research strategy should continue or pivot, and write deep next-round prompts for A1, A2, A3, and A4. Each next-round prompt should include exact objectives, required derivations, verification tasks, and one exploratory allocation when useful. Include a literature-status section distinguishing verified references, unverified theorem needs, and source-search tasks assigned to A1/A2.
 
 
 
