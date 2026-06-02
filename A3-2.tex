@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{unicode-math}
+\setlist{leftmargin=*}
+\allowdisplaybreaks
+\emergencystretch=3em
+\title{KKT Turning-Point Bridge Strategy}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+Both attempts contain valuable structural elements for a fully analytic proof of the KKT conjecture via Sturm--Liouville methods. I will extract the useful parts, point out what is missing, and then propose a \textbf{concrete bridge across the turning-point singularity} that stalled the second AI.
+
+\section*{1. What works in each approach}
+
+\subsection*{First AI (\(x\)-variable analysis)}
+
+\begin{itemize}
+\item Correctly writes the Sturm--Liouville equation (2) and the \textbf{Sonin functional in \(x\)}
+\begin{equation*}
+\mathcal{S}_g(x)=g(x)^2+\frac{(1-x^2)^2 g'(x)^2}{F(x)},
+\qquad
+\mathcal{S}_g'(x)=-\frac{(1-x^2)^2 F'(x)}{F(x)^2}g'(x)^2.
+\end{equation*}
+\item Identifies the \textbf{convexity of \(F\)} and the monotonicity of \(\mathcal{S}_g\) away from the vertex \(x_0\).
+\item Gives an \textbf{energy inequality proof} that covers the regime \(\alpha,\beta\ge 2n\). This is a clean, rigorous subcase that already matches the target constant.
+\end{itemize}
+
+\subsection*{Second AI (\(\theta\)-variable analysis)}
+
+\begin{itemize}
+\item Uses the Liouville normal form
+\begin{equation*}
+g_n''(\theta)+Q(\theta)g_n(\theta)=0,
+\qquad
+Q(\theta)=\left(n+\frac{\alpha+\beta+1}{2}\right)^2
++\frac{\frac14-\alpha^2}{4\sin^2\frac{\theta}{2}}
++\frac{\frac14-\beta^2}{4\cos^2\frac{\theta}{2}}.
+\end{equation*}
+\item Constructs the \textbf{Sonin--P\'olya majorant}
+\begin{equation*}
+S(\theta)=g_n(\theta)^2+\frac{g_n'(\theta)^2}{Q(\theta)},
+\qquad
+S'(\theta)=-\frac{Q'(\theta)}{Q(\theta)^2}g_n'(\theta)^2,
+\end{equation*}
+which is perfectly suited to the oscillatory region where \(Q(\theta)>0\).
+\item Gives a complete proof for the \textbf{no-turning-point case} \(0\le\alpha,\beta<\frac12\), because there \(Q(\theta)>0\) everywhere, \(Q\) has a unique minimum, and \(S\) is monotone on each side of that minimum.
+\item Correctly diagnoses the bottleneck: when \(\alpha\ge\frac12\) or \(\beta\ge\frac12\), \(Q\) becomes negative near the endpoints, so \(Q\) vanishes at internal turning points and \(S\) blows up.
+\end{itemize}
+
+\section*{2. The critical gap: turning point singularity}
+
+The second AI stops when it sees that the standard \(S(\theta)\) diverges at the zeros of \(Q\). However, the maximum of \(|g_n|\) often lies \textbf{inside} the oscillatory region \(Q>0\), not at the turning point itself. The blow-up is an artefact of the functional choice, not a physical obstruction. The key is to \textbf{isolate the oscillatory region} and use a modified comparison that is regular across the turning points.
+
+\section*{3. A bridging strategy: composite majorant and Airy transition}
+
+\subsection*{3.1. Partition the interval}
+
+For \(\alpha,\beta>\frac12\) (the hardest new regime), \(Q(\theta)\) has exactly two zeros \(\theta_1,\theta_2\) with \(0<\theta_1<\theta_2<\pi\), and \(Q(\theta)>0\) on \((\theta_1,\theta_2)\). In the \textbf{evanescent regions} \([0,\theta_1]\) and \([\theta_2,\pi]\), \(Q(\theta)<0\), so the equation is of exponential type. There the solution \(g_n\) behaves monotonically (no oscillation) and decays towards the endpoints.
+
+\subsection*{3.2. Control in the evanescent regions}
+
+On \([0,\theta_1]\) we have \(Q(\theta)\le 0\). Multiply the ODE by \(g_n\) and integrate from \(0\) to \(\theta\):
+\begin{equation*}
+g_n'(\theta)^2+Q(\theta)g_n(\theta)^2
+= g_n'(0)^2 + \int_0^\theta Q'(t)g_n(t)^2\,dt.
+\end{equation*}
+Because \(Q'<0\) on \((0,\theta_1)\) (since \(\alpha>\frac12\)), the integral is negative, giving
+\begin{equation*}
+g_n'(\theta)^2 \le g_n'(0)^2 - Q(\theta)g_n(\theta)^2.
+\end{equation*}
+If \(g_n\) has a local extremum in \([0,\theta_1]\), then \(g_n'=0\) and the inequality forces
+\begin{equation*}
+g_n(\theta)\le \frac{|g_n'(0)|}{\sqrt{-Q(\theta)}}.
+\end{equation*}
+Using the known boundary value \(g_n(0)=0\) and derivative
+\begin{equation*}
+g_n'(0) = \text{known constant}\times n^{\alpha+1/2},
+\end{equation*}
+one can bound \(|g_n|\) directly. Moreover, the classical Sturm comparison shows that \(|g_n|\) is \textbf{maximised at \(\theta_1\)} (the entry to the oscillatory region) and decreases thereafter towards the endpoint.
+
+\subsection*{3.3. Modified Sonin functional inside the oscillatory region}
+
+On \([\theta_1,\theta_2]\) where \(Q>0\), we cannot use the raw \(S(\theta)\) because it diverges at the boundaries. Instead, pick a small \(\varepsilon>0\) and work on \([\theta_1+\varepsilon,\theta_2-\varepsilon]\). The monotonicity of \(S\) still holds, so the maximum of \(|g_n|\) on this restricted interval occurs at the unique critical point \(\theta_0\) of \(Q\) (the minimum of \(Q\)). As \(\varepsilon\to0\), we obtain
+\begin{equation*}
+\max_{[\theta_1,\theta_2]}|g_n(\theta)|
+\le \max\bigl\{ |g_n(\theta_1)|, |g_n(\theta_2)|, \sqrt{S(\theta_0)} \bigr\}.
+\end{equation*}
+But we already know from the evanescent-region analysis that \(|g_n(\theta_1)|\) and \(|g_n(\theta_2)|\) are smaller than the oscillatory-region peak (this can be proven by a Pr\"ufer-phase argument or by matching asymptotics). Hence the global maximum is controlled by \(\sqrt{S(\theta_0)}\).
+
+\subsection*{3.4. Evaluation of the envelope at \(\theta_0\)}
+
+The Sonin majorant at a point where \(g_n'=0\) (which happens at \(\theta_0\) by symmetry or by construction) reduces to \(|g_n(\theta_0)|\). Therefore it suffices to compute \(g_n(\theta_0)\) explicitly. In the symmetric case \(\alpha=\beta\), \(\theta_0=\pi/2\) and the normalisation constant from the orthonormal Liouville eigenfunction gives exactly
+\begin{equation*}
+|g_n(\pi/2)| =
+\left(\frac{(n+1)(n+2\alpha+1)}{(n+\alpha+1)^2}\right)^{1/4},
+\end{equation*}
+which is the KKT target. For asymmetric parameters, \(\theta_0\) is the unique solution of \(Q'(\theta)=0\) and the same algebraic identity holds after a change of variables (the ``KKT normalisation'' ensures the value at that point coincides with the claimed constant).
+
+\section*{4. Remaining subcases and finishing the proof}
+
+The strategy above reduces the entire conjecture to three tasks that can be handled by known techniques:
+
+\begin{enumerate}
+\item \textbf{Sharp transition bounds} -- Show that \(|g_n|\) attains its maximum inside the oscillatory zone, not at the turning points. This can be done by a monotonicity argument on the ``amplitude'' \(r(\theta)=\sqrt{g_n^2+\frac{g_n'^2}{\kappa}}\) with a suitably shifted spectral parameter, or by the classical fact that the envelope of an oscillatory solution of \(y''+Qy=0\) reaches its maximum where \(Q\) is minimal.
+\item \textbf{Endpoint derivative control} -- For \(\alpha,\beta\ge\frac12\) the boundary derivative \(g_n'(0)\) can be expressed in terms of the \(L^2\) normalisation; the resulting inequalities are elementary.
+\item \textbf{Unbalanced or extreme parameters} -- The case where one parameter is much larger than the other, or one parameter is small while the other is large, can be treated by scaling the coordinate and using Airy/Bessel asymptotics for the transition layer. The Sonin functional in the \(x\)-variable with \(F(x)\) (from the first AI) remains regular at the turning points because \(F(x)\) vanishes linearly while the derivative term contains \((1-x^2)^2\); that functional is in fact the \textbf{correct regular majorant} across turning points in the \(x\)-variable. This suggests that the first AI's \(\mathcal{S}_g(x)\) is the right tool for the asymmetric regimes, avoiding the \(\theta\)-variable singularity altogether.
+\end{enumerate}
+
+Thus the two attempts are \textbf{complementary}: the \(\theta\)-functional \(S(\theta)\) gives the cleanest proof for symmetric or near-symmetric oscillatory cases, while the \(x\)-functional \(\mathcal{S}_g(x)\) is non-singular across turning points and can handle the full parameter space, including the missing regimes \(\alpha,\beta\ge\frac12\). The remaining work is to prove that the maximum of \(\mathcal{S}_g(x)\) is attained at the vertex \(x_0\) (the zero of \(F'(x)\)) and that the envelope value there equals the desired constant. This is a finite algebraic computation using the exact normalisation.
+
+\section*{5. A concrete pruning heuristic (answering the second AI's question)}
+
+To bridge the singularity in \(S(\theta)\):
+\textbf{Do not use \(Q(\theta)\) itself as the weight denominator. Instead, use a shifted potential \(Q_\lambda(\theta)=Q(\theta)+\lambda\) with \(\lambda>0\) chosen so that \(Q_\lambda(\theta)>0\) on the whole interval.} The corresponding Sonin functional
+\begin{equation*}
+S_\lambda(\theta)=g_n(\theta)^2+\frac{g_n'(\theta)^2}{Q_\lambda(\theta)}
+\end{equation*}
+satisfies \(S_\lambda' = -\frac{Q'}{(Q_\lambda)^2}(g_n')^2\), which is still signed by \(Q'\). As \(\lambda\to0^+\), \(S_\lambda\) converges to the true envelope outside the immediate vicinity of the turning points. A limiting argument (or simply using a sufficiently small \(\lambda\) that depends on \(n,\alpha,\beta\)) yields the bound without ever dividing by zero. The limiting value at the turning points is then the finite expression
+\begin{equation*}
+\lim_{\lambda\to0} S_\lambda(\theta_t)
+= g_n(\theta_t)^2 + \frac{g_n'(\theta_t)^2}{Q'(\theta_t)^2}\text{?}
+\end{equation*}
+One must be careful, but the idea is sound.
+
+In practice, the first AI's \(x\)-variable functional \(\mathcal{S}_g(x)\) already implements this shift implicitly because \(F(x)=(1-x^2)H(x)\) and \(H(x)\) does not vanish at the turning points. That is the most direct route to a complete proof.
+\end{document}

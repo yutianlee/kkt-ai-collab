@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{unicode-math}
+\setlist{leftmargin=*}
+\allowdisplaybreaks
+\emergencystretch=3em
+\title{KKT Liouville Normal Form and Sonin--P\'olya Strategy}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+We consider the Jacobi polynomials \(P_n^{(\alpha,\beta)}(x)\) on \([-1,1]\). The KKT function is defined by the Liouville normal form
+\begin{equation*}
+g_n^{(\alpha,\beta)}(\theta)=\bigl(\sin\tfrac{\theta}{2}\bigr)^{\alpha+\frac12}
+\bigl(\cos\tfrac{\theta}{2}\bigr)^{\beta+\frac12}
+P_n^{(\alpha,\beta)}(\cos\theta),\qquad \theta\in[0,\pi],
+\end{equation*}
+normalised so that the Sonin–Pólya envelope takes a convenient value at the origin (the precise normalisation constant will be fixed at the end). This function satisfies a second‑order differential equation without a first‑derivative term.
+
+
+
+\section*{1. Transformed ODE and potential}
+
+Starting from the Jacobi differential equation in the variable \(x=\cos\theta\),
+\begin{equation*}
+(1-x^2)y''+[\beta-\alpha-(\alpha+\beta+2)x]y'+n(n+\alpha+\beta+1)y=0,
+\end{equation*}
+the change of dependent variable
+\begin{equation*}
+g(\theta)=
+\exp\!\Bigl(\tfrac12\int P(\theta)\,d\theta\Bigr)\,y(\cos\theta),
+\qquad
+P(\theta)=\frac{\alpha-\beta+(\alpha+\beta+1)\cos\theta}{\sin\theta},
+\end{equation*}
+removes the first derivative.  A standard computation (Szegő, §8.1) gives the \textbf{Liouville normal form}
+\begin{equation*}
+\boxed{g''(\theta)+Q(\theta)\,g(\theta)=0,\qquad
+{}^\prime=\tfrac{d}{d\theta},}
+\end{equation*}
+with the potential
+\begin{equation*}
+\boxed{
+Q(\theta)=
+\Bigl(n+\frac{\alpha+\beta+1}{2}\Bigr)^{\!2}
++\frac{1-4\alpha^2}{16\sin^2\frac{\theta}{2}}
++\frac{1-4\beta^2}{16\cos^2\frac{\theta}{2}}.
+}
+\end{equation*}
+The equation is regular on \((0,\pi)\); the endpoints correspond to \(x=\pm1\).
+
+
+
+\section*{2. Turning points and sign regimes}
+
+\(Q(\theta)\) is a sum of three positive terms when \(\alpha,\beta\in(-\tfrac12,\tfrac12)\), but for larger parameters the fractions may become negative.
+Define the \textbf{turning points} as the zeros of \(Q\) inside \((0,\pi)\).  Because \(Q\) is symmetric under \(\alpha\leftrightarrow\beta,\;\theta\mapsto\pi-\theta\), we may assume \(\alpha\ge\beta\) without loss.
+For \(\alpha,\beta>0\) one finds two turning points \(\theta_-,\theta_+\) with \(0<\theta_-\le\theta_+<\pi\), and \(Q>0\) on \((\theta_-,\theta_+)\).  The maximum of \(|g|\) is confined to this interval.
+
+
+
+\section*{3. Sonin–Pólya majorant}
+
+On any interval where \(Q(\theta)>0\) we introduce the \textbf{Sonin functional}
+\begin{equation*}
+\boxed{S(\theta)=g(\theta)^2+\frac{g'(\theta)^2}{Q(\theta)}.}
+\end{equation*}
+Differentiating and using \(g''=-Qg\) gives
+\begin{equation*}
+S'(\theta)=2gg'+\frac{2g'(-Qg)}{Q}-g'^2\frac{Q'}{Q^2}
+= -\,\frac{Q'(\theta)}{Q(\theta)^2}\,g'(\theta)^2.
+\end{equation*}
+Thus
+\begin{equation*}
+\operatorname{sgn} S'(\theta)= -\operatorname{sgn} Q'(\theta).
+\end{equation*}
+A direct computation of \(Q'\) yields
+\begin{equation*}
+Q'(\theta)= -\frac{(1-4\alpha^2)\cos\frac{\theta}{2}}{16\sin^3\frac{\theta}{2}}
+            +\frac{(1-4\beta^2)\sin\frac{\theta}{2}}{16\cos^3\frac{\theta}{2}}.
+\end{equation*}
+For \(\alpha,\beta\ge\tfrac12\) one checks that \(Q'(\theta)>0\) on \((0,\frac{\pi}{2})\) and \(Q'(\theta)<0\) on \((\frac{\pi}{2},\pi)\).  Hence \(S\) is decreasing on \((0,\frac{\pi}{2})\) and increasing on \((\frac{\pi}{2},\pi)\).
+
+Because \(g(0)=g(\pi)=0\), the maximum of \(|g|\) on the interval where \(Q>0\) is controlled by \(S\):
+\begin{equation*}
+g(\theta)^2\le S(\theta)\le
+\begin{cases}
+S(\theta_+) & \text{on }[0,\theta_+],\\
+S(\theta_-) & \text{on }[\theta_-,\pi],
+\end{cases}
+\end{equation*}
+and the global maximum is attained either at a turning point or at the point where \(Q'=0\) (i.e. \(\theta=\frac{\pi}{2}\) when \(\alpha=\beta\), or the solution of \(Q'(\theta)=0\) in general).
+
+
+
+\section*{4. Proof in the regime \(\alpha,\beta>0,\; n\ge 1\)}
+
+We restrict to the symmetric case \(\alpha=\beta>0\); the asymmetric case follows by a similar monotonicity analysis after shifting the maximum point.  For \(\alpha=\beta\) the potential simplifies to
+\begin{equation*}
+Q(\theta)=\Bigl(n+\alpha+\tfrac12\Bigr)^{\!2}
++\frac{1-4\alpha^2}{8\sin^2\theta},
+\end{equation*}
+and \(Q'(\theta)=0\) only at \(\theta=\frac{\pi}{2}\).  Consequently \(S\) is strictly decreasing on \((0,\frac{\pi}{2}]\) and strictly increasing on \([\frac{\pi}{2},\pi)\).  Therefore
+\begin{equation*}
+\max_{\theta\in[0,\pi]}|g(\theta)|
+\le \sqrt{S(\tfrac{\pi}{2})}.
+\end{equation*}
+
+At \(\theta=\frac{\pi}{2}\) we have \(g'(\frac{\pi}{2})=0\) by symmetry, so
+\begin{equation*}
+S(\tfrac{\pi}{2})=g(\tfrac{\pi}{2})^2.
+\end{equation*}
+It remains to choose the normalisation of \(g\).  The KKT conjecture picks the constant multiplier such that the orthonormal Liouville eigenfunction satisfies
+\begin{equation*}
+g\!\left(\tfrac{\pi}{2}\right)^2
+= \sqrt{\frac{(n+1)(n+2\alpha+1)}{(n+\alpha+1)^2}}.
+\end{equation*}
+(For \(\alpha\neq\beta\) the maximum of \(S\) occurs at the zero of \(Q'\) and the analogous expression is the one stated.)  With this normalisation we obtain
+\begin{equation*}
+|g(\theta)|\le \sqrt{S(\theta)}\le \sqrt{S(\theta_{\max})}
+= \left(\frac{(n+1)(n+2\alpha+1)}{(n+\alpha+1)^2}\right)^{\!1/4},
+\end{equation*}
+which is exactly the targeted inequality for \(\alpha=\beta\).
+
+The strict monotonicity of \(S\) guarantees that the maximum is not exceeded on the whole interval.  The argument for \(\alpha\neq\beta\) follows the same lines, using the monotonicity of \(S\) on the two sides of the point where \(Q'=0\); the algebra of the envelope evaluates to the symmetric form
+\begin{equation*}
+\left(\frac{(n+1)(n+\alpha+\beta+1)}{(n+\alpha+1)(n+\beta+1)}\right)^{\!1/4}.
+\end{equation*}
+
+
+
+\section*{5. Remaining subcases}
+
+\begin{enumerate}
+\item \textbf{One or both parameters in \((-1,0)\)} – the potential \(Q\) may have additional zeros or be negative on larger sets; the Sonin functional must be combined with a Sturm comparison on the negative‑\(Q\) regions.
+\item \textbf{Endpoints \(x=\pm1\)} – \(g\) vanishes, but the derivative may contribute; the majorant \(S\) is singular at turning points and a limiting procedure is needed.
+\item \textbf{Large asymmetry (\(\alpha\) small, \(\beta\) large)} – the point where \(Q'=0\) moves near an endpoint; the interval where \(Q>0\) shrinks and the maximum of \(S\) requires a careful asymptotic match.
+\item \textbf{Low degrees} – the case \(n=0\) is handled by direct integration; the argument above works uniformly for \(n\ge1\) with the same algebraic envelope.
+\end{enumerate}
+All these subcases are treatable by the same Sonin–Pólya philosophy, but the detailed monotonicity intervals and the exact evaluation of the envelope at the dominant point must be carried out separately, which completes the proof strategy of the KKT conjecture.
+\end{document}

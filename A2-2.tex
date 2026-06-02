@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{unicode-math}
+\setlist{leftmargin=*}
+\allowdisplaybreaks
+\emergencystretch=3em
+\title{KKT Boundary Volterra Analysis}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+Based on systematic empirical testing and symbolic verification of the two provided AI attempts, I have mathematically isolated exactly what works, what is hallucinated, and why the analytic breakdown fundamentally occurs at the small-parameter edge.
+
+\section*{1. Critical Evaluation of the AI Attempts}
+
+\textbf{Lemma 1: The Liouville Variable Hallucination (Debunking AI 2)}
+AI 2 utilizes the exact angular Liouville transformation \(Z(\theta) = \sqrt{\sin\theta} \, g(\cos\theta)\) and constructs the correct majorant \(\mathcal{S}_Z(\theta) = Z^2 + Z'^2/Q_\theta\). For symmetric parameters, it correctly identifies that \(\mathcal{S}_Z(\theta)\) is maximized at the center \(\theta = \pi/2\), establishing a rigorous global bound \(|Z(\theta)| \le |Z(\pi/2)|\).
+\emph{The Fatal Flaw:} The AI hallucinated that bounding the Liouville variable \(Z(\theta)\) uniformly bounds the true KKT function \(g(x)\). Converting back requires dividing by the angular weight:
+
+\begin{equation*}
+|g(\cos\theta)| = \frac{|Z(\theta)|}{\sqrt{\sin\theta}} \le \frac{|Z(\pi/2)|}{\sqrt{\sin\theta}} .
+\end{equation*}
+
+Because the true maximum of \(g(x)\) aggressively migrates into the boundary lobes (\(\theta \to 0, \pi\)) for small \(\alpha, \beta\), the \(1/\sqrt{\sin\theta}\) coefficient triggers a catastrophic geometric divergence. The standard Liouville-Sonin envelope fundamentally loses control of the polynomial precisely where the maximum occurs.
+
+\textbf{Lemma 2: The Global Cauchy-Schwarz Looseness (Limitation of AI 1)}
+AI 1 correctly avoids the Liouville boundary divergence by staying in the Cartesian \(x\)-coordinate. It constructs the generalized Sonin functional \(\mathcal{S}_g(x) = g(x)^2 + \frac{A(x)^2 g'(x)^2}{F(x)}\) and exact identity \(\mathcal{S}_g'(x) = - \frac{A^2 F'}{F^2} g'^2\). This rigidly forces the global maximum \(x_*\) into the outermost lobe. Furthermore, its global Cauchy-Schwarz energy bound \(|g(x)|^4 \le J E\) elegantly solves the large-parameter regime \(\alpha, \beta \ge 2n\).
+\emph{The Analytical Bottleneck:} For the small parameter edge (e.g., \(\alpha \downarrow 0\)), this global bounding shatters. The \(J\)-integral evaluates to \(\frac{s}{2\alpha\beta}\). As the probability mass shifts to the boundary \(1-x \to 0\), \(J\) explodes to \(+\infty\), creating a \(1/\alpha\) singularity. The mathematical target is an \(\mathcal{O}(1)\) bound, but the global product \(J E\) diverges algebraically.
+
+\section*{2. Synthesizing the Forward Path: The Boundary Volterra Identity}
+
+To fix AI 1's global energy divergence, we must compute the energy strictly localized within the boundary layer.
+
+Define the cross-term-free regularized functional utilizing AI 1's exact ODE \((A g')' + \frac{F}{A}g = 0\):
+
+\begin{equation*}
+\mathcal{W}(x) = F(x) g(x)^2 + A(x)^2 g'(x)^2 .
+\end{equation*}
+
+Differentiating yields the exact, pristine identity:
+
+\begin{equation*}
+\mathcal{W}'(x) = F'(x) g(x)^2 .
+\end{equation*}
+
+Evaluating at the boundary \(x=1\) (where \(A=0\) and \(g=0\) for \(\alpha > 0\)) rigidly yields \(\mathcal{W}(1) = 0\). Integrating backward from the boundary to the outermost peak \(x_*\) (where \(g'(x_*) = 0\)) generates an exact \textbf{Tail-Flip Volterra Identity}:
+
+\begin{equation*}
+g(x_*)^2 = \frac{1}{F(x_*)} \int_{x_*}^1 (-F'(t)) g(t)^2 \, dt .
+\end{equation*}
+
+This analytically isolates the extreme amplitude strictly to the monotonic mass localized against the boundary, entirely free from the global \(J\)-integral divergence.
+
+\section*{Explicit Failure \& Steering}
+
+As \(\alpha \downarrow 0\), the maximum \(x_*\) and the turning point \(x_+\) simultaneously collapse into the boundary \(x=1\). Expanding the residual at the peak yields \(F(x_*) \to \mathcal{O}(\alpha) \to 0\). This induces a catastrophic \(0/0\) division-by-zero singularity. Any standard integral bounding inequality on the numerator destroys the delicate phase cancellation between the wave amplitude and its gradient, causing the fraction to explode as \(1/\alpha\).
+
+\textbf{I have hit a computational/logical bottleneck.}
+The exact localized integration identity possesses an unbridgeable algebraic singularity if evaluated using standard absolute majorants.
+
+Do you have a mathematical pruning heuristic or intuition? (e.g., Should we explicitly map this localized boundary lobe directly onto the Bessel uniform asymptotic invariant \(J_\alpha(z)\) via a Mehler-Heine transformation to safely factor out the \(\mathcal{O}(\alpha)\) collision, thereby reducing the numerator exactly to the Lommel invariant?)
+\end{document}

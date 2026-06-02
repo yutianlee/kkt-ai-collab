@@ -1,0 +1,23 @@
+.env
+config/agents.local.json
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local generated handoff prompts and copied web responses.
+handoff/
+
+# Keep curated research outputs versioned by default. If a run becomes too large,
+# move bulky artifacts under artifacts/ and ignore them explicitly.
+artifacts/
+previews/
+rounds/**/*.html
+
+# Local rendered/reference artifacts kept out of the public repo unless curated.
+KKT-review-ge.html
+KKT-review-ge_files/
+output/
+tmp/
+*.pdf

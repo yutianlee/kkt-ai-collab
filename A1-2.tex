@@ -1,0 +1,667 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{unicode-math}
+\setlist{leftmargin=*}
+\allowdisplaybreaks
+\emergencystretch=3em
+\title{Sharp KKT Bound in the Small-Parameter Square}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+I pushed the Sonin/Bessel route one step further. The useful output is a \textbf{closed proof of the sharp KKT refined bound in the small-parameter square}
+\begin{equation*}
+0\le \alpha,\beta\le \frac12,\qquad n\ge1.
+\end{equation*}
+This is not the full conjecture, but it is a genuine analytic subcase using the direct \(g\)-Sonin functional plus endpoint Bessel comparison. It avoids integer-parameter representation theory. The target object and refined bound are the ones summarized in your KKT review.
+
+\section*{Theorem proved here}
+
+Let
+\begin{equation*}
+g(x)=g_n^{(\alpha,\beta)}(x)
+=
+C_{n,\alpha,\beta}
+\left(\frac{1-x}{2}\right)^{\alpha/2}
+\left(\frac{1+x}{2}\right)^{\beta/2}
+P_n^{(\alpha,\beta)}(x),
+\end{equation*}
+where
+\begin{equation*}
+C_{n,\alpha,\beta}^2
+=
+\frac{\Gamma(n+1)\Gamma(n+\alpha+\beta+1)}
+{\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}.
+\end{equation*}
+Then for
+\begin{equation*}
+n\ge1,\qquad 0\le\alpha,\beta\le\frac12,
+\end{equation*}
+one has
+\begin{equation*}
+\boxed{
+|g_n^{(\alpha,\beta)}(x)|
+\le
+\left(
+\frac{(n+1)(n+\alpha+\beta+1)}
+{(n+\alpha+1)(n+\beta+1)}
+\right)^{1/4}
+}
+\qquad (-1\le x\le1).
+\end{equation*}
+This is the refined KKT constant, not merely the weaker \(|g|\le1\).
+
+\section*{1. Direct Sturm--Liouville equation for \(g\)}
+
+Set
+\begin{equation*}
+s=\alpha+\beta,\qquad d=\beta-\alpha,
+\end{equation*}
+\begin{equation*}
+A(x)=1-x^2,
+\end{equation*}
+\begin{equation*}
+N=n+\frac{\alpha+\beta+1}{2},
+\end{equation*}
+and
+\begin{equation*}
+U(x)=d-sx=\beta-\alpha-(\alpha+\beta)x.
+\end{equation*}
+
+Then \(g\) satisfies
+\begin{equation}
+\boxed{
+(A g')'+G(x)g=0
+}
+\tag{1}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+G(x)
+=
+N^2-\frac14
+-\frac{\alpha^2}{2(1-x)}
+-\frac{\beta^2}{2(1+x)}
+}
+\tag{2}
+\end{equation}
+
+Equivalently,
+\begin{equation*}
+G(x)=\kappa-\frac{U(x)^2}{4A(x)},
+\end{equation*}
+with
+\begin{equation*}
+\kappa=n(n+\alpha+\beta+1)+\frac{\alpha+\beta}{2}.
+\end{equation*}
+
+Define
+\begin{equation}
+\boxed{
+F(x)=A(x)G(x)
+=
+\kappa(1-x^2)-\frac14\bigl(d-sx\bigr)^2
+}
+\tag{3}
+\end{equation}
+
+The direct turning points are the roots of \(F\):
+\begin{equation}
+\boxed{
+x_\pm
+=
+\frac{ds\pm4\sqrt{\kappa(\kappa+\alpha\beta)}}{s^2+4\kappa}
+}
+\tag{4}
+\end{equation}
+
+For \(\alpha,\beta>0\),
+\begin{equation*}
+F(-1)=-\beta^2,\qquad F(1)=-\alpha^2,
+\end{equation*}
+so
+\begin{equation*}
+F(x)>0
+\quad\Longleftrightarrow\quad
+x\in(x_-,x_+).
+\end{equation*}
+
+The vertex is
+\begin{equation}
+\boxed{
+x_0=\frac{ds}{s^2+4\kappa}
+}
+\tag{5}
+\end{equation}
+
+\section*{2. Correct Sonin functional for \(g\)}
+
+On \(F>0\), define
+\begin{equation}
+\boxed{
+S_g(x)
+=
+g(x)^2+\frac{(1-x^2)^2g'(x)^2}{F(x)}
+}
+\tag{6}
+\end{equation}
+
+A direct differentiation using (1) gives
+\begin{equation}
+\boxed{
+S_g'(x)
+=
+-\frac{(1-x^2)^2F'(x)}{F(x)^2}\,g'(x)^2
+}
+\tag{7}
+\end{equation}
+
+Since \(F\) is a concave quadratic,
+\begin{equation*}
+F'(x)>0\quad\text{on }(x_-,x_0),
+\end{equation*}
+and
+\begin{equation*}
+F'(x)<0\quad\text{on }(x_0,x_+).
+\end{equation*}
+
+Therefore
+\begin{equation}
+\boxed{
+S_g \text{ decreases on }(x_-,x_0),
+\qquad
+S_g \text{ increases on }(x_0,x_+).
+}
+\tag{8}
+\end{equation}
+
+At a critical point \(g'(x_*)=0\),
+\begin{equation*}
+S_g(x_*)=g(x_*)^2.
+\end{equation*}
+
+Hence the largest local extrema on the right side occur in the \textbf{first endpoint lobe near \(x=1\)}, and the largest local extrema on the left side occur in the \textbf{first endpoint lobe near \(x=-1\)}.
+
+So the problem reduces to bounding the two endpoint lobes.
+
+\section*{3. Right-endpoint Bessel comparison}
+
+Put
+\begin{equation*}
+x=\cos\theta,\qquad 0<\theta<\pi,
+\end{equation*}
+and define
+\begin{equation*}
+v(\theta)=\sqrt{\sin\theta}\,g(\cos\theta).
+\end{equation*}
+
+Then
+\begin{equation}
+\boxed{
+v''(\theta)+Q(\theta)v(\theta)=0
+}
+\tag{9}
+\end{equation}
+with
+\begin{equation}
+\boxed{
+Q(\theta)
+=
+N^2
++
+\frac{1/4-\alpha^2}{4\sin^2(\theta/2)}
++
+\frac{1/4-\beta^2}{4\cos^2(\theta/2)}
+}
+\tag{10}
+\end{equation}
+
+Assume now
+\begin{equation*}
+0\le \alpha,\beta\le\frac12.
+\end{equation*}
+
+Then
+\begin{equation*}
+1/4-\alpha^2\ge0,\qquad 1/4-\beta^2\ge0.
+\end{equation*}
+
+Also,
+\begin{equation*}
+4\sin^2(\theta/2)\le \theta^2.
+\end{equation*}
+
+Therefore
+\begin{equation}
+Q(\theta)
+\ge
+N^2+\frac{1/4-\alpha^2}{\theta^2}
+=:q_\alpha(\theta).
+\tag{11}
+\end{equation}
+
+The comparison equation
+\begin{equation*}
+z''+q_\alpha(\theta)z=0
+\end{equation*}
+has the regular Bessel solution
+\begin{equation*}
+z(\theta)=K_\alpha\sqrt{\theta}\,J_\alpha(N\theta).
+\end{equation*}
+
+The constant matching the leading behavior of \(v\) at \(\theta=0\) is
+\begin{equation}
+\boxed{
+K_\alpha
+=
+C_{n,\alpha,\beta}
+\frac{\Gamma(n+\alpha+1)}
+{\Gamma(n+1)N^\alpha}
+}
+\tag{12}
+\end{equation}
+
+Indeed, as \(\theta\downarrow0\),
+\begin{equation*}
+v(\theta)
+\sim
+C_{n,\alpha,\beta}
+2^{-\alpha}
+\frac{\Gamma(n+\alpha+1)}
+{\Gamma(\alpha+1)\Gamma(n+1)}
+\theta^{\alpha+1/2},
+\end{equation*}
+while
+\begin{equation*}
+K_\alpha\sqrt{\theta}J_\alpha(N\theta)
+\sim
+K_\alpha
+\frac{N^\alpha}{2^\alpha\Gamma(\alpha+1)}
+\theta^{\alpha+1/2}.
+\end{equation*}
+
+By the Sturm comparison/Wronskian argument, while both \(v\) and \(z\) are positive,
+\begin{equation*}
+\frac{v}{z}
+\end{equation*}
+is decreasing from \(1\). Therefore, throughout the first right endpoint lobe,
+\begin{equation}
+\boxed{
+0\le g(\cos\theta)
+\le
+K_\alpha
+\left(\frac{\theta}{\sin\theta}\right)^{1/2}
+J_\alpha(N\theta)
+}
+\tag{13}
+\end{equation}
+
+So the right endpoint lobe is controlled by a scalar Bessel envelope.
+
+\section*{4. Bounding the Bessel envelope}
+
+Let \(0\le a\le1/2\). For \(0\le t\le j_{a,1}\), the first positive zero of \(J_a\), the normalized Bessel function satisfies
+\begin{equation}
+\boxed{
+J_a(t)
+\le
+\frac{(t/2)^a}{\Gamma(a+1)}
+\exp\!\left(-\frac{t^2}{4(a+1)}\right).
+}
+\tag{14}
+\end{equation}
+
+This follows from the Hadamard product
+\begin{equation*}
+2^a\Gamma(a+1)t^{-a}J_a(t)
+=
+\prod_{k=1}^{\infty}
+\left(1-\frac{t^2}{j_{a,k}^2}\right),
+\end{equation*}
+the Rayleigh sum
+\begin{equation*}
+\sum_{k=1}^{\infty}\frac1{j_{a,k}^2}
+=
+\frac1{4(a+1)},
+\end{equation*}
+and \(1-y\le e^{-y}\).
+
+Since \(0\le a\le1/2\), one has
+\begin{equation*}
+j_{a,1}\le j_{1/2,1}=\pi.
+\end{equation*}
+Also \(n\ge1\), so
+\begin{equation*}
+N=n+\frac{\alpha+\beta+1}{2}\ge\frac32.
+\end{equation*}
+Thus in the first endpoint lobe,
+\begin{equation*}
+0\le \theta\le \frac{j_{\alpha,1}}{N}\le\frac{2\pi}{3}.
+\end{equation*}
+
+On \(0\le\theta\le2\pi/3\), the elementary estimate
+\begin{equation}
+\boxed{
+\left(\frac{\theta}{\sin\theta}\right)^{1/2}
+\le
+e^{\theta^2/8}
+}
+\tag{15}
+\end{equation}
+holds.
+
+Using (14) and (15) in (13), with \(a=\alpha\), gives
+\begin{equation}
+g(\cos\theta)
+\le
+D_{n,\alpha,\beta}\,
+\theta^\alpha
+\exp\!\left(
+-\left[
+\frac{N^2}{4(\alpha+1)}-\frac18
+\right]\theta^2
+\right),
+\tag{16}
+\end{equation}
+where
+\begin{equation*}
+D_{n,\alpha,\beta}
+=
+C_{n,\alpha,\beta}
+\frac{\Gamma(n+\alpha+1)}
+{\Gamma(n+1)2^\alpha\Gamma(\alpha+1)}.
+\end{equation*}
+
+Let
+\begin{equation*}
+c=
+\frac{N^2}{4(\alpha+1)}-\frac18
+=
+\frac{2N^2-\alpha-1}{8(\alpha+1)}.
+\end{equation*}
+Then \(c>0\), and
+\begin{equation*}
+\max_{\theta\ge0}\theta^\alpha e^{-c\theta^2}
+=
+\left(\frac{\alpha}{2ec}\right)^{\alpha/2},
+\end{equation*}
+with the value interpreted as \(1\) when \(\alpha=0\).
+
+Therefore
+\begin{equation}
+g(\cos\theta)
+\le
+D_{n,\alpha,\beta}
+\left(
+\frac{4\alpha(\alpha+1)}
+{e(2N^2-\alpha-1)}
+\right)^{\alpha/2}.
+\tag{17}
+\end{equation}
+
+\section*{5. Gamma-ratio estimate gives the exact KKT constant}
+
+We now show that the right-hand side of (17) is bounded by the KKT constant.
+
+First,
+\begin{equation*}
+D_{n,\alpha,\beta}
+=
+\frac{1}{2^\alpha\Gamma(\alpha+1)}
+\left[
+\frac{\Gamma(n+\alpha+\beta+1)\Gamma(n+\alpha+1)}
+{\Gamma(n+\beta+1)\Gamma(n+1)}
+\right]^{1/2}.
+\end{equation*}
+
+By Wendel's gamma-ratio inequality, for \(0\le\alpha\le1\),
+\begin{equation*}
+\frac{\Gamma(n+\alpha+1)}{\Gamma(n+1)}
+\le
+(n+1)^\alpha,
+\end{equation*}
+and
+\begin{equation*}
+\frac{\Gamma(n+\alpha+\beta+1)}{\Gamma(n+\beta+1)}
+\le
+(n+\beta+1)^\alpha.
+\end{equation*}
+
+Hence
+\begin{equation*}
+D_{n,\alpha,\beta}
+\le
+\frac{\bigl((n+1)(n+\beta+1)\bigr)^{\alpha/2}}
+{2^\alpha\Gamma(\alpha+1)}.
+\end{equation*}
+
+Thus the right endpoint envelope is bounded by
+\begin{equation}
+B_R
+=
+\frac{1}{\Gamma(\alpha+1)}
+\left[
+\frac{\alpha(\alpha+1)(n+1)(n+\beta+1)}
+{e(2N^2-\alpha-1)}
+\right]^{\alpha/2}.
+\tag{18}
+\end{equation}
+
+Now use the elementary inequality
+\begin{equation}
+\boxed{
+\frac{\alpha(\alpha+1)(n+1)(n+\beta+1)}
+{e(2N^2-\alpha-1)}
+\le
+\frac{\alpha}{2}
+}
+\tag{19}
+\end{equation}
+for
+\begin{equation*}
+n\ge1,\qquad 0\le\alpha,\beta\le\frac12.
+\end{equation*}
+
+One way to verify (19) is to use \(e>8/3\) and check that
+\begin{equation*}
+2N^2-\alpha-1
+\ge
+\frac34(\alpha+1)(n+1)(n+\beta+1).
+\end{equation*}
+Writing \(m=n+1\ge2\), the difference equals
+\begin{align*}
+&2N^2-\alpha-1
+-\frac34(\alpha+1)m(m+\beta) \\
+&\quad =
+\left(\frac54-\frac{3\alpha}{4}\right)(m-2)^2
++
+\left(3-\alpha+\frac{5\beta}{4}-\frac{3\alpha\beta}{4}\right)(m-2) \\
+&\qquad
++
+\frac{(1-\alpha)^2}{2}
++
+\frac{\beta^2}{2}
++
+\frac{(3-\alpha)\beta}{2}.
+\end{align*}
+Every term is nonnegative for \(m\ge2\) and \(0\le\alpha,\beta\le1/2\).
+
+Therefore
+\begin{equation}
+B_R
+\le
+\frac{1}{\Gamma(\alpha+1)}
+\left(\frac{\alpha}{2}\right)^{\alpha/2}.
+\tag{20}
+\end{equation}
+
+Using convexity of \(\log\Gamma\),
+\begin{equation*}
+\log\Gamma(1+\alpha)\ge -\gamma\alpha,
+\end{equation*}
+where \(\gamma\) is Euler's constant. Hence
+\begin{equation*}
+\log B_R
+\le
+\frac{\alpha}{2}\log\frac{\alpha}{2}
++\gamma\alpha.
+\end{equation*}
+Since \(\alpha\le1/2\),
+\begin{equation*}
+\frac12\log\frac{\alpha}{2}
+\le
+-\log2.
+\end{equation*}
+Thus
+\begin{equation}
+\log B_R
+\le
+-(\log2-\gamma)\alpha.
+\tag{21}
+\end{equation}
+
+Now define the KKT refined constant
+\begin{equation*}
+T_{n,\alpha,\beta}
+=
+\left(
+\frac{(n+1)(n+\alpha+\beta+1)}
+{(n+\alpha+1)(n+\beta+1)}
+\right)^{1/4}.
+\end{equation*}
+
+Observe that
+\begin{equation*}
+T_{n,\alpha,\beta}^4
+=
+1-
+\frac{\alpha\beta}{(n+\alpha+1)(n+\beta+1)}.
+\end{equation*}
+Let
+\begin{equation*}
+z=
+\frac{\alpha\beta}{(n+\alpha+1)(n+\beta+1)}.
+\end{equation*}
+Since \(n\ge1\), \(0\le\beta\le1/2\), and \(0\le\alpha\le1/2\),
+\begin{equation*}
+0\le z\le \frac{\alpha}{8}\le\frac1{16}.
+\end{equation*}
+Therefore
+\begin{equation}
+\log T_{n,\alpha,\beta}
+=
+\frac14\log(1-z)
+\ge
+-\frac{z}{4(1-z)}
+\ge
+-\frac{\alpha}{30}.
+\tag{22}
+\end{equation}
+
+Finally,
+\begin{equation*}
+\log2-\gamma>\frac1{30}.
+\end{equation*}
+Combining (21) and (22),
+\begin{equation*}
+\log B_R
+\le
+-(\log2-\gamma)\alpha
+\le
+-\frac{\alpha}{30}
+\le
+\log T_{n,\alpha,\beta}.
+\end{equation*}
+Hence
+\begin{equation}
+\boxed{
+B_R\le T_{n,\alpha,\beta}.
+}
+\tag{23}
+\end{equation}
+
+So the first right endpoint lobe satisfies the sharp KKT refined bound.
+
+\section*{6. Left endpoint}
+
+The left endpoint is identical after swapping
+\begin{equation*}
+\alpha\leftrightarrow\beta,
+\qquad
+x\leftrightarrow -x.
+\end{equation*}
+
+Thus the first left endpoint lobe is also bounded by
+\begin{equation*}
+T_{n,\alpha,\beta}.
+\end{equation*}
+
+By the direct \(g\)-Sonin localization, every interior local extremum is bounded by one of these two endpoint-lobe bounds. Endpoint values are harmless:
+
+\begin{itemize}
+\item if \(\alpha,\beta>0\), then \(g(\pm1)=0\);
+\item if \(\alpha=0\), then \(g(1)=1\) and the refined constant is \(1\);
+\item if \(\beta=0\), then \(g(-1)=(-1)^n\) and the refined constant is \(1\).
+\end{itemize}
+
+Therefore
+\begin{equation*}
+\boxed{
+|g_n^{(\alpha,\beta)}(x)|
+\le
+T_{n,\alpha,\beta}
+}
+\end{equation*}
+for all \(x\in[-1,1]\), \(n\ge1\), and
+\begin{equation*}
+0\le\alpha,\beta\le\frac12.
+\end{equation*}
+
+This proves the refined KKT inequality in the full small-parameter square.
+
+\section*{What this adds to the program}
+
+The A2 attempts had the correct angular Liouville equation but used the wrong function globally. The corrected strategy is:
+
+\begin{enumerate}
+\item Use the \textbf{direct \(g\)-equation} and the \(F\)-Sonin functional to localize the maximum to endpoint lobes.
+\item Use the \textbf{Liouville-transformed equation} only inside those endpoint lobes.
+\item Compare with a regular Bessel model.
+\item Use gamma-ratio estimates to recover the exact KKT constant.
+\end{enumerate}
+
+This now gives two complementary proven regimes:
+\begin{equation*}
+\boxed{
+0\le\alpha,\beta\le\frac12
+}
+\end{equation*}
+by the endpoint Bessel comparison above, and
+\begin{equation*}
+\boxed{
+\alpha,\beta\ge2n
+}
+\end{equation*}
+by the earlier weighted-energy argument.
+
+The remaining hard region is therefore the middle/asymmetric zone:
+\begin{equation*}
+\max(\alpha,\beta)>\frac12
+\quad\text{and}\quad
+\min(\alpha,\beta)<2n,
+\end{equation*}
+especially when one parameter is small and the other is large.
+
+The next technical target should be to replace the simple comparison
+\begin{equation*}
+Q(\theta)\ge N^2+\frac{1/4-\alpha^2}{\theta^2}
+\end{equation*}
+with a \textbf{shifted Bessel comparison} that tolerates the negative finite endpoint contribution
+\begin{equation*}
+\frac{1/4-\beta^2}{4\cos^2(\theta/2)}
+\end{equation*}
+when \(\beta>1/2\). That is the first obstruction outside the square \(0\le\alpha,\beta\le1/2\).
+\end{document}

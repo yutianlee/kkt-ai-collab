@@ -1,0 +1,88 @@
+{
+  "judge_agent": "A1",
+  "agents": [
+    {
+      "id": "A1",
+      "display_name": "A1 ChatGPT Extended Pro",
+      "provider": "web_manual",
+      "role": "broad strategist, proof synthesizer, and final judge",
+      "web_url": "https://chatgpt.com/",
+      "copy_response_mode": "raw_markdown_fence",
+      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. As judge, write concrete next-round prompts for A1, A2, A3, and A4.",
+      "depth_contract": {
+        "reasoning": "Start from the Round 11 seed but do not only summarize it. Produce a fresh KKT reasoning attempt with exact claim statements and gap labels.",
+        "review": "Review A2, A3, and A4. Include a score table and concrete verification tasks.",
+        "judge": "Synthesize all reasoning and reviews, then include explicit next-round prompts for A1, A2, A3, and A4."
+      }
+    },
+    {
+      "id": "A2",
+      "display_name": "A2 Gemini Pro DeepThink",
+      "provider": "web_manual",
+      "role": "independent strategist, obstruction finder, and referee-style reviewer",
+      "web_url": "https://gemini.google.com/",
+      "depth_contract": {
+        "reasoning": "Use Gemini Pro DeepThink as a mathematical referee, not a summary writer. Include precise claim boxes, theorem-hypothesis checks, endpoint and finite-beta failure modes, and concrete stress tests for the KKT Jacobi/Laguerre reductions.",
+        "review": "Write a full referee report. Separately assess A1, A3, and A4, include a score table, identify hidden assumptions, and give concrete verification tasks.",
+        "judge": "If used as judge, include selected route, useful fragments by source, rejected/risky ideas, exact gaps, new lemma statements, counterexample checks, and next-round prompts for every active agent."
+      },
+      "instructions": "Use Gemini Pro DeepThink. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Consider product-formula/hypergroup routes, Sturm-Liouville/Sonin energy routes, Christoffel-function bounds, and effective Laguerre asymptotics."
+    },
+    {
+      "id": "A3",
+      "display_name": "A3 Deepseek V4 Pro think_max",
+      "provider": "openai_compatible",
+      "role": "API-based proof critic, algebra checker, and endpoint-reduction auditor",
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "model_env": "DEEPSEEK_MODEL",
+      "default_model": "deepseek-v4-pro",
+      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a slow, meticulous mathematical proof auditor for Jacobi and Laguerre inequalities. Produce explicit sections, formulas, lemma statements, failed proof paths, stress tests, and confidence calibration.",
+      "extra_payload": {
+        "reasoning_effort": "max",
+        "max_tokens": 32768
+      },
+      "quality_gate": {
+        "reasoning": {
+          "min_words": 1800,
+          "min_headings": 6,
+          "must_contain": ["Confidence"]
+        },
+        "review": {
+          "min_words": 1400,
+          "min_headings": 5,
+          "must_contain": ["Score by agent"]
+        }
+      },
+      "retry_on_quality_gate": true,
+      "quality_gate_retries": 1,
+      "instructions": "Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries."
+    },
+    {
+      "id": "A4",
+      "display_name": "A4 qwen-math-plus",
+      "provider": "openai_compatible",
+      "role": "API-based technical lemma generator and symbolic/numeric check planner",
+      "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+      "api_key_env": "QWEN_API_KEY",
+      "model_env": "QWEN_MODEL",
+      "default_model": "qwen-math-plus",
+      "system_prompt": "You are A4, qwen-math-plus, acting as a careful mathematical research collaborator. Be explicit about Jacobi/Laguerre normalizations, parameter ranges, and missing constants.",
+      "quality_gate": {
+        "reasoning": {
+          "min_words": 1200,
+          "min_headings": 4,
+          "must_contain": ["Confidence"]
+        },
+        "review": {
+          "min_words": 900,
+          "min_headings": 4,
+          "must_contain": ["Score by agent"]
+        }
+      },
+      "retry_on_quality_gate": true,
+      "quality_gate_retries": 1,
+      "instructions": "Generate checkable lemmas, endpoint algebra checks, and symbolic or numerical verification plans for the KKT conjecture. Do not claim the conjecture is solved unless every constant and bridge step is explicit."
+    }
+  ]
+}

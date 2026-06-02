@@ -1,0 +1,907 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{unicode-math}
+\setlist{leftmargin=*}
+\allowdisplaybreaks
+\emergencystretch=3em
+\title{KKT Endpoint-Bessel Reduction Criterion}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+Verdict: \textbf{A2-2 is useful; A3-2 is mostly not usable as a proof, but it points toward the right obstacle.} The best next step is not A3's shifted-\(Q\) Sonin functional. The better bridge is:
+
+\begin{equation*}
+\boxed{
+\begin{gathered}
+\text{direct }x\text{-Sonin localization}\\
++\ \text{regularized }W\text{-identity}\\
++\ \text{endpoint Bessel comparison with an adjustable frequency}
+\end{gathered}
+}
+\end{equation*}
+
+
+This stays analytic and does not use integer-parameter representation theory. The target remains the real-parameter extension of the KKT refined bound; the review notes that the refined estimate is known from the integer-parameter setting but the real-parameter version is the conjectural extension.  The same review identifies the Sonin--Polya/Sturm--Picone endpoint-Bessel route as the relevant analytic route.
+
+
+
+\section*{1. What is actually useful in A2-2.tex}
+
+A2-2's main useful observation is the regularized identity
+
+\begin{equation*}
+W(x):=F(x)g(x)^2+A(x)^2g'(x)^2,
+\qquad A(x)=1-x^2,
+\end{equation*}
+
+
+with
+
+\begin{equation*}
+\boxed{
+W'(x)=F'(x)g(x)^2.
+}
+\tag{1}
+\end{equation*}
+
+
+This is correct.
+
+It follows directly from
+
+\begin{equation*}
+(A g')'+\frac{F}{A}g=0.
+\end{equation*}
+
+
+Indeed,
+
+\begin{equation*}
+\begin{aligned}
+W'
+&=F'g^2+2Fgg'+2AA'g'^2+2A^2g'g'' \\
+&=F'g^2+2Fgg'+2AA'g'^2
++2g'(-AA'g'-Fg)\\
+&=F'g^2.
+\end{aligned}
+\end{equation*}
+
+
+This identity is better than the raw Sonin quotient near turning points because
+
+\begin{equation*}
+S_g(x)=g(x)^2+\frac{A(x)^2g'(x)^2}{F(x)}
+\end{equation*}
+
+
+blows up when \(F=0\), while
+
+\begin{equation*}
+\boxed{
+W=F S_g
+}
+\end{equation*}
+
+
+remains finite.
+
+At the right endpoint,
+
+\begin{equation*}
+W(1)=0.
+\end{equation*}
+
+
+If \(\alpha>0\), this is because \(g(1)=0\) and \(A(1)=0\). If \(\alpha=0\), then \(F(1)=0\) and again \(W(1)=0\).
+
+Therefore, if \(x_R\) is the first right endpoint extremum of \(g\), so that \(g'(x_R)=0\), then
+
+\begin{equation*}
+W(x_R)=F(x_R)g(x_R)^2,
+\end{equation*}
+
+
+and integrating (1) backward from (1) gives the exact tail identity
+
+\begin{equation*}
+\boxed{
+g(x_R)^2
+=
+\frac{1}{F(x_R)}
+\int_{x_R}^{1}(-F'(t))g(t)^2\,dt.
+}
+\tag{2}
+\end{equation*}
+
+
+This is the correct version of A2's ``boundary Volterra'' idea.
+
+However, A2-2 stops at the right place: (2) alone does \textbf{not} close the proof. If one bounds \(g(t)^2\le g(x_R)^2\), then (2) only gives
+
+\begin{equation*}
+F(x_R)
+\le
+\int_{x_R}^{1}(-F'(t))\,dt
+=
+F(x_R)-F(1),
+\end{equation*}
+
+
+which is trivial because \(F(1)=-\alpha^2\le0\). The identity is useful as a regular bridge, not as a standalone bound.
+
+
+
+\section*{2. What is wrong in A3-2.tex}
+
+A3-2 has several mathematical defects.
+
+First, it calls \(F\) convex. In this normalization,
+
+\begin{equation*}
+F(x)=\kappa(1-x^2)-\frac14(d-sx)^2
+\end{equation*}
+
+
+is a \textbf{concave} quadratic.
+
+Second, A3 again confuses the Liouville variable with the original KKT function. The angular variable
+
+\begin{equation*}
+v(\theta)=\sqrt{\sin\theta},g(\cos\theta)
+\end{equation*}
+
+
+satisfies
+
+\begin{equation*}
+v''+Qv=0,
+\end{equation*}
+
+
+but the conjecture is about
+
+\begin{equation*}
+g(\cos\theta)=\frac{v(\theta)}{\sqrt{\sin\theta}}.
+\end{equation*}
+
+
+Uniformly controlling \(v\) does not uniformly control \(g\), especially at \(\theta=0,\pi\).
+
+Third, A3's proposed shifted Sonin functional is not sign-controlled. If
+
+\begin{equation*}
+S_\lambda(\theta)=y^2+\frac{y'^2}{Q+\lambda},
+\qquad y''+Qy=0,
+\end{equation*}
+
+
+then
+
+\begin{equation*}
+\boxed{
+S_\lambda'
+=
+\frac{2\lambda yy'}{Q+\lambda}
+-
+\frac{Q'}{(Q+\lambda)^2}y'^2.
+}
+\tag{3}
+\end{equation*}
+
+
+The extra term
+
+\begin{equation*}
+\frac{2\lambda yy'}{Q+\lambda}
+\end{equation*}
+
+
+has no fixed sign. So the shifted-\(Q\) bridge is not a valid Sonin monotonicity argument.
+
+Fourth, the statement that the (x)-functional is ``regular across turning points'' is only true after multiplying by \(F\). The quotient \(S_g\) still has \(1/F\). The regular object is
+
+\begin{equation*}
+W=F S_g,
+\end{equation*}
+
+
+not \(S_g\) itself.
+
+So: \textbf{discard A3's proof mechanism; keep only its diagnosis that the turning-point singularity must be bridged.}
+
+
+
+\section*{3. Correct direct equation and endpoint expansion}
+
+Let
+
+\begin{equation*}
+u(x)=g_n^{(\alpha,\beta)}(x),
+\qquad
+s=\alpha+\beta,
+\qquad
+d=\beta-\alpha,
+\end{equation*}
+
+
+\begin{equation*}
+A(x)=1-x^2,
+\qquad
+N=n+\frac{\alpha+\beta+1}{2},
+\end{equation*}
+
+
+\begin{equation*}
+\kappa=n(n+s+1)+\frac{s}{2}.
+\end{equation*}
+
+
+Then
+
+\begin{equation*}
+\boxed{
+(Au')'+G(x)u=0,
+}
+\tag{4}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+G(x)=
+N^2-\frac14
+-\frac{\alpha^2}{2(1-x)}
+-\frac{\beta^2}{2(1+x)}.
+}
+\tag{5}
+\end{equation*}
+
+
+Equivalently,
+
+\begin{equation*}
+G(x)=\frac{F(x)}{A(x)},
+\end{equation*}
+
+
+with
+
+\begin{equation*}
+\boxed{
+F(x)
+=
+\kappa(1-x^2)
+-\frac14\bigl(\beta-\alpha-(\alpha+\beta)x\bigr)^2.
+}
+\tag{6}
+\end{equation*}
+
+
+Near the right endpoint, put
+
+\begin{equation*}
+x=1-\delta.
+\end{equation*}
+
+
+Then the exact quadratic expansion is
+
+\begin{equation*}
+\boxed{
+F(1-\delta)
+=
+-\alpha^2
++
+L_R\delta
+-
+\left(N^2-\frac14\right)\delta^2,
+}
+\tag{7}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+L_R=2\kappa+\alpha(\alpha+\beta)
+=
+2N^2-\frac12+\frac{\alpha^2-\beta^2}{2}.
+}
+\tag{8}
+\end{equation*}
+
+
+Similarly, near the left endpoint,
+
+\begin{equation*}
+\boxed{
+F(-1+\delta)
+=
+-\beta^2
++
+L_L\delta
+-
+\left(N^2-\frac14\right)\delta^2,
+}
+\tag{9}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+L_L=2\kappa+\beta(\alpha+\beta)
+=
+2N^2-\frac12+\frac{\beta^2-\alpha^2}{2}.
+}
+\tag{10}
+\end{equation*}
+
+
+This explains the apparent \(0/0\) problem in A2. When \(\alpha\downarrow0\), the right turning point satisfies approximately
+
+\begin{equation*}
+\delta_R\sim \frac{\alpha^2}{L_R},
+\end{equation*}
+
+
+so both numerator and denominator in the Volterra identity collapse at the Bessel scale. The singularity is not fatal; it says that the correct endpoint variable is Bessel-type.
+
+
+
+\section*{4. Direct Sonin localization remains the global skeleton}
+
+On \(F>0\),
+
+\begin{equation*}
+\boxed{
+S_g(x)=u(x)^2+\frac{A(x)^2u'(x)^2}{F(x)}.
+}
+\tag{11}
+\end{equation*}
+
+
+The exact identity is
+
+\begin{equation*}
+\boxed{
+S_g'(x)
+=
+-\frac{A(x)^2F'(x)}{F(x)^2}u'(x)^2.
+}
+\tag{12}
+\end{equation*}
+
+
+Because \(F\) is concave, with vertex \(x_0\),
+
+\begin{equation*}
+S_g \text{ decreases on }(x_-,x_0),
+\end{equation*}
+
+
+and
+
+\begin{equation*}
+S_g \text{ increases on }(x_0,x_+).
+\end{equation*}
+
+
+At a critical point of \(u\),
+
+\begin{equation*}
+u'=0,
+\qquad
+S_g=u^2.
+\end{equation*}
+
+
+Therefore the global maximum of \(|u|\) is reduced to the first endpoint lobe near \(x=1\) and the first endpoint lobe near \(x=-1\).
+
+So the remaining problem is exactly:
+
+\begin{equation*}
+\boxed{
+\text{prove the sharp KKT bound on each first endpoint lobe.}
+}
+\end{equation*}
+
+
+
+
+\section*{5. Corrected endpoint-Bessel comparison with adjustable frequency}
+
+Set
+
+\begin{equation*}
+x=\cos\theta,
+\qquad
+0<\theta<\pi,
+\end{equation*}
+
+
+and
+
+\begin{equation*}
+v(\theta)=\sqrt{\sin\theta},u(\cos\theta).
+\end{equation*}
+
+
+Then
+
+\begin{equation*}
+\boxed{
+v''(\theta)+Q(\theta)v(\theta)=0,
+}
+\tag{13}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+Q(\theta)
+=
+N^2
++
+\frac{1/4-\alpha^2}{4\sin^2(\theta/2)}
++
+\frac{1/4-\beta^2}{4\cos^2(\theta/2)}.
+}
+\tag{14}
+\end{equation*}
+
+
+The earlier small-parameter proof used the crude comparison
+
+\begin{equation*}
+Q(\theta)\ge
+N^2+\frac{1/4-\alpha^2}{\theta^2},
+\end{equation*}
+
+
+which works only when
+
+\begin{equation*}
+0\le\alpha,\beta\le\frac12.
+\end{equation*}
+
+
+To go further, replace \(N\) by an \textbf{adjustable lower comparison frequency} \(M_R\).
+
+Fix \(0<\Theta<\pi\). Define
+
+\begin{equation*}
+c_\alpha=\frac14-\alpha^2,
+\qquad
+c_\beta=\frac14-\beta^2,
+\end{equation*}
+
+
+\begin{equation*}
+B(\theta)=\frac{1}{4\sin^2(\theta/2)}-\frac{1}{\theta^2},
+\end{equation*}
+
+
+\begin{equation*}
+C(\theta)=\frac{1}{4\cos^2(\theta/2)}.
+\end{equation*}
+
+
+Then
+
+\begin{equation*}
+Q(\theta)
+-
+\frac{c_\alpha}{\theta^2}
+=
+N^2+c_\alpha B(\theta)+c_\beta C(\theta).
+\end{equation*}
+
+
+On \(0<\theta\le\Theta\), (B) and (C) are increasing. Hence
+
+\begin{equation*}
+Q(\theta)
+\ge
+M_R(\Theta)^2+\frac{1/4-\alpha^2}{\theta^2},
+\tag{15}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+M_R(\Theta)^2
+=
+N^2+m_\alpha(\Theta)+m_\beta(\Theta),
+}
+\tag{16}
+\end{equation*}
+
+
+with
+
+\begin{equation*}
+m_\alpha(\Theta)=
+\begin{cases}
+\dfrac{1/4-\alpha^2}{12},
+&0\le\alpha\le\frac12,\\[1.2ex]
+\left(\dfrac14-\alpha^2\right)B(\Theta),
+&\alpha>\frac12,
+\end{cases}
+\tag{17}
+\end{equation*}
+
+
+and
+
+\begin{equation*}
+m_\beta(\Theta)=
+\begin{cases}
+\dfrac{1/4-\beta^2}{4},
+&0\le\beta\le\frac12,\\[1.2ex]
+\left(\dfrac14-\beta^2\right)C(\Theta),
+&\beta>\frac12.
+\end{cases}
+\tag{18}
+\end{equation*}
+
+
+This is the corrected version of the endpoint comparison. It permits \(\beta>1/2\), and even \(\alpha>1/2\), provided \(M_R(\Theta)^2\) remains positive and large enough.
+
+
+
+\section*{6. Endpoint-lobe criterion}
+
+Let \(j_{\alpha,1}\) be the first positive zero of \(J_\alpha\). Suppose there is some \(0<\Theta<\pi\) such that
+
+\begin{equation*}
+\boxed{
+M_R(\Theta)>0,
+\qquad
+\frac{j_{\alpha,1}}{M_R(\Theta)}\le \Theta.
+}
+\tag{19}
+\end{equation*}
+
+
+Then on the first right endpoint lobe, Sturm comparison gives
+
+\begin{equation*}
+0\le v(\theta)
+\le
+K_R\sqrt{\theta},J_\alpha(M_R\theta),
+\tag{20}
+\end{equation*}
+
+
+where matching the regular endpoint asymptotic gives
+
+\begin{equation*}
+\boxed{
+K_R
+=
+C_{n,\alpha,\beta}
+\frac{\Gamma(n+\alpha+1)}
+{\Gamma(n+1)M_R^\alpha}.
+}
+\tag{21}
+\end{equation*}
+
+
+Since
+
+\begin{equation*}
+u(\cos\theta)=\frac{v(\theta)}{\sqrt{\sin\theta}},
+\end{equation*}
+
+
+we get
+
+\begin{equation*}
+\boxed{
+|u(\cos\theta)|
+\le
+K_R
+\left(\frac{\theta}{\sin\theta}\right)^{1/2}
+J_\alpha(M_R\theta)
+}
+\tag{22}
+\end{equation*}
+
+
+through the first right endpoint lobe.
+
+Now define
+
+\begin{equation*}
+\rho(\Theta)
+=
+\sup_{0<t\le\Theta}
+\frac{1}{2t^2}\log\frac{t}{\sin t}.
+\end{equation*}
+
+
+Then
+
+\begin{equation*}
+\left(\frac{\theta}{\sin\theta}\right)^{1/2}
+\le
+e^{\rho(\Theta)\theta^2}.
+\end{equation*}
+
+
+Also, for \(0\le z\le j_{\alpha,1}\),
+
+\begin{equation*}
+J_\alpha(z)
+\le
+\frac{(z/2)^\alpha}{\Gamma(\alpha+1)}
+\exp\left(-\frac{z^2}{4(\alpha+1)}\right).
+\end{equation*}
+
+
+Therefore, if
+
+\begin{equation*}
+\boxed{
+c_R(\Theta)
+:=
+\frac{M_R(\Theta)^2}{4(\alpha+1)}
+-
+\rho(\Theta)
+> 0,
+}
+\tag{23}
+\end{equation*}
+
+
+then
+
+\begin{equation*}
+|u(\cos\theta)|
+\le
+D_R
+\theta^\alpha e^{-c_R\theta^2},
+\tag{24}
+\end{equation*}
+
+
+where
+
+\begin{equation*}
+\boxed{
+D_R
+=
+\frac{
+C_{n,\alpha,\beta}\Gamma(n+\alpha+1)
+}
+{
+\Gamma(n+1)2^\alpha\Gamma(\alpha+1)
+}.
+}
+\tag{25}
+\end{equation*}
+
+
+Optimizing the scalar function \(\theta^\alpha e^{-c_R\theta^2}\) gives
+
+\begin{equation*}
+\max_{\theta\ge0}\theta^\alpha e^{-c_R\theta^2}
+=
+\left(\frac{\alpha}{2e c_R}\right)^{\alpha/2},
+\end{equation*}
+
+
+with value (1) when \(\alpha=0\).
+
+Thus the first right endpoint lobe is bounded by
+
+\begin{equation*}
+\boxed{
+E_R(\Theta)
+=
+D_R
+\left(\frac{\alpha}{2e c_R(\Theta)}\right)^{\alpha/2}.
+}
+\tag{26}
+\end{equation*}
+
+
+The corresponding left endpoint criterion is obtained by swapping
+
+\begin{equation*}
+\alpha\leftrightarrow\beta.
+\end{equation*}
+
+
+Let
+
+\begin{equation*}
+E_L(\Theta)
+=
+E_R(\Theta)
+\quad\text{with } \alpha,\beta \text{ swapped.}
+\end{equation*}
+
+
+
+
+\section*{7. New reduction theorem}
+
+Define the KKT target constant
+
+\begin{equation*}
+\boxed{
+T_{n,\alpha,\beta}
+=
+\left(
+\frac{(n+1)(n+\alpha+\beta+1)}
+{(n+\alpha+1)(n+\beta+1)}
+\right)^{1/4}.
+}
+\tag{27}
+\end{equation*}
+
+
+Then the following is a clean reduction.
+
+\subsection*{Proposition}
+
+Assume that for the right endpoint there exists \(\Theta_R\in(0,\pi)\) satisfying
+
+\begin{equation*}
+M_R(\Theta_R)>0,
+\qquad
+\frac{j_{\alpha,1}}{M_R(\Theta_R)}\le\Theta_R,
+\qquad
+c_R(\Theta_R)>0,
+\end{equation*}
+
+
+and
+
+\begin{equation*}
+\boxed{
+E_R(\Theta_R)\le T_{n,\alpha,\beta}.
+}
+\tag{28}
+\end{equation*}
+
+
+Assume also that for the left endpoint, after swapping \(\alpha,\beta\), there exists \(\Theta_L\in(0,\pi)\) satisfying the analogous conditions and
+
+\begin{equation*}
+\boxed{
+E_L(\Theta_L)\le T_{n,\alpha,\beta}.
+}
+\tag{29}
+\end{equation*}
+
+
+Then
+
+\begin{equation*}
+\boxed{
+|g_n^{(\alpha,\beta)}(x)|
+\le
+T_{n,\alpha,\beta}
+\qquad (-1\le x\le1).
+}
+\tag{30}
+\end{equation*}
+
+
+\subsection*{Proof}
+
+The endpoint comparison proves the target bound on the first right and first left endpoint lobes. The direct (x)-Sonin functional proves that all interior local extrema are no larger than the corresponding first endpoint-lobe extrema. Endpoint values are harmless: if \(\alpha=0\), then \(g(1)=1\) and \(T_{n,0,\beta}=1\); if \(\beta=0\), then \(|g(-1)|=1\) and \(T_{n,\alpha,0}=1\). Hence the global bound follows.
+
+This is a genuine advance over A2/A3: the turning-point singularity is no longer attacked by a false shifted Sonin functional. It is bypassed by a localized Bessel comparison whose constants are explicit.
+
+
+
+\section*{8. Why this improves the previous small-parameter proof}
+
+For
+
+\begin{equation*}
+0\le\alpha,\beta\le\frac12,
+\end{equation*}
+
+
+one can simply take
+
+\begin{equation*}
+M_R=N
+\end{equation*}
+
+
+because both inverse-square endpoint corrections in \(Q\) are nonnegative. With \(\Theta=2\pi/3\), one has
+
+\begin{equation*}
+\rho(\Theta)\le \frac18,
+\end{equation*}
+
+
+and the previous small-square proof follows.
+
+The new criterion is stronger because when, say, \(\beta>1/2\), the negative contribution
+
+\begin{equation*}
+\frac{1/4-\beta^2}{4\cos^2(\theta/2)}
+\end{equation*}
+
+
+is not treated as fatal. It is absorbed into the lowered frequency \(M_R(\Theta)\). This is exactly the missing mechanism outside the square
+
+\begin{equation*}
+0\le\alpha,\beta\le\frac12.
+\end{equation*}
+
+
+
+
+\section*{9. Remaining hard work}
+
+The problem is now reduced to proving explicit inequalities of the form
+
+\begin{equation*}
+E_R(\Theta_R)\le T_{n,\alpha,\beta},
+\qquad
+E_L(\Theta_L)\le T_{n,\alpha,\beta}.
+\end{equation*}
+
+
+There are three plausible ways to finish:
+
+1. \textbf{Analytic optimization in \(\Theta\).}
+   Choose \(\Theta\) as a simple multiple of \(j_{\alpha,1}/M_R\). This should sharpen \(M_R\) while keeping \(\rho(\Theta)\) small.
+
+2. \textbf{Bessel-zero inequalities.}
+   Use standard bounds for \(j_{\nu,1}\), such as
+\begin{equation*}
+j_{\nu,1}<\nu+c\nu^{1/3}+C,
+\end{equation*}
+
+   to make condition (19) algebraic.
+
+3. \textbf{Hybrid interval proof.}
+   The large-balanced regime \(\alpha,\beta\ge2n\) is already handled by the weighted-energy argument. The small square is already handled by the \(M=N\) Bessel comparison. The remaining middle region can be attacked by verifying (28)--(29) with rigorous interval arithmetic, because all quantities are explicit gamma/Bessel/trigonometric expressions.
+
+
+
+\section*{Bottom line}
+
+A2-2 gives a useful exact identity:
+
+\begin{equation*}
+\boxed{
+W=F g^2+A^2g'^2,\qquad W'=F'g^2.
+}
+\end{equation*}
+
+
+A3-2's proposed shifted Sonin bridge is not valid because the derivative acquires an uncontrolled term.
+
+The best forward route is the endpoint criterion above. It converts the remaining turning-point problem into explicit inequalities involving
+
+\begin{equation*}
+M_R(\Theta),\quad M_L(\Theta),\quad j_{\alpha,1},\quad j_{\beta,1},
+\quad
+\Gamma\text{-ratios}.
+\end{equation*}
+
+
+This is now a concrete analytic/finite-verification path rather than a qualitative strategy.
+\end{document}

@@ -1,0 +1,48 @@
+{
+  "judge_agent": "A1",
+  "agents": [
+    {
+      "id": "A1",
+      "display_name": "A1 ChatGPT Extended Pro",
+      "provider": "web_manual",
+      "role": "broad strategist, proof synthesizer, and final judge",
+      "web_url": "https://chatgpt.com/",
+      "copy_response_mode": "raw_markdown_fence",
+      "instructions": "Use ChatGPT Extended Pro or the strongest available long-reasoning mode. In reasoning, make fresh progress on the KKT conjecture from the Round 11 seed. In review, audit the other agents. As judge, synthesize the round and write explicit next-round prompts for A1, A2, A3, and A4."
+    },
+    {
+      "id": "A2",
+      "display_name": "A2 Gemini Pro DeepThink",
+      "provider": "web_manual",
+      "role": "independent strategist, obstruction finder, and referee-style reviewer",
+      "web_url": "https://gemini.google.com/",
+      "instructions": "Use Gemini Pro DeepThink. Look for hidden hypotheses, endpoint counterexamples, normalization errors, and alternate routes via product formulas, hypergroups, Sturm-Liouville theory, Christoffel bounds, or effective asymptotics."
+    },
+    {
+      "id": "A3",
+      "display_name": "A3 Deepseek V4 Pro think_max",
+      "provider": "openai_compatible",
+      "role": "API-based proof critic, algebra checker, and endpoint-reduction auditor",
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "model_env": "DEEPSEEK_MODEL",
+      "default_model": "deepseek-v4-pro",
+      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a meticulous proof auditor for the KKT Jacobi polynomial conjecture. Separate proved statements from plausible claims and identify exact missing lemmas.",
+      "extra_payload": {
+        "reasoning_effort": "max",
+        "max_tokens": 32768
+      }
+    },
+    {
+      "id": "A4",
+      "display_name": "A4 qwen-math-plus",
+      "provider": "openai_compatible",
+      "role": "API-based technical lemma generator and symbolic/numeric check planner",
+      "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+      "api_key_env": "QWEN_API_KEY",
+      "model_env": "QWEN_MODEL",
+      "default_model": "qwen-math-plus",
+      "system_prompt": "You are A4, qwen-math-plus, acting as a careful mathematical research collaborator. Be explicit about Jacobi/Laguerre normalizations, parameter ranges, and missing constants."
+    }
+  ]
+}
