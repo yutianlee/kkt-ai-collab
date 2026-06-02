@@ -69,7 +69,7 @@
       "default_model": "deepseek-v4-pro",
       "temperature": 0.1,
       "save_reasoning_content": true,
-      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a meticulous proof auditor for the KKT Jacobi polynomial conjecture. Think deeply before answering. Separate proved statements from plausible claims, identify exact missing lemmas, and include serious alternative proof routes or obstruction searches when in reasoning stage.",
+      "system_prompt": "You are A3, Deepseek V4 Pro think_max, acting as a slow, meticulous mathematical proof auditor for Jacobi and Laguerre inequalities. Think deeply before answering. Your comparative advantage is exact algebra checking, theorem-hypothesis auditing, normalization verification, and finding the precise line where a proof attempt can fail. Produce explicit sections, formulas, lemma statements, failed proof paths, stress tests, reproducible verification tasks, confidence calibration, and research-strategy recommendations. In reasoning, spend about 80% on the assigned route and 20% on serious alternative proof routes or obstruction searches.",
       "extra_body": {
         "thinking": {
           "type": "enabled"
@@ -78,20 +78,35 @@
         "max_tokens": 32768
       },
       "max_continuations": 2,
+      "depth_contract": {
+        "reasoning": "Write a rigorous algebra-audit research memo of at least 3000 words. Include exact formula checks, theorem-dependency checks, parameter ranges, hidden assumptions, failure modes, at least one reproducible symbolic or numeric check, and confidence calibration. Separate proved statements from conjectural or derived-under-assumptions claims.",
+        "review": "Write a compact but deep Stage B referee report of at least 1700 words. Focus on algebraic correctness, hidden hypotheses, normalization constants, theorem dependencies, and claims needing proof. For each reviewed peer, identify one strongest contribution, one most dangerous gap, and one concrete verification task. Include a score table and research-strategy adjustment."
+      },
+      "section_skeleton": {
+        "reasoning": ["Summary", "Assumptions and notation", "Exact algebra checks", "Theorem-dependency checks", "Hidden assumptions and failure modes", "Counterexample or obstruction search", "Divergent alternatives and 20% exploration", "Reproducible verification tasks", "Useful lemmas", "What should be tested next", "Confidence"],
+        "review": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Research strategy adjustments", "Verification assignments", "Score by agent", "Next-round recommendation", "Confidence"]
+      },
       "quality_gate": {
         "reasoning": {
-          "min_words": 1800,
-          "must_contain": ["Summary", "Potential gaps", "Counterexample", "Useful lemmas", "What should be tested next", "Confidence"],
+          "min_words": 3000,
+          "min_headings": 10,
+          "max_confidence": 0.95,
+          "must_contain": ["Summary", "Exact algebra", "Theorem-dependency", "Hidden assumptions", "Counterexample", "Verification", "Useful lemmas", "What should be tested next", "Confidence"],
+          "must_not_contain": ["100% complete", "100% confidence", "fully certified", "Potential gaps:\nNone"],
           "reject_if_truncated": true
         },
         "review": {
-          "min_words": 1400,
-          "must_contain": ["Claims that look correct", "Claims that need proof", "Score by agent", "Confidence"],
+          "min_words": 1700,
+          "min_headings": 8,
+          "max_confidence": 0.95,
+          "must_contain": ["Claims that look correct", "Claims that need proof", "Possible errors", "Suggested synthesis", "Research strategy", "Verification", "Score by agent", "Confidence"],
+          "must_not_contain": ["100% complete", "100% confidence", "fully certified", "Potential gaps:\nNone"],
           "reject_if_truncated": true
         }
       },
       "retry_on_quality_gate": true,
-      "quality_gate_retries": 1
+      "quality_gate_retries": 2,
+      "instructions": "Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification. When a proof step is plausible but not certified, say exactly which formula, theorem hypothesis, or numerical check would certify it."
     },
     {
       "id": "A4",

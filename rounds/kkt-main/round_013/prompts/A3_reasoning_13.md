@@ -6,7 +6,7 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification.
+Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification. When a proof step is plausible but not certified, say exactly which formula, theorem hypothesis, or numerical check would certify it.
 
 
 
@@ -205,15 +205,34 @@ If your draft begins with a review heading, discard that draft and rewrite it as
 
 Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
 
+## Agent Depth Contract
 
+Write a rigorous algebra-audit research memo of at least 3000 words. Include exact formula checks, theorem-dependency checks, parameter ranges, hidden assumptions, failure modes, at least one reproducible symbolic or numeric check, and confidence calibration. Separate proved statements from conjectural or derived-under-assumptions claims.
 
+## Agent Required Section Skeleton
 
+Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
+
+1. `Summary`
+2. `Assumptions and notation`
+3. `Exact algebra checks`
+4. `Theorem-dependency checks`
+5. `Hidden assumptions and failure modes`
+6. `Counterexample or obstruction search`
+7. `Divergent alternatives and 20% exploration`
+8. `Reproducible verification tasks`
+9. `Useful lemmas`
+10. `What should be tested next`
+11. `Confidence`
 
 ## Automatic Acceptance Gate
 
 Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
-- Minimum length: at least 1800 words.
-- Required phrases/sections: `Summary`, `Potential gaps`, `Counterexample`, `Useful lemmas`, `What should be tested next`, `Confidence`.
+- Minimum length: at least 3000 words.
+- Minimum sections/headings: at least 10. Schema labels ending in `:` count.
+- Confidence calibration: no confidence value may exceed 0.95.
+- Required phrases/sections: `Summary`, `Exact algebra`, `Theorem-dependency`, `Hidden assumptions`, `Counterexample`, `Verification`, `Useful lemmas`, `What should be tested next`, `Confidence`.
+- Forbidden overclaim phrases: `100% complete`, `100% confidence`, `fully certified`, `Potential gaps:\nNone`.
 - The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.
 
 ## Problem

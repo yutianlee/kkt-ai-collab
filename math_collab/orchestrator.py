@@ -997,6 +997,7 @@ def is_section_heading_line(line: str) -> bool:
         return False
     if stripped.startswith("#"):
         return True
+    stripped = stripped.strip("*_").strip()
     if len(stripped) > 90 or not stripped.endswith(":"):
         return False
     if stripped.startswith(("-", "*", "|")):
