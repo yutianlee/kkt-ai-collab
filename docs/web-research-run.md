@@ -59,6 +59,14 @@ Now generate or advance a KKT research-mode round, starting at the first normali
 python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --skip-missing-api
 ```
 
+The generated Stage A reasoning prompts include an agent-specific section named `Judge-Assigned Reasoning Prompt For This Agent`. It is extracted automatically from the latest judge output's `For A1` / `For A2` / `For A3` / `For A4` blocks.
+
+If you only want to regenerate prompts after editing or ingesting a judge file, without calling A3/A4 APIs:
+
+```powershell
+python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --prompts-only
+```
+
 Or leave the watcher running while web models think:
 
 ```powershell

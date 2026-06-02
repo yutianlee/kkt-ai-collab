@@ -245,6 +245,38 @@ def clip_text(text: str, max_chars: int) -> str:
     return f"{head}\n\n[... clipped for compact web prompt ...]\n\n{tail}"
 
 
+def extract_agent_judge_prompt(text: str, agent_id: str) -> str:
+    """Return the latest judge-assigned prompt block for a specific agent.
+
+    Judge outputs use headings such as `For A1:` or `## For A1:`. We take the
+    last matching block because state bundles may contain older judge outputs.
+    """
+    if not text:
+        return ""
+
+    heading = re.compile(
+        rf"^\s{{0,3}}(?:#{{1,6}}\s*)?For\s+`?{re.escape(agent_id)}`?\s*:?\s*$",
+        re.IGNORECASE,
+    )
+    boundary = re.compile(
+        r"^\s{0,3}(?:#{1,6}\s*)?(?:For\s+`?A[1-4]`?\s*:?|Confidence\s*:)\s*$",
+        re.IGNORECASE,
+    )
+
+    lines = text.splitlines()
+    starts = [index for index, line in enumerate(lines) if heading.match(line.strip())]
+    if not starts:
+        return ""
+
+    start = starts[-1] + 1
+    end = len(lines)
+    for index in range(start, len(lines)):
+        if boundary.match(lines[index].strip()):
+            end = index
+            break
+    return "\n".join(lines[start:end]).strip()
+
+
 def compact_protocol() -> str:
     return """# Compact Multi-AI Math Research Protocol
 
@@ -402,6 +434,7 @@ def build_reasoning_prompt(
     active_agents: str,
     state: str,
     human: str,
+    judge_task: str,
     round_index: int,
 ) -> str:
     if round_index == 1:
@@ -462,6 +495,10 @@ Follow the protocol and be strict about separating proved claims from conjectura
 Human instructions override prior AI suggestions when they are about research direction, target, references, or constraints.
 
 {human}
+
+## Judge-Assigned Reasoning Prompt For This Agent
+
+{judge_task or "No agent-specific judge prompt was found. Follow the general round task below."}
 
 ## Your Task For Round {round_index}
 
@@ -822,11 +859,17 @@ def run_agent(
     stage: str,
     round_index: int,
     dry_run: bool,
+    generate_prompts_only: bool,
     web_mode: str,
     timeout: int,
     skip_missing_api: bool,
 ) -> str | None:
     write_text(prompt_path, prompt)
+
+    if generate_prompts_only:
+        if agent.provider == "web_manual" and not handoff_response_path.exists():
+            write_text(handoff_response_path, WEB_RESPONSE_MARKER + "\n\n")
+        return None
 
     if dry_run:
         output = dry_response(agent, stage, round_index)
@@ -981,6 +1024,7 @@ def run_round(
     allow_partial: bool,
     compact_prompts: bool,
     max_section_chars: int,
+    generate_prompts_only: bool,
 ) -> None:
     agents, judge_id, config = load_config(config_path)
     agents_by_id = {agent.id: agent for agent in agents}
@@ -997,10 +1041,18 @@ def run_round(
         agents=agents,
         config=config,
     )
+    judge_tasks = {
+        agent.id: extract_agent_judge_prompt(state, agent.id)
+        for agent in agents
+    }
     if compact_prompts:
         problem = clip_text(problem, max_section_chars)
         state = clip_text(state, max_section_chars)
         human = clip_text(human, max_section_chars)
+        judge_tasks = {
+            agent_id: clip_text(text, max_section_chars)
+            for agent_id, text in judge_tasks.items()
+        }
 
     round_dir = root / "rounds" / run_id / round_name(round_index)
     handoff_dir = root / "handoff" / run_id / round_name(round_index)
@@ -1014,6 +1066,7 @@ def run_round(
             active_agents=active_agents,
             state=state,
             human=human,
+            judge_task=judge_tasks.get(agent.id, ""),
             round_index=round_index,
         )
         output = run_agent(
@@ -1025,6 +1078,7 @@ def run_round(
             stage="reasoning",
             round_index=round_index,
             dry_run=dry_run,
+            generate_prompts_only=generate_prompts_only,
             web_mode=web_mode,
             timeout=timeout,
             skip_missing_api=skip_missing_api,
@@ -1074,6 +1128,7 @@ def run_round(
                 stage="review",
                 round_index=round_index,
                 dry_run=dry_run,
+                generate_prompts_only=generate_prompts_only,
                 web_mode=web_mode,
                 timeout=timeout,
                 skip_missing_api=skip_missing_api,
@@ -1126,6 +1181,7 @@ def run_round(
             stage="judge",
             round_index=round_index,
             dry_run=dry_run,
+            generate_prompts_only=generate_prompts_only,
             web_mode=web_mode,
             timeout=timeout,
             skip_missing_api=skip_missing_api,
@@ -1182,6 +1238,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Generate round files without changing state/ or manifests/. Useful for smoke tests.",
     )
+    parser.add_argument(
+        "--prompts-only",
+        action="store_true",
+        help="Write prompt files and web handoff placeholders only. Do not call APIs or write responses.",
+    )
     parser.add_argument("--commit", action="store_true")
     parser.add_argument("--push", action="store_true")
     args = parser.parse_args(argv)
@@ -1212,6 +1273,7 @@ def main(argv: list[str] | None = None) -> int:
             allow_partial=args.allow_partial,
             compact_prompts=args.compact_prompts,
             max_section_chars=args.max_section_chars,
+            generate_prompts_only=args.prompts_only,
         )
 
     if args.commit or args.push:

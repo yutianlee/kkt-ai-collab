@@ -96,6 +96,14 @@ Then generate prompts for the first normalized manual web/API mixed round:
 python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --skip-missing-api
 ```
 
+The orchestrator automatically extracts the judge sections `For A1:`, `For A2:`, `For A3:`, and `For A4:` from the latest judge/manifest state and inserts the relevant block into each agent's Stage A reasoning prompt.
+
+To refresh prompt files without calling A3/A4 APIs:
+
+```powershell
+python -m math_collab.orchestrator --config config/agents.web-test.json --problem problems/kkt_conjecture.md --run-id kkt-main --start-round 12 --rounds 1 --prompts-only
+```
+
 For A1/A2 web agents, paste prompts from:
 
 ```text

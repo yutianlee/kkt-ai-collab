@@ -1,10 +1,3 @@
-# Round 11 Bootstrap Judge
-
-Generated from A1/GPT before normalized Round 12.
-
-Run: `kkt-main`
-Timestamp: 2026-06-02 14:05:58
-
 # Bootstrap verdict:
 
 The legacy material should **not** be treated as a proof of the KKT conjecture. The clean Round 12 starting state is: several large regions are covered by credible or already-audited reductions, but the full real-parameter conjecture remains open. Round 12 should not attempt a global declaration of success. It should audit the endpoint-cap route, because the newer endpoint variable appears to shrink the remaining problem from a global Laguerre/Airy problem to a finite-$\beta$ first-lobe certificate on $0\le u\le u_\sigma\le n$. This matches the bootstrap directive and required output focus.  
