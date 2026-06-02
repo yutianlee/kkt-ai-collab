@@ -1,7 +1,5 @@
 Summary:
 
-Input source acknowledged: :contentReference[oaicite:0]{index=0}
-
 Round 13 is a successful reduction-and-audit round, not a proof round. The real-parameter KKT conjecture is still not closed by the material in this round. The strongest certified progress is that the endpoint-cap localization has now been upgraded to a theorem-level reduction, modulo small boundary-case bookkeeping. In particular, the right endpoint residual problem in the variable
 
 $$
