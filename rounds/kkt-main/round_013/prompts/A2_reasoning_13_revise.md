@@ -1,4 +1,4 @@
-You are A3 Deepseek V4 Pro think_max, acting as API-based proof critic, algebra checker, and endpoint-reduction auditor.
+You are A2 Gemini Pro DeepThink, acting as independent strategist, obstruction finder, and referee-style reviewer.
 
 We are running a public GitHub based multi-AI mathematics research workflow.
 
@@ -6,9 +6,22 @@ Follow the protocol and be strict about separating proved claims from conjectura
 
 ## Agent-Specific Instructions
 
-Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification.
+Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Be skeptical about any claimed proof of KKT unless the endpoint constants and finite-beta bridge are explicit. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Avoid rhetorical certainty and do not give high confidence unless the proof is complete. Prefer a detailed referee-style derivation over a short executive summary, and include an explicit list of assumptions, verification steps, possible failure modes, and calibrated confidence. If your draft is under the requested length or mainly consists of conclusions, continue expanding before finalizing. In both reasoning and review stages, answer only as raw Markdown source inside the required fenced Markdown block.
 
+## Raw Markdown Copy-Response Safety Rule
 
+Your final answer must be one single fenced Markdown code block:
+
+````text
+```markdown
+Summary:
+...
+```
+````
+
+Do not write anything before or after that outer fence. Inside the fence, write normal Markdown and raw LaTeX source using `$...$` and `$$...$$`.
+
+Do not use additional triple-backtick fences inside your answer. This rule is required because web Copy response can corrupt rendered display math, turning `=` into `====` and minus/fraction bars into long dashed lines.
 
 ## Active Agents For This Run
 
@@ -205,7 +218,9 @@ If your draft begins with a review heading, discard that draft and rewrite it as
 
 Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
 
+## Agent Depth Contract
 
+Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a full research memo of at least 5500 words with `##` Markdown section headings. The answer must include a claim ledger, theorem-dependency audit, step-by-step derivations for every central formula, parameter ranges, endpoint and finite-beta failure modes, obstruction/counterexample tests, reproducible symbolic or numerical verification plans, and calibrated confidence. Spend about 80% on the judge-assigned route and about 20% on serious divergent alternatives. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false. Do not use rhetorical closure phrases such as `mathematical illusion`, `zero reduction`, or `analytically dead` unless you have supplied a complete derivation and failure criterion.
 
 ## Problem
 
@@ -5847,34 +5862,18 @@ Keep product-formula and hypergroup routes alive, but require exact positivity a
 
 ## Judge-Assigned Reasoning Prompt For This Agent
 
-Use the Stage A schema. Act as algebra checker and endpoint-reduction auditor.
+Use the Stage A schema. Act as obstruction finder and referee.
 
-Your task is to rederive independently:
+Stress-test the endpoint-cap route. Look for hidden assumptions in:
 
-1. the transformation from the Jacobi self-adjoint equation to
+1. the reduction from central region to $x\in[\sigma,1]$;
+2. the definition $u=B(1-x)/2$ and $u_\sigma\le n$;
+3. the exact endpoint ODE;
+4. the step from $K_B'(u)\ge1/4$ to first-lobe dominance;
+5. the proposed bound $|H|<2^{-1/4}$;
+6. the finite residual compactification $\theta=(n+\alpha+1)/B$.
 
-$$
-(p_BH')'+q_BH=0;
-$$
-
-2. the formulas for $p_B,q_B,K_B,\Lambda_B,\Delta_B$;
-3. the identity
-
-$$
-u_\sigma=\frac{nB}{B+n-1};
-$$
-
-4. the inequality
-
-$$
-K_B'(u)\ge\frac14
-$$
-
-on the endpoint cap;
-5. the Frobenius coefficient $A_{n,\alpha,B}$ and Bessel normalization $M_{n,\alpha,B}$;
-6. the critical-point equation in $x$ and in $u$.
-
-Mark each formula as verified, corrected, or rejected. Produce a symbolic/numeric check plan for the formulas, but do not replace proof with sampling.
+Try edge cases: $n=0$, $n=1$, $\alpha=1/2$, $\alpha=\alpha_E(n)$, $\beta=0$, $\beta\to\infty$, and the semi-discrete case $\beta\in\mathbb N_0$. If you find a flaw, give a concrete counterexample or algebraic obstruction.
 
 ## Your Task For Round 13
 
@@ -5892,3 +5891,114 @@ Divergent alternatives and 20% exploration:
 Useful lemmas:
 What should be tested next:
 Confidence:
+
+
+## Automatic Quality Gate Failure
+
+Your previous reasoning response was not accepted:
+
+- word count 1442 is below required minimum 5500
+- heading count 5 is below required minimum 18
+- missing required phrase: Assumptions
+- missing required phrase: Claim ledger
+- missing required phrase: Theorem-dependency audit
+- missing required phrase: Verification plan
+- missing required phrase: Research strategy
+- contains forbidden overconfident phrase: Potential gaps:
+None
+- contains forbidden overconfident phrase: mathematical illusion
+- contains forbidden overconfident phrase: zero reduction
+- contains forbidden overconfident phrase: analytically dead
+- confidence value 0.95 exceeds allowed maximum 0.9
+
+Return a full replacement answer, not an addendum. Preserve any correct mathematics from the previous answer, but expand it into the required depth, with explicit sections, lemma/claim boxes, failure modes, stress tests, score table when the stage is review, and confidence calibration.
+
+Do not submit a compact executive summary. If a proposed claim is important, show the algebra or theorem hypotheses that support it. If a claim is only a warning, label it as `derived-under-assumptions` or `conjectural`, not as a fatal conclusion. Avoid `Potential gaps: None` unless the proof is actually complete.
+
+## Previous Response To Replace
+
+Summary:
+I have rigorously audited the rational-coordinate amplitude proposal and the affine-coordinate inflation objection. The rational coordinate $v = B(1-x)/(1+x)$ is algebraically exact, but its purported benefit is a mathematical illusion: the canonical Liouville-Green invariant geometry is strictly identical between the $u$ and $v$ coordinates. Therefore, it provides zero reduction in geometric amplitude inflation.
+
+More critically, I have discovered three fatal obstructions to the current analytic strategies:
+1. **Volterra Error Blowup**: Any constant-frequency Bessel approximation produces an $O(n)$ Volterra error integral in the transition strip $\alpha=O(n)$, meaning the relative amplitude error diverges exponentially.
+2. **Sonin Singularity**: A4's proposed Bessel-Sonin handoff evaluates the Sonin energy where the Bessel approximation has already broken down, and the $1/K_B \to \infty$ singularity at the turning point makes bounding the derivative energy physically impossible.
+3. **Laguerre Bridge Failure**: The finite-$B$ base frequency differs from the Laguerre frequency by exactly $O(n)$ for the semi-discrete target ($\beta=0$). This generates massive phase drift and destroys any direct finite-perturbation bridge.
+
+Main claim or direction:
+The constant-frequency Bessel perturbation strategy (Track 1) and direct Laguerre bridge (Track 3) are analytically dead. The rational coordinate $v$ is exactly equivalent to affine $u$ in canonical WKB variables, offering no amplitude advantage. Naive Bessel approximations generate an $O(n)$ Volterra error integral, and the Laguerre bridge generates an $O(n)$ perturbation difference. The proof must pivot to a fully dynamic Liouville-Green (Szegő) uniform asymptotic approximation or rely entirely on strict interval arithmetic for the transition strip.
+
+Detailed reasoning:
+### 1. Rational Coordinate Exact Derivation and Cap Image
+Transforming the Jacobi ODE using $v = B(1-x)/(1+x)$ yields the exact equation:
+$$ (vH_v')' + \widehat q_B(v)H = 0 $$
+where
+$$ \widehat q_B(v) = \frac{\kappa B}{(B+v)^2} - \frac{(\beta v - \alpha B)^2}{4v(B+v)^2} = \frac{c_B}{(1+v/B)^2} - \frac{(\beta v/B - \alpha)^2}{4v(1+v/B)^2}. $$
+The relation to the affine coordinate $u = B(1-x)/2$ is exact and bijective:
+$$ u = \frac{Bv}{B+v}, \qquad v = \frac{Bu}{B-u} $$
+The affine endpoint cap $u \in [0, u_\sigma]$ with $u_\sigma = \frac{nB}{B+n-1}$ maps cleanly to the rational cap domain:
+$$ v \in \left[0, \frac{nB}{B-1}\right] $$
+
+### 2. The Amplitude-Inflation Illusion
+A2's prior claim (from Round 12) was that the affine coordinate introduces artificial "amplitude inflation" when mapped to Bessel form, and $v$ avoids this because $(vH_v')'$ natively matches $(zJ_z')'$. This is a mathematical illusion. 
+The Liouville-Green (LG) transformation relies on the canonical coordinate. For affine $u$, $dx = du/p_B(u)$. For rational $v$, $dx_v = dv/v$. Under $v = Bu/(B-u)$, we have:
+$$ \frac{dv}{v} = \frac{B}{(B-u)^2} \frac{B-u}{u} du = \frac{du}{u(1-u/B)} = \frac{du}{p_B(u)} $$
+Thus, $x_v \equiv x_u$. Furthermore, the WKB invariant potential must be identical. A direct substitution yields:
+$$ \widehat K_B(v) = v\widehat q_B(v) = p_B(u)q_B(u) = K_B(u) $$
+Because the canonical coordinate $x$ and the invariant potential $K(x)$ are strictly identical, both equations represent the *exact same geometry*. The geometric amplitude inflation factor is purely a function of $K(x)^{-1/4}$. The rational coordinate does not bypass amplitude inflation; it simply absorbs $p_B(u)$ into the potential, shifting the geometry without altering the invariant amplitude factor.
+
+### 3. Obstruction 1: The Constant-Frequency Volterra Blowup
+Expanding the rational invariant gives $v \widehat q_B(v) = -\frac{\alpha^2}{4} + \Lambda_B v - \widehat \Delta_B v^2 + O(v^3)$. By substituting $u = v - v^2/B + \dots$ into $K_B(u)$, we exactly identify $\widehat \Delta_B = \Delta_B + \Lambda_B/B = O(1)$. 
+If we use a constant-frequency Bessel comparison $J_\alpha(2\sqrt{\Lambda_B v})$, the residual error in the invariant is $\Delta K \approx -\widehat \Delta_B v^2$. 
+In the transition strip where $\alpha=O(n)$, the effective frequency $\Lambda_B \sim O(n)$. The Olver/Volterra phase integral up to the first peak ($v_1 \approx \alpha^2 / 4\Lambda_B \sim n$) scales as:
+$$ \mathcal{E} \approx \int_0^{v_1} \frac{|\Delta K|}{\sqrt{K_{\mathrm{base}}}} \frac{dv}{v} \approx \int_0^{v_1} \frac{\widehat \Delta_B v^2}{\sqrt{\Lambda_B v}} \frac{dv}{v} = O(1) \cdot \frac{v_1^{3/2}}{\Lambda_B^{1/2}} \sim \frac{n^{3/2}}{n^{1/2}} = O(n) $$
+An $O(n)$ error integral implies the relative error diverges as $e^{O(n)}$. The constant-frequency Bessel approximation breaks down completely before reaching the first lobe.
+
+### 4. Obstruction 2: Sonin Singularity in A4's Handoff
+A4 proposed using Bessel up to $u_h$, then handing off to Sonin monotonicity. The Sonin functional $S_B(u) = H^2 + p_B(u)H'^2 / q_B(u)$ requires $q_B(u) > 0$, so $u_h$ must be past the turning point $u_0$. 
+However, at $u_0$, the denominator $q_B(u_0) = 0$, meaning the functional has a strict singularity: $\lim_{u \to u_0^+} S_B(u) = +\infty$. Evaluating $S_B$ slightly past $u_0$ yields an enormous overestimate. Furthermore, the Volterra error at $u_0 \sim O(n)$ is already $O(n)$, so the Bessel approximation cannot even provide a safe boundary value for $H'(u_h)$ to inject into the hypersensitive $1/q_B$ term.
+
+### 5. Obstruction 3: Laguerre Bridge Frequency Drift
+The finite-$B$ frequency differs from the Laguerre limit frequency $\Lambda_\infty = n + \frac{\alpha+1}{2}$. Using $B = n+\alpha+\beta+1$, we exactingly compute:
+$$ \Lambda_\infty - \Lambda_B = \frac{(n+1)(\alpha+1)}{2B} $$
+For the crucial semi-discrete target where $\beta=0$, $B = n+\alpha+1$. The difference evaluates to:
+$$ \Lambda_\infty - \Lambda_B = \frac{(n+1)(\alpha+1)}{2(n+\alpha+1)} $$
+When $\alpha \sim n$, this difference is exactly $O(n)$. Because the base frequencies differ by $O(n)$, the waves drift out of phase in $O(1)$ time, and the perturbation error integral is $O(n)$. The standard Laguerre limit bridge cannot be used to close the semi-discrete target at large $n$.
+
+Dependencies:
+- Affine/Rational coordinate mapping identities $u \leftrightarrow v$.
+- Olver's variation-of-constants limits for Bessel approximation.
+- Exact algebraic expressions for $\Lambda_B, \Delta_B, \widehat\Delta_B$.
+
+Potential gaps:
+None. The algebraic derivation of $\widehat K_B(v) = K_B(u)$ is mathematically exact. The $O(n)$ evaluation of the Volterra integral is a standard asymptotic limit that rigorously guarantees the failure of static frequency scaling.
+
+Counterexample or obstruction search:
+The $O(n)$ Volterra error provides a concrete mathematical counterexample to any claim that a simple affine or rational Liouville-Green mapping $z \propto \sqrt{u}$ or $z \propto \sqrt{v}$ yields an $O(1/n)$ error term. It explicitly falsifies Track 1. The $O(n)$ frequency drift explicitly falsifies Track 3.
+
+Divergent alternatives and 20% exploration:
+Since constant-frequency approximations are dead, we must consider:
+1. **Szegő Uniform Variable-Frequency Approximation:** A true Liouville-Green map $\zeta(u)$ defined by $(\zeta')^2 (\zeta^2/4 - \alpha^2/4) = K_B(u)/u^2$. This absorbs the linear frequency drift natively. The error is governed by the Schwarzian derivative, which is expected to be $O(1/n^2)$, yielding a convergent Volterra error.
+2. **Interval Arithmetic for the Full Strip:** Given the extreme difficulty of bounding the Schwarzian analytically for all parameters, the interval arithmetic track (A4) may need to handle the entire finite-$n$ transition strip up to $N_0 \approx 200$, requiring highly optimized subresultant isolation routines.
+
+Useful lemmas:
+**Lemma L13.A: Rational-Affine Canonical Equivalence**
+The mapping $v = B(1-x)/(1+x)$ exactly produces $v \widehat q_B(v) = p_B(u) q_B(u) = K_B(u)$. Both coordinates share the identical canonical Liouville-Green geometry $x = \ln v$. They possess identical geometric amplitude inflation.
+
+**Lemma L13.B: Constant-Frequency Volterra Blowup**
+For any coordinate preserving the local base frequency $\Lambda_B$, the residual quadratic suppression evaluates to $O(n^2)$ at the first peak in the $\alpha=O(n)$ strip, causing the Olver/Volterra error integral to diverge linearly as $O(n)$.
+
+**Lemma L13.C: Laguerre Bridge Frequency Drift**
+For the semi-discrete target $\beta \in \mathbb{N}_0$, the effective frequency of the finite-$B$ equation differs from the Laguerre limit by exactly $\Lambda_\infty - \Lambda_B = \frac{(n+1)(\alpha+1)}{2B} = O(n)$, causing finite-perturbation bounds to fail exponentially.
+
+What should be tested next:
+1. A3 must algebraically verify the identity $\widehat K_B(v) = K_B(u)$ and $\Lambda_\infty - \Lambda_B = \frac{(n+1)(\alpha+1)}{2B}$.
+2. A1 must abandon constant-frequency models and the naive Laguerre bridge, reformulating the amplitude certificate using either the full Szegő uniform mapping or an extended computational interval certificate.
+3. A4 must construct the exact Schwarzian derivative for the Szegő map to determine if it remains analytically bounded.
+
+Confidence:
+Rational coordinate algebra: 1.00
+Canonical equivalence and inflation illusion: 1.00
+$O(n)$ Volterra error blowup: 0.95
+Laguerre bridge failure for $\beta=0$: 0.95
+Overall Confidence: 0.95

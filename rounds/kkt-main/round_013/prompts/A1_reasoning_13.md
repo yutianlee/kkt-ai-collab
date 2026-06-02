@@ -327,9 +327,9 @@ The remaining hard region is an endpoint cap. The strongest current synthesis sa
 
 In the right endpoint normalization, prior notes introduce an endpoint variable of the form
 
-$$
+```math
 u=\frac{B(1-x)}{2},\qquad B=n+\alpha+\beta+1,
-$$
+```
 
 and observe that the residual endpoint cap should satisfy $0\le u\le u_\sigma\le n$ after central-region clearance. This observation may remove the need for a global $u\in[0,\infty)$ Laguerre theorem, but it has not been fully certified.
 
@@ -367,53 +367,53 @@ Round 12 produced genuine progress, but not a proof of the real-parameter KKT co
 
 The main certified advance is the endpoint-cap reduction. A1 derived it and A3 independently audited the algebra. In the right endpoint variable
 
-$$
+```math
 u=\frac{B(1-x)}{2},\qquad B=n+\alpha+\beta+1,
-$$
+```
 
 the post-central-contour residual cap satisfies
 
-$$
+```math
 0\le u\le u_\sigma=\frac{nB}{B+n-1}\le n
-$$
+```
 
 for $n\ge1$. In this cap the finite-$B$ endpoint equation is exactly
 
-$$
+```math
 (p_BH')'+q_BH=0,
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 The product
 
-$$
+```math
 K_B(u)=p_B(u)q_B(u)
-$$
+```
 
 is a concave quadratic and is increasing on the residual cap. In the unresolved right-endpoint strip $\alpha\ge1/2$, one has the stronger lower bound
 
-$$
+```math
 K_B'(u)\ge K_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(n+\alpha+1)}{2B}
 \ge\frac14.
-$$
+```
 
 This gives a Sonin first-lobe reduction: the remaining endpoint maximum, if not already cleared by the central contour, energy estimate, or small-exponent theorem, is controlled by the first local extremum after the endpoint turning point. This replaces the older global Laguerre obstruction on $0\le u<\infty$ by a much smaller cap or first-lobe certificate on $0\le u\le n$.
 
@@ -436,21 +436,21 @@ The selected proof skeleton for Round 13 is:
 
 3. Replace the older target
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u<\infty,
-$$
+```
 
 by the smaller cap target
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u\le n,
-$$
+```
 
 and preferably by the first-lobe version of this statement.
 
@@ -472,65 +472,65 @@ The valuable certified fragments are:
 
 1. The exact endpoint equation
 
-$$
+```math
 (p_BH_B')'+Q_BH_B=0
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 Q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 2. The exact central/endcap interface
 
-$$
+```math
 u_\sigma=\frac{B(1-\sigma)}{2}
 =
 \frac{nB}{B+n-1}
 \le n.
-$$
+```
 
 3. The product monotonicity. With
 
-$$
+```math
 P_B(u)=p_B(u)Q_B(u),
-$$
+```
 
 one has $P_B''(u)\le0$ and
 
-$$
+```math
 P_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(\alpha+n+1)}{2B}.
-$$
+```
 
 Thus $P_B'(u)\ge0$ on $0\le u\le u_\sigma$, and in the unresolved strip $\alpha\ge1/2$,
 
-$$
+```math
 P_B'(u)\ge\frac14.
-$$
+```
 
 4. The cap Sonin identity
 
-$$
+```math
 \left(
 H^2+\frac{pH'^2}{Q}
 \right)'
 =
 -\frac{(pQ)'H'^2}{Q^2},
-$$
+```
 
 which orders local extrema by amplitude inside the cap.
 
@@ -538,9 +538,9 @@ which orders local extrema by amplitude inside the cap.
 
 6. The finite-$B$ perturbation warning. A1 computed an explicit difference
 
-$$
+```math
 Q_B(u)=Q_\infty(u)+R_B(u),
-$$
+```
 
 and noted that $R_B$ changes sign. Therefore simple Sturm ordering between finite Jacobi and Laguerre endpoint equations is unavailable.
 
@@ -556,53 +556,53 @@ The useful fragments are:
 
 3. A2 proposed the rational endpoint coordinate
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v}.
-$$
+```
 
 A direct calculation gives
 
-$$
+```math
 1-x^2=\frac{4Bv}{(B+v)^2},
 \qquad
 \frac{dx}{dv}=-\frac{2B}{(B+v)^2},
-$$
+```
 
 and the kinetic operator becomes
 
-$$
+```math
 \frac{d}{dx}\left((1-x^2)\frac{d}{dx}\right)
 =
 \frac{(B+v)^2}{B}\frac{d}{dv}\left(v\frac{d}{dv}\right).
-$$
+```
 
 Thus, after multiplying by $B/(B+v)^2$, the equation has principal part
 
-$$
+```math
 (vH_v')'
-$$
+```
 
 and potential
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 Equivalently, with $c_B=\kappa/B$,
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{c_B}{(1+v/B)^2}
 -
 \frac{(\beta v/B-\alpha)^2}{4v(1+v/B)^2}.
-$$
+```
 
 This rational-coordinate transform is algebraically correct and should be audited as a possible way to avoid the affine $u$ Liouville amplitude factor.
 
@@ -622,45 +622,45 @@ The useful certified fragments are:
 
 2. Independent verification of
 
-$$
+```math
 u_\sigma=\frac{nB}{B+n-1}\le n.
-$$
+```
 
 3. Independent verification of the quadratic form
 
-$$
+```math
 K_B(u)
 =
 -\frac{\alpha^2}{4}+\Lambda_Bu-\Delta_Bu^2,
-$$
+```
 
 where
 
-$$
+```math
 \Lambda_B=c_B+\frac{r_B\alpha}{2},
 \qquad
 \Delta_B=\frac{c_B}{B}+\frac{r_B^2}{4}.
-$$
+```
 
 4. The identity
 
-$$
+```math
 4\Delta_Bu_\sigma
 =
 n\left(1+\frac{n+1}{B}\right),
-$$
+```
 
 which gives the clean endpoint derivative formula.
 
 5. The Frobenius coefficient near $u=0$:
 
-$$
+```math
 H(u)\sim A_{n,\alpha,B}u^{\alpha/2},
-$$
+```
 
 where
 
-$$
+```math
 A_{n,\alpha,B}
 =
 \sqrt{
@@ -670,25 +670,25 @@ A_{n,\alpha,B}
 B^{-\alpha/2}
 \frac{\Gamma(n+\alpha+1)}
 {\Gamma(\alpha+1)\Gamma(n+1)}.
-$$
+```
 
 6. The Bessel model normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}.
-$$
+```
 
 7. The critical-point equation
 
-$$
+```math
 \left(\beta(1-x)-\alpha(1+x)\right)P_n^{(\alpha,\beta)}(x)
 +
 (n+\alpha+\beta+1)(1-x^2)P_{n-1}^{(\alpha+1,\beta+1)}(x)
 =
 0.
-$$
+```
 
 Rejected or corrected part from A3:
 
@@ -702,9 +702,9 @@ Useful fragments:
 
 1. A4 correctly identified that $M_{n,\alpha,B}\le1$ is false. For small $n$ and small $\alpha$, the Bessel normalization can exceed $1$, so the proof needs a gamma-ratio bound of the form
 
-$$
+```math
 M_{n,\alpha,B}\le1+\frac{C_\Gamma}{n+1}
-$$
+```
 
 or a sharper structured replacement.
 
@@ -712,20 +712,20 @@ or a sharper structured replacement.
 
 3. A4’s interval-arithmetic compactification idea is useful once an analytic large-$n$ theorem exists. For fixed $n,\alpha$, the substitution
 
-$$
+```math
 \theta=\frac{n+\alpha+1}{B}
-$$
+```
 
 compactifies $\beta\in[0,\infty]$ to $\theta\in[0,1]$.
 
 4. The finite polynomial representation
 
-$$
+```math
 P_n^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right)
 =
 \frac{(\alpha+1)_n}{n!}
 {}_2F_1\left(-n,B;\alpha+1;\frac{u}{B}\right)
-$$
+```
 
 is the right starting point for interval verification.
 
@@ -733,33 +733,33 @@ Rejected or corrected parts from A4:
 
 1. A4’s claim that
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|=\frac{2}{\pi}
-$$
+```
 
 is false. For $\nu=1/2$,
 
-$$
+```math
 J_{1/2}(t)=\sqrt{\frac{2}{\pi t}}\sin t,
-$$
+```
 
 and its positive critical points satisfy
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 The first maximum occurs near
 
-$$
+```math
 t\approx1.1655611852,
-$$
+```
 
 with value approximately
 
-$$
+```math
 0.6791921047,
-$$
+```
 
 not $2/\pi\approx0.6366197724$. The weaker bound $<0.680$ may still be true, but it is a very tight statement and needs a precise theorem or certified numerical proof. It should not be marked as “fully certified” from the calculation A4 gave.
 
@@ -781,9 +781,9 @@ A1’s explicit formula for $R_B=Q_B-Q_\infty$ changes sign. Therefore any proof
 
 A2’s amplitude-inflation warning and A4’s $u_1=O(n)$ scaling warning both show that a direct estimate
 
-$$
+```math
 H(u)=M_{n,\alpha,B}J_\alpha(2\sqrt{\Lambda_Bu})+O\left(\frac1n\right)
-$$
+```
 
 uniformly up to the first peak cannot be assumed. It must be derived with explicit constants and the correct coordinate/dependent-variable normalization.
 
@@ -805,19 +805,19 @@ G12.1: First-lobe amplitude certificate.
 
 The central missing estimate is a theorem bounding the first local extremum of the endpoint-cap solution in the residual range
 
-$$
+```math
 n\ge1,\qquad
 \frac12<\alpha<
 \alpha_E(n):=\frac{(2n+1)(n+1)}{2n+3},
 \qquad
 \beta\ge0.
-$$
+```
 
 A minimal finite-$B$ statement would be:
 
 Let $u_0$ be the cap turning point and $u_1$ the first critical point after $u_0$. Prove
 
-$$
+```math
 |H_B(u_1)|
 \le
 T_{n,\alpha,\beta}
@@ -825,7 +825,7 @@ T_{n,\alpha,\beta}
 \left(
 \frac{(n+1)B}{(n+\alpha+1)(B-\alpha)}
 \right)^{1/4}.
-$$
+```
 
 G12.2: Correct coordinate for first-lobe comparison.
 
@@ -835,17 +835,17 @@ G12.3: Gamma-ratio normalization.
 
 The Bessel normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 can exceed $1$. A proof needs a sharp inequality for $M_{n,\alpha,B}$ in the residual strip. A bound of the form
 
-$$
+```math
 M_{n,\alpha,B}\le1+\frac{C_\Gamma}{n+1}
-$$
+```
 
 is plausible but not proved.
 
@@ -853,9 +853,9 @@ G12.4: Bessel maximum.
 
 A usable Bessel bound must be stated correctly. The candidate is probably
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680,
-$$
+```
 
 but the proof must not use the false value $2/\pi$. The next round should either cite a precise theorem with hypotheses or provide a rigorous interval proof of the maximum.
 
@@ -863,9 +863,9 @@ G12.5: Handoff derivative energy.
 
 If a Bessel approximation is used only near the origin and then handed to Sonin monotonicity, the handoff must bound
 
-$$
+```math
 H(u_h)^2+\frac{p_B(u_h)H'(u_h)^2}{q_B(u_h)},
-$$
+```
 
 not only $|H(u_h)|$.
 
@@ -887,32 +887,32 @@ New lemmas to add:
 
 For $n\ge0$, $\alpha,\beta\ge0$, $B=n+\alpha+\beta+1$, and
 
-$$
+```math
 H_B(u)=g_n^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right),
-$$
+```
 
 one has
 
-$$
+```math
 (p_BH_B')'+q_BH_B=0,
-$$
+```
 
 where
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right)
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 Status: certified by A1 and A3.
 
@@ -920,14 +920,14 @@ Status: certified by A1 and A3.
 
 For $n\ge1$,
 
-$$
+```math
 u_\sigma
 =
 \frac{B(1-\sigma)}{2}
 =
 \frac{nB}{B+n-1}
 \le n.
-$$
+```
 
 Status: certified by A1 and A3.
 
@@ -935,23 +935,23 @@ Status: certified by A1 and A3.
 
 Let
 
-$$
+```math
 K_B(u)=p_B(u)q_B(u).
-$$
+```
 
 Then $K_B$ is a concave quadratic and
 
-$$
+```math
 K_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(n+\alpha+1)}{2B}.
-$$
+```
 
 Thus $K_B'(u)\ge0$ for $0\le u\le u_\sigma$. In the residual right-endpoint range $\alpha\ge1/2$,
 
-$$
+```math
 K_B'(u)\ge\frac14.
-$$
+```
 
 Status: certified, with the range restriction $\alpha\ge1/2$ for the lower bound $1/4$.
 
@@ -959,18 +959,18 @@ Status: certified, with the range restriction $\alpha\ge1/2$ for the lower bound
 
 On any subinterval of the cap where $q_B>0$,
 
-$$
+```math
 S_B(u)=H_B(u)^2+\frac{p_B(u)H_B'(u)^2}{q_B(u)}
-$$
+```
 
 satisfies
 
-$$
+```math
 S_B'(u)
 =
 -\frac{K_B'(u)}{q_B(u)^2}H_B'(u)^2
 \le0.
-$$
+```
 
 Consequently local extrema in the allowed portion of the cap are nonincreasing in amplitude as $u$ increases.
 
@@ -982,16 +982,16 @@ Assume $\alpha>0$ and right overflow. Let $u_0$ be the first zero of $K_B$ in th
 
 A proof should use the regular Frobenius behavior
 
-$$
+```math
 H_B(u)\sim A_{n,\alpha,B}u^{\alpha/2},
 \qquad A_{n,\alpha,B}>0,
-$$
+```
 
 and the sign of
 
-$$
+```math
 (p_BH_B')'=-q_BH_B
-$$
+```
 
 where $q_B<0$.
 
@@ -1007,42 +1007,42 @@ Status: nearly certified after L12.5.
 
 As $B\to\infty$ with $n,\alpha$ fixed,
 
-$$
+```math
 p_B(u)\to u,
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)\to
 q_\infty(u)
 =
 n+\frac{\alpha+1}{2}
 -\frac{u}{4}
 -\frac{\alpha^2}{4u}.
-$$
+```
 
 The limiting equation is the normalized Laguerre equation for
 
-$$
+```math
 \ell_n^{(\alpha)}(u)
 =
 \left(
 \frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}
 \right)^{1/2}
 u^{\alpha/2}e^{-u/2}L_n^{(\alpha)}(u).
-$$
+```
 
 On $0\le u\le n$,
 
-$$
+```math
 (uq_\infty(u))'
 =
 n+\frac{\alpha+1}{2}-\frac u2
 \ge
 \frac{n+\alpha+1}{2}
 >0.
-$$
+```
 
 Status: certified.
 
@@ -1050,19 +1050,19 @@ Status: certified.
 
 For $n\ge1$ and
 
-$$
+```math
 \frac12<\alpha<
 \frac{(2n+1)(n+1)}{2n+3},
-$$
+```
 
 prove
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u\le n.
-$$
+```
 
 Better: prove it only at the first local maximum after the Laguerre cap turning point.
 
@@ -1072,37 +1072,37 @@ Status: proposed; not proved.
 
 Set
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v}.
-$$
+```
 
 Then the endpoint equation becomes
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0,
-$$
+```
 
 where
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 Equivalently,
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{c_B}{(1+v/B)^2}
 -
 \frac{(\beta v/B-\alpha)^2}{4v(1+v/B)^2}.
-$$
+```
 
 Status: algebraically verified in this synthesis; its usefulness for amplitude estimates is open.
 
@@ -1110,15 +1110,15 @@ Status: algebraically verified in this synthesis; its usefulness for amplitude e
 
 Prove or cite a theorem giving
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680.
-$$
+```
 
 The proof must account for the fact that
 
-$$
+```math
 \max_{t>0}J_{1/2}(t)\approx0.6791921047,
-$$
+```
 
 not $2/\pi$.
 
@@ -1128,19 +1128,19 @@ Status: needed; A4’s derivation is rejected.
 
 Find explicit constants, or a sharper functional bound, for
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 in the residual strip. A possible target is
 
-$$
+```math
 M_{n,\alpha,B}
 \le
 1+\frac{C_\Gamma}{n+1}.
-$$
+```
 
 Status: proposed; not proved.
 
@@ -1148,9 +1148,9 @@ Status: proposed; not proved.
 
 If using a Bessel approximation on $0<u\le u_h$, prove an upper bound for the full Sonin energy
 
-$$
+```math
 H_B(u_h)^2+\frac{p_B(u_h)H_B'(u_h)^2}{q_B(u_h)}.
-$$
+```
 
 Status: required if the Bessel-Sonin handoff route is pursued.
 
@@ -1160,15 +1160,15 @@ Counterexample checks to run:
 
 Compute and rigorously enclose
 
-$$
+```math
 \max_{t>0}J_{1/2}(t),
-$$
+```
 
 where the maximizing point solves
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 Then verify whether the maximum over $\nu\ge1/2$ is indeed at $\nu=1/2$ or whether another order gives a larger value. This is a priority because A4’s $2/\pi$ computation is wrong.
 
@@ -1176,19 +1176,19 @@ Then verify whether the maximum over $\nu\ge1/2$ is indeed at $\nu=1/2$ or wheth
 
 For a grid and then by interval arithmetic, evaluate
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 over
 
-$$
+```math
 1\le n\le 200,\qquad
 \frac12\le\alpha\le\alpha_E(n),\qquad
 \beta\in\{0,1,2,10,100,\infty\}.
-$$
+```
 
 Locate where $M>1$ and measure whether $M-1$ behaves like $O(1/n)$ or has a larger envelope.
 
@@ -1196,7 +1196,7 @@ Locate where $M>1$ and measure whether $M-1$ behaves like $O(1/n)$ or has a larg
 
 Compute
 
-$$
+```math
 R_{n,\alpha}^{\mathrm{cap}}
 =
 \sup_{0\le u\le n}
@@ -1205,7 +1205,7 @@ R_{n,\alpha}^{\mathrm{cap}}
 }{
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4}
 }
-$$
+```
 
 over the transition strip. Compare this with the global ratio on $0\le u<\infty$ to quantify how much the cap reduction buys.
 
@@ -1217,7 +1217,7 @@ For the Laguerre cap, compute the turning point $u_0$ and first critical point $
 
 For fixed $(n,\alpha)$, compute
 
-$$
+```math
 R_{n,\alpha,B}^{\mathrm{cap}}
 =
 \frac{
@@ -1225,7 +1225,7 @@ R_{n,\alpha,B}^{\mathrm{cap}}
 }{
 T_{n,\alpha,\beta}
 }.
-$$
+```
 
 Test whether this ratio is monotone in $B$ or whether the worst case is finite. A nonmonotone finite-$B$ worst case would require a direct finite-$B$ certificate rather than a Laguerre bridge.
 
@@ -1286,32 +1286,32 @@ Objectives:
 
 2. Include the exact endpoint ODE:
 
-$$
+```math
 (p_BH')'+q_BH=0,
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 3. Prove the product monotonicity with the exact formula
 
-$$
+```math
 K_B'(u_\sigma)=\frac{(\alpha+\beta)(n+\alpha+1)}{2B},
-$$
+```
 
 and state precisely when this implies $K_B'(u)\ge1/4$.
 
@@ -1338,35 +1338,35 @@ Objectives:
 
 1. Re-derive the rational-coordinate equation from scratch. With
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v},
-$$
+```
 
 verify or correct the equation
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0
-$$
+```
 
 and
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 2. Relate $u$ and $v$ exactly:
 
-$$
+```math
 u=\frac{Bv}{B+v},
 \qquad
 v=\frac{Bu}{B-u}.
-$$
+```
 
 Find the image of the cap $0\le u\le u_\sigma$ in $v$ coordinates.
 
@@ -1401,23 +1401,23 @@ Objectives:
 
 3. Prove or reject the forbidden-zone ascent lemma. Work directly from the Frobenius expansion and
 
-$$
+```math
 (p_BH')'=-q_BH.
-$$
+```
 
 Be precise about positivity of $H$, behavior of $p_BH'$, and whether a zero or local maximum can occur before the turning point.
 
 4. Algebraically verify the rational-coordinate equation:
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0.
-$$
+```
 
 Check A2’s formula for $\widehat q_B(v)$ and give a simplified expression for the product
 
-$$
+```math
 \widehat K_B(v)=v\widehat q_B(v).
-$$
+```
 
 5. Determine whether $\widehat K_B(v)$ has useful monotonicity on the transformed cap. Compare it with the affine $K_B(u)$ monotonicity.
 
@@ -1435,27 +1435,27 @@ Objectives:
 
 1. Correct the Bessel maximum claim. For $\nu=1/2$,
 
-$$
+```math
 J_{1/2}(t)=\sqrt{\frac{2}{\pi t}}\sin t,
-$$
+```
 
 and the first positive maximum solves
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 Compute a rigorous interval enclosure for the maximizer and maximum. Then investigate whether
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680
-$$
+```
 
 is a known theorem or requires interval proof. Do not use $2/\pi$ as the maximum.
 
 2. Build a high-precision numerical map of the Laguerre cap ratio
 
-$$
+```math
 R_{n,\alpha}^{\mathrm{cap}}
 =
 \sup_{0\le u\le n}
@@ -1464,13 +1464,13 @@ R_{n,\alpha}^{\mathrm{cap}}
 }{
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4}
 }
-$$
+```
 
 for $1\le n\le200$ and $\frac12\le\alpha\le\alpha_E(n)$. Track the first-lobe maximum separately from the cap maximum.
 
 3. Build the analogous finite-$B$ cap ratio
 
-$$
+```math
 R_{n,\alpha,B}^{\mathrm{cap}}
 =
 \frac{
@@ -1478,7 +1478,7 @@ R_{n,\alpha,B}^{\mathrm{cap}}
 }{
 T_{n,\alpha,\beta}
 }
-$$
+```
 
 for sample $\beta$ values and for compactified $\theta=(n+\alpha+1)/B$.
 
@@ -1486,11 +1486,11 @@ for sample $\beta$ values and for compactified $\theta=(n+\alpha+1)/B$.
 
 5. Test the gamma normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}.
-$$
+```
 
 Find the maximum of $M-1$ over sampled grids and test whether $M\le1+C/(n+1)$ is plausible with a moderate explicit $C$.
 
@@ -1680,9 +1680,9 @@ The remaining hard region is an endpoint cap. The strongest current synthesis sa
 
 In the right endpoint normalization, prior notes introduce an endpoint variable of the form
 
-$$
+```math
 u=\frac{B(1-x)}{2},\qquad B=n+\alpha+\beta+1,
-$$
+```
 
 and observe that the residual endpoint cap should satisfy $0\le u\le u_\sigma\le n$ after central-region clearance. This observation may remove the need for a global $u\in[0,\infty)$ Laguerre theorem, but it has not been fully certified.
 
@@ -1720,53 +1720,53 @@ Round 12 produced genuine progress, but not a proof of the real-parameter KKT co
 
 The main certified advance is the endpoint-cap reduction. A1 derived it and A3 independently audited the algebra. In the right endpoint variable
 
-$$
+```math
 u=\frac{B(1-x)}{2},\qquad B=n+\alpha+\beta+1,
-$$
+```
 
 the post-central-contour residual cap satisfies
 
-$$
+```math
 0\le u\le u_\sigma=\frac{nB}{B+n-1}\le n
-$$
+```
 
 for $n\ge1$. In this cap the finite-$B$ endpoint equation is exactly
 
-$$
+```math
 (p_BH')'+q_BH=0,
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 The product
 
-$$
+```math
 K_B(u)=p_B(u)q_B(u)
-$$
+```
 
 is a concave quadratic and is increasing on the residual cap. In the unresolved right-endpoint strip $\alpha\ge1/2$, one has the stronger lower bound
 
-$$
+```math
 K_B'(u)\ge K_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(n+\alpha+1)}{2B}
 \ge\frac14.
-$$
+```
 
 This gives a Sonin first-lobe reduction: the remaining endpoint maximum, if not already cleared by the central contour, energy estimate, or small-exponent theorem, is controlled by the first local extremum after the endpoint turning point. This replaces the older global Laguerre obstruction on $0\le u<\infty$ by a much smaller cap or first-lobe certificate on $0\le u\le n$.
 
@@ -1789,21 +1789,21 @@ The selected proof skeleton for Round 13 is:
 
 3. Replace the older target
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u<\infty,
-$$
+```
 
 by the smaller cap target
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u\le n,
-$$
+```
 
 and preferably by the first-lobe version of this statement.
 
@@ -1825,65 +1825,65 @@ The valuable certified fragments are:
 
 1. The exact endpoint equation
 
-$$
+```math
 (p_BH_B')'+Q_BH_B=0
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 Q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 2. The exact central/endcap interface
 
-$$
+```math
 u_\sigma=\frac{B(1-\sigma)}{2}
 =
 \frac{nB}{B+n-1}
 \le n.
-$$
+```
 
 3. The product monotonicity. With
 
-$$
+```math
 P_B(u)=p_B(u)Q_B(u),
-$$
+```
 
 one has $P_B''(u)\le0$ and
 
-$$
+```math
 P_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(\alpha+n+1)}{2B}.
-$$
+```
 
 Thus $P_B'(u)\ge0$ on $0\le u\le u_\sigma$, and in the unresolved strip $\alpha\ge1/2$,
 
-$$
+```math
 P_B'(u)\ge\frac14.
-$$
+```
 
 4. The cap Sonin identity
 
-$$
+```math
 \left(
 H^2+\frac{pH'^2}{Q}
 \right)'
 =
 -\frac{(pQ)'H'^2}{Q^2},
-$$
+```
 
 which orders local extrema by amplitude inside the cap.
 
@@ -1891,9 +1891,9 @@ which orders local extrema by amplitude inside the cap.
 
 6. The finite-$B$ perturbation warning. A1 computed an explicit difference
 
-$$
+```math
 Q_B(u)=Q_\infty(u)+R_B(u),
-$$
+```
 
 and noted that $R_B$ changes sign. Therefore simple Sturm ordering between finite Jacobi and Laguerre endpoint equations is unavailable.
 
@@ -1909,53 +1909,53 @@ The useful fragments are:
 
 3. A2 proposed the rational endpoint coordinate
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v}.
-$$
+```
 
 A direct calculation gives
 
-$$
+```math
 1-x^2=\frac{4Bv}{(B+v)^2},
 \qquad
 \frac{dx}{dv}=-\frac{2B}{(B+v)^2},
-$$
+```
 
 and the kinetic operator becomes
 
-$$
+```math
 \frac{d}{dx}\left((1-x^2)\frac{d}{dx}\right)
 =
 \frac{(B+v)^2}{B}\frac{d}{dv}\left(v\frac{d}{dv}\right).
-$$
+```
 
 Thus, after multiplying by $B/(B+v)^2$, the equation has principal part
 
-$$
+```math
 (vH_v')'
-$$
+```
 
 and potential
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 Equivalently, with $c_B=\kappa/B$,
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{c_B}{(1+v/B)^2}
 -
 \frac{(\beta v/B-\alpha)^2}{4v(1+v/B)^2}.
-$$
+```
 
 This rational-coordinate transform is algebraically correct and should be audited as a possible way to avoid the affine $u$ Liouville amplitude factor.
 
@@ -1975,45 +1975,45 @@ The useful certified fragments are:
 
 2. Independent verification of
 
-$$
+```math
 u_\sigma=\frac{nB}{B+n-1}\le n.
-$$
+```
 
 3. Independent verification of the quadratic form
 
-$$
+```math
 K_B(u)
 =
 -\frac{\alpha^2}{4}+\Lambda_Bu-\Delta_Bu^2,
-$$
+```
 
 where
 
-$$
+```math
 \Lambda_B=c_B+\frac{r_B\alpha}{2},
 \qquad
 \Delta_B=\frac{c_B}{B}+\frac{r_B^2}{4}.
-$$
+```
 
 4. The identity
 
-$$
+```math
 4\Delta_Bu_\sigma
 =
 n\left(1+\frac{n+1}{B}\right),
-$$
+```
 
 which gives the clean endpoint derivative formula.
 
 5. The Frobenius coefficient near $u=0$:
 
-$$
+```math
 H(u)\sim A_{n,\alpha,B}u^{\alpha/2},
-$$
+```
 
 where
 
-$$
+```math
 A_{n,\alpha,B}
 =
 \sqrt{
@@ -2023,25 +2023,25 @@ A_{n,\alpha,B}
 B^{-\alpha/2}
 \frac{\Gamma(n+\alpha+1)}
 {\Gamma(\alpha+1)\Gamma(n+1)}.
-$$
+```
 
 6. The Bessel model normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}.
-$$
+```
 
 7. The critical-point equation
 
-$$
+```math
 \left(\beta(1-x)-\alpha(1+x)\right)P_n^{(\alpha,\beta)}(x)
 +
 (n+\alpha+\beta+1)(1-x^2)P_{n-1}^{(\alpha+1,\beta+1)}(x)
 =
 0.
-$$
+```
 
 Rejected or corrected part from A3:
 
@@ -2055,9 +2055,9 @@ Useful fragments:
 
 1. A4 correctly identified that $M_{n,\alpha,B}\le1$ is false. For small $n$ and small $\alpha$, the Bessel normalization can exceed $1$, so the proof needs a gamma-ratio bound of the form
 
-$$
+```math
 M_{n,\alpha,B}\le1+\frac{C_\Gamma}{n+1}
-$$
+```
 
 or a sharper structured replacement.
 
@@ -2065,20 +2065,20 @@ or a sharper structured replacement.
 
 3. A4’s interval-arithmetic compactification idea is useful once an analytic large-$n$ theorem exists. For fixed $n,\alpha$, the substitution
 
-$$
+```math
 \theta=\frac{n+\alpha+1}{B}
-$$
+```
 
 compactifies $\beta\in[0,\infty]$ to $\theta\in[0,1]$.
 
 4. The finite polynomial representation
 
-$$
+```math
 P_n^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right)
 =
 \frac{(\alpha+1)_n}{n!}
 {}_2F_1\left(-n,B;\alpha+1;\frac{u}{B}\right)
-$$
+```
 
 is the right starting point for interval verification.
 
@@ -2086,33 +2086,33 @@ Rejected or corrected parts from A4:
 
 1. A4’s claim that
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|=\frac{2}{\pi}
-$$
+```
 
 is false. For $\nu=1/2$,
 
-$$
+```math
 J_{1/2}(t)=\sqrt{\frac{2}{\pi t}}\sin t,
-$$
+```
 
 and its positive critical points satisfy
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 The first maximum occurs near
 
-$$
+```math
 t\approx1.1655611852,
-$$
+```
 
 with value approximately
 
-$$
+```math
 0.6791921047,
-$$
+```
 
 not $2/\pi\approx0.6366197724$. The weaker bound $<0.680$ may still be true, but it is a very tight statement and needs a precise theorem or certified numerical proof. It should not be marked as “fully certified” from the calculation A4 gave.
 
@@ -2134,9 +2134,9 @@ A1’s explicit formula for $R_B=Q_B-Q_\infty$ changes sign. Therefore any proof
 
 A2’s amplitude-inflation warning and A4’s $u_1=O(n)$ scaling warning both show that a direct estimate
 
-$$
+```math
 H(u)=M_{n,\alpha,B}J_\alpha(2\sqrt{\Lambda_Bu})+O\left(\frac1n\right)
-$$
+```
 
 uniformly up to the first peak cannot be assumed. It must be derived with explicit constants and the correct coordinate/dependent-variable normalization.
 
@@ -2158,19 +2158,19 @@ G12.1: First-lobe amplitude certificate.
 
 The central missing estimate is a theorem bounding the first local extremum of the endpoint-cap solution in the residual range
 
-$$
+```math
 n\ge1,\qquad
 \frac12<\alpha<
 \alpha_E(n):=\frac{(2n+1)(n+1)}{2n+3},
 \qquad
 \beta\ge0.
-$$
+```
 
 A minimal finite-$B$ statement would be:
 
 Let $u_0$ be the cap turning point and $u_1$ the first critical point after $u_0$. Prove
 
-$$
+```math
 |H_B(u_1)|
 \le
 T_{n,\alpha,\beta}
@@ -2178,7 +2178,7 @@ T_{n,\alpha,\beta}
 \left(
 \frac{(n+1)B}{(n+\alpha+1)(B-\alpha)}
 \right)^{1/4}.
-$$
+```
 
 G12.2: Correct coordinate for first-lobe comparison.
 
@@ -2188,17 +2188,17 @@ G12.3: Gamma-ratio normalization.
 
 The Bessel normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 can exceed $1$. A proof needs a sharp inequality for $M_{n,\alpha,B}$ in the residual strip. A bound of the form
 
-$$
+```math
 M_{n,\alpha,B}\le1+\frac{C_\Gamma}{n+1}
-$$
+```
 
 is plausible but not proved.
 
@@ -2206,9 +2206,9 @@ G12.4: Bessel maximum.
 
 A usable Bessel bound must be stated correctly. The candidate is probably
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680,
-$$
+```
 
 but the proof must not use the false value $2/\pi$. The next round should either cite a precise theorem with hypotheses or provide a rigorous interval proof of the maximum.
 
@@ -2216,9 +2216,9 @@ G12.5: Handoff derivative energy.
 
 If a Bessel approximation is used only near the origin and then handed to Sonin monotonicity, the handoff must bound
 
-$$
+```math
 H(u_h)^2+\frac{p_B(u_h)H'(u_h)^2}{q_B(u_h)},
-$$
+```
 
 not only $|H(u_h)|$.
 
@@ -2240,32 +2240,32 @@ New lemmas to add:
 
 For $n\ge0$, $\alpha,\beta\ge0$, $B=n+\alpha+\beta+1$, and
 
-$$
+```math
 H_B(u)=g_n^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right),
-$$
+```
 
 one has
 
-$$
+```math
 (p_BH_B')'+q_BH_B=0,
-$$
+```
 
 where
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right)
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 Status: certified by A1 and A3.
 
@@ -2273,14 +2273,14 @@ Status: certified by A1 and A3.
 
 For $n\ge1$,
 
-$$
+```math
 u_\sigma
 =
 \frac{B(1-\sigma)}{2}
 =
 \frac{nB}{B+n-1}
 \le n.
-$$
+```
 
 Status: certified by A1 and A3.
 
@@ -2288,23 +2288,23 @@ Status: certified by A1 and A3.
 
 Let
 
-$$
+```math
 K_B(u)=p_B(u)q_B(u).
-$$
+```
 
 Then $K_B$ is a concave quadratic and
 
-$$
+```math
 K_B'(u_\sigma)
 =
 \frac{(\alpha+\beta)(n+\alpha+1)}{2B}.
-$$
+```
 
 Thus $K_B'(u)\ge0$ for $0\le u\le u_\sigma$. In the residual right-endpoint range $\alpha\ge1/2$,
 
-$$
+```math
 K_B'(u)\ge\frac14.
-$$
+```
 
 Status: certified, with the range restriction $\alpha\ge1/2$ for the lower bound $1/4$.
 
@@ -2312,18 +2312,18 @@ Status: certified, with the range restriction $\alpha\ge1/2$ for the lower bound
 
 On any subinterval of the cap where $q_B>0$,
 
-$$
+```math
 S_B(u)=H_B(u)^2+\frac{p_B(u)H_B'(u)^2}{q_B(u)}
-$$
+```
 
 satisfies
 
-$$
+```math
 S_B'(u)
 =
 -\frac{K_B'(u)}{q_B(u)^2}H_B'(u)^2
 \le0.
-$$
+```
 
 Consequently local extrema in the allowed portion of the cap are nonincreasing in amplitude as $u$ increases.
 
@@ -2335,16 +2335,16 @@ Assume $\alpha>0$ and right overflow. Let $u_0$ be the first zero of $K_B$ in th
 
 A proof should use the regular Frobenius behavior
 
-$$
+```math
 H_B(u)\sim A_{n,\alpha,B}u^{\alpha/2},
 \qquad A_{n,\alpha,B}>0,
-$$
+```
 
 and the sign of
 
-$$
+```math
 (p_BH_B')'=-q_BH_B
-$$
+```
 
 where $q_B<0$.
 
@@ -2360,42 +2360,42 @@ Status: nearly certified after L12.5.
 
 As $B\to\infty$ with $n,\alpha$ fixed,
 
-$$
+```math
 p_B(u)\to u,
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)\to
 q_\infty(u)
 =
 n+\frac{\alpha+1}{2}
 -\frac{u}{4}
 -\frac{\alpha^2}{4u}.
-$$
+```
 
 The limiting equation is the normalized Laguerre equation for
 
-$$
+```math
 \ell_n^{(\alpha)}(u)
 =
 \left(
 \frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}
 \right)^{1/2}
 u^{\alpha/2}e^{-u/2}L_n^{(\alpha)}(u).
-$$
+```
 
 On $0\le u\le n$,
 
-$$
+```math
 (uq_\infty(u))'
 =
 n+\frac{\alpha+1}{2}-\frac u2
 \ge
 \frac{n+\alpha+1}{2}
 >0.
-$$
+```
 
 Status: certified.
 
@@ -2403,19 +2403,19 @@ Status: certified.
 
 For $n\ge1$ and
 
-$$
+```math
 \frac12<\alpha<
 \frac{(2n+1)(n+1)}{2n+3},
-$$
+```
 
 prove
 
-$$
+```math
 |\ell_n^{(\alpha)}(u)|
 \le
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4},
 \qquad 0\le u\le n.
-$$
+```
 
 Better: prove it only at the first local maximum after the Laguerre cap turning point.
 
@@ -2425,37 +2425,37 @@ Status: proposed; not proved.
 
 Set
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v}.
-$$
+```
 
 Then the endpoint equation becomes
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0,
-$$
+```
 
 where
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 Equivalently,
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{c_B}{(1+v/B)^2}
 -
 \frac{(\beta v/B-\alpha)^2}{4v(1+v/B)^2}.
-$$
+```
 
 Status: algebraically verified in this synthesis; its usefulness for amplitude estimates is open.
 
@@ -2463,15 +2463,15 @@ Status: algebraically verified in this synthesis; its usefulness for amplitude e
 
 Prove or cite a theorem giving
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680.
-$$
+```
 
 The proof must account for the fact that
 
-$$
+```math
 \max_{t>0}J_{1/2}(t)\approx0.6791921047,
-$$
+```
 
 not $2/\pi$.
 
@@ -2481,19 +2481,19 @@ Status: needed; A4’s derivation is rejected.
 
 Find explicit constants, or a sharper functional bound, for
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 in the residual strip. A possible target is
 
-$$
+```math
 M_{n,\alpha,B}
 \le
 1+\frac{C_\Gamma}{n+1}.
-$$
+```
 
 Status: proposed; not proved.
 
@@ -2501,9 +2501,9 @@ Status: proposed; not proved.
 
 If using a Bessel approximation on $0<u\le u_h$, prove an upper bound for the full Sonin energy
 
-$$
+```math
 H_B(u_h)^2+\frac{p_B(u_h)H_B'(u_h)^2}{q_B(u_h)}.
-$$
+```
 
 Status: required if the Bessel-Sonin handoff route is pursued.
 
@@ -2513,15 +2513,15 @@ Counterexample checks to run:
 
 Compute and rigorously enclose
 
-$$
+```math
 \max_{t>0}J_{1/2}(t),
-$$
+```
 
 where the maximizing point solves
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 Then verify whether the maximum over $\nu\ge1/2$ is indeed at $\nu=1/2$ or whether another order gives a larger value. This is a priority because A4’s $2/\pi$ computation is wrong.
 
@@ -2529,19 +2529,19 @@ Then verify whether the maximum over $\nu\ge1/2$ is indeed at $\nu=1/2$ or wheth
 
 For a grid and then by interval arithmetic, evaluate
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}
-$$
+```
 
 over
 
-$$
+```math
 1\le n\le 200,\qquad
 \frac12\le\alpha\le\alpha_E(n),\qquad
 \beta\in\{0,1,2,10,100,\infty\}.
-$$
+```
 
 Locate where $M>1$ and measure whether $M-1$ behaves like $O(1/n)$ or has a larger envelope.
 
@@ -2549,7 +2549,7 @@ Locate where $M>1$ and measure whether $M-1$ behaves like $O(1/n)$ or has a larg
 
 Compute
 
-$$
+```math
 R_{n,\alpha}^{\mathrm{cap}}
 =
 \sup_{0\le u\le n}
@@ -2558,7 +2558,7 @@ R_{n,\alpha}^{\mathrm{cap}}
 }{
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4}
 }
-$$
+```
 
 over the transition strip. Compare this with the global ratio on $0\le u<\infty$ to quantify how much the cap reduction buys.
 
@@ -2570,7 +2570,7 @@ For the Laguerre cap, compute the turning point $u_0$ and first critical point $
 
 For fixed $(n,\alpha)$, compute
 
-$$
+```math
 R_{n,\alpha,B}^{\mathrm{cap}}
 =
 \frac{
@@ -2578,7 +2578,7 @@ R_{n,\alpha,B}^{\mathrm{cap}}
 }{
 T_{n,\alpha,\beta}
 }.
-$$
+```
 
 Test whether this ratio is monotone in $B$ or whether the worst case is finite. A nonmonotone finite-$B$ worst case would require a direct finite-$B$ certificate rather than a Laguerre bridge.
 
@@ -2639,32 +2639,32 @@ Objectives:
 
 2. Include the exact endpoint ODE:
 
-$$
+```math
 (p_BH')'+q_BH=0,
-$$
+```
 
 with
 
-$$
+```math
 p_B(u)=u\left(1-\frac{u}{B}\right),
-$$
+```
 
 and
 
-$$
+```math
 q_B(u)
 =
 n+\frac12-\frac{n+1}{2B}
 -
 \frac{\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2}
 {4u\left(1-\frac{u}{B}\right)}.
-$$
+```
 
 3. Prove the product monotonicity with the exact formula
 
-$$
+```math
 K_B'(u_\sigma)=\frac{(\alpha+\beta)(n+\alpha+1)}{2B},
-$$
+```
 
 and state precisely when this implies $K_B'(u)\ge1/4$.
 
@@ -2691,35 +2691,35 @@ Objectives:
 
 1. Re-derive the rational-coordinate equation from scratch. With
 
-$$
+```math
 v=B\frac{1-x}{1+x},
 \qquad
 x=\frac{B-v}{B+v},
-$$
+```
 
 verify or correct the equation
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0
-$$
+```
 
 and
 
-$$
+```math
 \widehat q_B(v)
 =
 \frac{\kappa B}{(B+v)^2}
 -
 \frac{(\beta v-\alpha B)^2}{4v(B+v)^2}.
-$$
+```
 
 2. Relate $u$ and $v$ exactly:
 
-$$
+```math
 u=\frac{Bv}{B+v},
 \qquad
 v=\frac{Bu}{B-u}.
-$$
+```
 
 Find the image of the cap $0\le u\le u_\sigma$ in $v$ coordinates.
 
@@ -2754,23 +2754,23 @@ Objectives:
 
 3. Prove or reject the forbidden-zone ascent lemma. Work directly from the Frobenius expansion and
 
-$$
+```math
 (p_BH')'=-q_BH.
-$$
+```
 
 Be precise about positivity of $H$, behavior of $p_BH'$, and whether a zero or local maximum can occur before the turning point.
 
 4. Algebraically verify the rational-coordinate equation:
 
-$$
+```math
 (vH_v')'+\widehat q_B(v)H=0.
-$$
+```
 
 Check A2’s formula for $\widehat q_B(v)$ and give a simplified expression for the product
 
-$$
+```math
 \widehat K_B(v)=v\widehat q_B(v).
-$$
+```
 
 5. Determine whether $\widehat K_B(v)$ has useful monotonicity on the transformed cap. Compare it with the affine $K_B(u)$ monotonicity.
 
@@ -2788,27 +2788,27 @@ Objectives:
 
 1. Correct the Bessel maximum claim. For $\nu=1/2$,
 
-$$
+```math
 J_{1/2}(t)=\sqrt{\frac{2}{\pi t}}\sin t,
-$$
+```
 
 and the first positive maximum solves
 
-$$
+```math
 \tan t=2t.
-$$
+```
 
 Compute a rigorous interval enclosure for the maximizer and maximum. Then investigate whether
 
-$$
+```math
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680
-$$
+```
 
 is a known theorem or requires interval proof. Do not use $2/\pi$ as the maximum.
 
 2. Build a high-precision numerical map of the Laguerre cap ratio
 
-$$
+```math
 R_{n,\alpha}^{\mathrm{cap}}
 =
 \sup_{0\le u\le n}
@@ -2817,13 +2817,13 @@ R_{n,\alpha}^{\mathrm{cap}}
 }{
 \left(\frac{n+1}{n+\alpha+1}\right)^{1/4}
 }
-$$
+```
 
 for $1\le n\le200$ and $\frac12\le\alpha\le\alpha_E(n)$. Track the first-lobe maximum separately from the cap maximum.
 
 3. Build the analogous finite-$B$ cap ratio
 
-$$
+```math
 R_{n,\alpha,B}^{\mathrm{cap}}
 =
 \frac{
@@ -2831,7 +2831,7 @@ R_{n,\alpha,B}^{\mathrm{cap}}
 }{
 T_{n,\alpha,\beta}
 }
-$$
+```
 
 for sample $\beta$ values and for compactified $\theta=(n+\alpha+1)/B$.
 
@@ -2839,11 +2839,11 @@ for sample $\beta$ values and for compactified $\theta=(n+\alpha+1)/B$.
 
 5. Test the gamma normalization
 
-$$
+```math
 M_{n,\alpha,B}
 =
 A_{n,\alpha,B}\Gamma(\alpha+1)\Lambda_B^{-\alpha/2}.
-$$
+```
 
 Find the maximum of $M-1$ over sampled grids and test whether $M\le1+C/(n+1)$ is plausible with a moderate explicit $C$.
 
@@ -2912,9 +2912,9 @@ Needed: verify algebra, define $\sigma$, and check all parameter restrictions.
 
 Claim: the endpoint-normalized Jacobi expression satisfies a self-adjoint equation
 
-$$
+```math
 (p_B(u)H'(u))' + q_B(u)H(u)=0
-$$
+```
 
 with explicit $p_B,q_B$ and a quadratic $p_Bq_B$.
 

@@ -31,22 +31,28 @@
       "role": "independent strategist, obstruction finder, and referee-style reviewer",
       "web_url": "https://gemini.google.com/",
       "copy_response_mode": "raw_markdown_fence",
+      "depth_contract": {
+        "reasoning": "Use Gemini Pro DeepThink as a conservative mathematical referee, not a summary writer or hype generator. Write a full research memo of at least 5500 words with `##` Markdown section headings. The answer must include a claim ledger, theorem-dependency audit, step-by-step derivations for every central formula, parameter ranges, endpoint and finite-beta failure modes, obstruction/counterexample tests, reproducible symbolic or numerical verification plans, and calibrated confidence. Spend about 80% on the judge-assigned route and about 20% on serious divergent alternatives. Every new formula or route must be labeled as proved, derived-under-assumptions, conjectural, or likely false. Do not use rhetorical closure phrases such as `mathematical illusion`, `zero reduction`, or `analytically dead` unless you have supplied a complete derivation and failure criterion.",
+        "review": "Use Gemini Pro Deep Think for a slow, deep, long-form Stage B referee report of at least 5000 words in raw Markdown source. Review A1, A3, and A4 separately and in detail. For each reviewed agent, include a claim ledger, strongest mathematical contribution, exact assumptions used, claims that are derived versus conjectural, hidden hypotheses, likely false or underspecified statements, theorem-dependency checks, numerical/symbolic verification tasks, confidence calibration, and research-strategy implications. Include explicit equations and derivations when rejecting or repairing a claim; do not merely summarize. End with a concrete next-round strategy allocation and explain which agent should test which mathematical obstruction."
+      },
       "quality_gate": {
         "reasoning": {
-          "min_words": 3500,
-          "min_headings": 10,
-          "must_contain": ["Assumptions", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Confidence"],
-          "must_not_contain": ["100%", "flawless", "fully certified", "fatal hidden assumption"]
+          "min_words": 5500,
+          "min_headings": 18,
+          "max_confidence": 0.9,
+          "must_contain": ["Assumptions", "Claim ledger", "Theorem-dependency audit", "Derivation", "Potential gaps", "Counterexample", "Verification plan", "Divergent alternatives", "Research strategy", "Confidence"],
+          "must_not_contain": ["100%", "flawless", "fully certified", "fatal hidden assumption", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
         },
         "review": {
-          "min_words": 4000,
-          "min_headings": 14,
-          "must_contain": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Score by agent", "Next-round recommendation", "Assumptions", "Verification plan", "Confidence"],
-          "must_not_contain": ["100%", "fully certified"]
+          "min_words": 5000,
+          "min_headings": 18,
+          "max_confidence": 0.9,
+          "must_contain": ["Most valuable input from others", "Claims that look correct", "Claims that need proof", "Possible errors or hidden assumptions", "Suggested synthesis", "Score by agent", "Next-round recommendation", "Assumptions", "Claim ledger", "Theorem-dependency audit", "Verification plan", "Research strategy", "Confidence"],
+          "must_not_contain": ["100%", "fully certified", "Potential gaps:\nNone", "mathematical illusion", "zero reduction", "analytically dead"]
         }
       },
       "enforce_quality_gate": true,
-      "instructions": "Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Look for hidden hypotheses, endpoint counterexamples, normalization errors, and alternate routes via product formulas, hypergroups, Sturm-Liouville theory, Christoffel bounds, or effective asymptotics. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Write a long-form referee-style answer with `##` Markdown section headings, not a short summary, and avoid 100% confidence unless the proof is complete. In review stage, answer only as raw Markdown source inside the required fenced Markdown block."
+      "instructions": "Use Gemini Pro DeepThink as a low-hallucination mathematical research referee. Look for hidden hypotheses, endpoint counterexamples, normalization errors, and alternate routes via product formulas, hypergroups, Sturm-Liouville theory, Christoffel bounds, or effective asymptotics. Do not invent exact transformed ODEs, monotonicity claims, constants, citations, or counterexamples; derive them in-line, mark them as conjectural, or request a symbolic check. Write a long-form referee-style answer with `##` Markdown section headings, not a short summary, and avoid high confidence unless the proof is complete. If your draft is under the requested length or mainly consists of conclusions, continue expanding before finalizing. In both reasoning and review stages, answer only as raw Markdown source inside the required fenced Markdown block."
     },
     {
       "id": "A3",

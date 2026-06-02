@@ -954,6 +954,20 @@ def quality_gate_issues(agent: Agent, stage: str, output: str) -> list[str]:
         if needle and needle.lower() in target.lower():
             issues.append(f"contains forbidden overconfident phrase: {needle}")
 
+    max_confidence = gate.get("max_confidence")
+    if max_confidence is not None:
+        max_value = float(max_confidence)
+        for line in target.splitlines():
+            if "confidence" not in line.lower():
+                continue
+            for match in re.finditer(r"\b(?:0?\.\d+|1(?:\.0+)?|\d{1,3}%)\b", line):
+                raw = match.group(0)
+                value = float(raw[:-1]) / 100.0 if raw.endswith("%") else float(raw)
+                if value > max_value:
+                    issues.append(
+                        f"confidence value {raw} exceeds allowed maximum {max_value:g}"
+                    )
+
     if gate.get("reject_if_truncated", False) and looks_truncated(target):
         issues.append("response appears truncated or syntactically unfinished")
 
@@ -975,6 +989,8 @@ Your previous {stage} response was not accepted:
 {issue_text}
 
 Return a full replacement answer, not an addendum. Preserve any correct mathematics from the previous answer, but expand it into the required depth, with explicit sections, lemma/claim boxes, failure modes, stress tests, score table when the stage is review, and confidence calibration.
+
+Do not submit a compact executive summary. If a proposed claim is important, show the algebra or theorem hypotheses that support it. If a claim is only a warning, label it as `derived-under-assumptions` or `conjectural`, not as a fatal conclusion. Avoid `Potential gaps: None` unless the proof is actually complete.
 
 ## Previous Response To Replace
 
