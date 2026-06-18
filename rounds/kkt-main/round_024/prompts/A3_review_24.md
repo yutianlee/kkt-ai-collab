@@ -35453,12 +35453,40 @@ Agent allocation:
 
 Do not spend Round 24 on broad proof architecture unless it produces one of the three deliverables above.
 
+
+
+--- RECENT HUMAN NOTE: human/inbox/round_025_revised_strategy_audit.md ---
+# Round 25 Revised Strategy Audit
+
+A round-local strategy memo from another AI was polished and audited at `rounds/kkt-main/round_024/human/revised-strategy.md`.
+
+Use it as advisory input only. It should not override the Round 23/Round 24 endpoint-cap program or the pending Round 24 judge synthesis.
+
+Audited conclusions:
+
+1. Keep the current main route: finalize the Round 24 judge synthesis, commit the $n=1$ residual endpoint theorem after final copyedit, and execute the corrected $n=2$ interval certificate.
+2. Treat the Airy relative-amplitude idea as a bounded exploratory test. The identity
+$$
+   (a^2h')'=\Psi_B(\zeta)a^2h,\qquad a(\zeta)=\operatorname{Ai}(-\zeta),
+$$
+   is algebraically useful, but it is not automatically sign-definite and does not remove the Frobenius-to-Airy normalization problem unless Airy zeros, $\Psi_B$ signs or absolute bounds, and initial data are controlled.
+3. Treat Krasikov-style higher-order Sonin envelopes as the strongest structural alternative, but only after an explicit candidate functional $V=A H^2+B H'^2+C H H'$ has verified positivity, derivative sign, endpoint normalization, and boundary-face checks.
+4. Downgrade contiguous-relation induction and finite-$n$ Riemann-Hilbert steepest descent to literature-search or diagnostic status for now.
+5. Reject any claim that Round 24 already certifies $n=2$, closes the rational-Bessel Volterra constants, or proves the full KKT conjecture.
+
+Recommended Round 25 allocation:
+
+- A1: include the audited alternatives as exploratory tasks in the judge synthesis, not as a pivot.
+- A2: test the Airy relative-amplitude identity and its failure modes, or return to rational-Bessel absolute-kernel constants.
+- A3: provide CAS-verifiable compactified $n=2$ coefficients and boundary identities.
+- A4: execute outward-rounded interval root isolation and value checks for the corrected $n=2$ certificate.
+
 ## Outputs To Review
 
 --- OUTPUT FROM A1 ---
 Summary:
 
-Source packet acknowledged: uploaded Round 24 A1 reasoning/task file token :contentReference[oaicite:0]{index=0}.
+Source packet acknowledged: uploaded Round 24 A1 reasoning/task file token.
 
 This is an A1 Stage A independent-reasoning response for Round 24. I do **not** claim the real-parameter KKT conjecture is solved. The right conclusion after Round 23 is narrower:
 
@@ -35587,15 +35615,15 @@ Detailed reasoning:
 
 ## 1. Literature and source check
 
-The source problem is Koornwinder--Kostenko--Teschl, *Jacobi Polynomials, Bernstein-type Inequalities and Dispersion Estimates for the Discrete Laguerre Operator*, *Advances in Mathematics* 333 (2018), 796--821. The arXiv record confirms the title, authors, and the link between Jacobi Bernstein-type inequalities and dispersive estimates for the generalized Laguerre operator. The UvA repository record gives DOI `10.1016/j.aim.2018.05.038` and confirms the final published venue. :contentReference[oaicite:1]{index=1}
+The source problem is Koornwinder--Kostenko--Teschl, *Jacobi Polynomials, Bernstein-type Inequalities and Dispersion Estimates for the Discrete Laguerre Operator*, *Advances in Mathematics* 333 (2018), 796--821. The arXiv record confirms the title, authors, and the link between Jacobi Bernstein-type inequalities and dispersive estimates for the generalized Laguerre operator. The UvA repository record gives DOI `10.1016/j.aim.2018.05.038` and confirms the final published venue.
 
-Landau’s Bessel theorem remains a valid dependency only after a genuine Bessel reduction is established. Landau’s article is L. J. Landau, “Bessel Functions: Monotonicity and Bounds,” *Journal of the London Mathematical Society* 61(1), 197--215 (2000), DOI `10.1112/S0024610799008352`; bibliographic pages describe monotonicity with respect to the Bessel order at positive stationary points and provide the journal data. :contentReference[oaicite:2]{index=2}
+Landau's Bessel theorem remains a valid dependency only after a genuine Bessel reduction is established. Landau's article is L. J. Landau, "Bessel Functions: Monotonicity and Bounds," *Journal of the London Mathematical Society* 61(1), 197--215 (2000), DOI `10.1112/S0024610799008352`; bibliographic pages describe monotonicity with respect to the Bessel order at positive stationary points and provide the journal data.
 
-The correct modern reference family for explicit simple-turning-point Airy error bounds is Dunster--Gil--Segura. Their 2020 paper “Sharp error bounds for turning point expansions” states that it derives computable sharp error bounds for asymptotic expansions of second-order linear differential equations with a simple turning point, involving Airy functions and slowly varying coefficient functions. Their 2019/2021 “Simplified error bounds for turning point expansions” gives explicit simplified bounds for Airy-type simple-turning-point expansions. :contentReference[oaicite:3]{index=3}
+The correct modern reference family for explicit simple-turning-point Airy error bounds is Dunster--Gil--Segura. Their 2020 paper "Sharp error bounds for turning point expansions" states that it derives computable sharp error bounds for asymptotic expansions of second-order linear differential equations with a simple turning point, involving Airy functions and slowly varying coefficient functions. Their 2019/2021 "Simplified error bounds for turning point expansions" gives explicit simplified bounds for Airy-type simple-turning-point expansions.
 
-Arb remains a legitimate computational platform for certified interval work. Johansson describes Arb as arbitrary-precision midpoint-radius, or ball, interval arithmetic supporting real/complex numbers, polynomials, power series, matrices, and many special functions; the bibliographic data give the IEEE Transactions on Computers paper and DOI `10.1109/TC.2017.2690633`. :contentReference[oaicite:4]{index=4}
+Arb remains a legitimate computational platform for certified interval work. Johansson describes Arb as arbitrary-precision midpoint-radius, or ball, interval arithmetic supporting real/complex numbers, polynomials, power series, matrices, and many special functions; the bibliographic data give the IEEE Transactions on Computers paper and DOI `10.1109/TC.2017.2690633`.
 
-For gamma ratios, Wendel--Gautschi--Kershaw-type inequalities remain relevant. Search results identify Wendel’s “Note on the Gamma function,” *American Mathematical Monthly* 55(9), 563--564 (1948), and Kershaw’s “Some extensions of W. Gautschi’s inequalities for the gamma function,” *Mathematics of Computation* 41(164), 607--611 (1983). :contentReference[oaicite:5]{index=5}
+For gamma ratios, Wendel--Gautschi--Kershaw-type inequalities remain relevant. Search results identify Wendel's "Note on the Gamma function," *American Mathematical Monthly* 55(9), 563--564 (1948), and Kershaw's "Some extensions of W. Gautschi's inequalities for the gamma function," *Mathematics of Computation* 41(164), 607--611 (1983).
 
 These references support dependencies and theorem-search directions. They do not by themselves prove the KKT first-lobe amplitude theorem.
 
@@ -36257,7 +36285,7 @@ $$
 \pi\mathfrak m(\zeta)^2|\Psi(\zeta)|\|Z(\zeta)\|.
 $$
 
-Gronwall’s inequality yields the stated estimate, and
+Gronwall's inequality yields the stated estimate, and
 
 $$
 |W(\zeta_1)|\le \mathfrak m(\zeta_1)\|Z(\zeta_1)\|.
@@ -36335,7 +36363,7 @@ $$
 
 3. **Gamma inequalities.** The $n=1$ proof uses $\psi(y)<\log y$ and a certified endpoint enclosure for $E(6/5)$. The permanent lemma bank should cite a standard gamma-inequality source or include a short Binet/Stirling enclosure.
 
-4. **Bessel maximum.** If the rational-Bessel route is used, Landau’s monotonicity theorem must be quoted with exact hypotheses before using
+4. **Bessel maximum.** If the rational-Bessel route is used, Landau's monotonicity theorem must be quoted with exact hypotheses before using
 
 $$
 \sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680.
@@ -36514,7 +36542,7 @@ For $n=2$, one can combine:
 3. Riccati sign propagation to identify the first allowed critical point;
 4. direct interval evaluation of $H_2(u)^4/T^4$.
 
-This should be A4’s primary low-degree path.
+This should be A4's primary low-degree path.
 
 ## Alternative 3: Christoffel or reproducing-kernel bound
 
@@ -36658,7 +36686,7 @@ What should be tested next:
    - $H_2(u)^2$;
    - $T_{2,\alpha,\theta}^4=3/(\alpha+3-\alpha\theta)$;
    - $C_{\alpha,\theta}(u)$.
-   
+
    Produce actual outward-rounded interval boxes for root isolation and value evaluation.
 
 3. **Root isolation for $n=2$.** Build Sturm sequences for $C_{\alpha,\theta}$ on parameter boxes in
