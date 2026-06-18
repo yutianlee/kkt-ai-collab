@@ -350,6 +350,10 @@ def judge_prompt_filename(round_index: int) -> str:
     return f"judge_{round_index}.md"
 
 
+def judge_output_filename(round_index: int) -> str:
+    return f"judge-{round_index:03d}.md"
+
+
 def output_schema(kind: str) -> str:
     if kind == "review":
         return """Most valuable input from others:
@@ -1041,7 +1045,11 @@ def quality_gate_issues(agent: Agent, stage: str, output: str) -> list[str]:
         for line in target.splitlines():
             if "confidence" not in line.lower():
                 continue
-            for match in re.finditer(r"\b(?:0?\.\d+|1(?:\.0+)?|\d{1,3}%)\b", line):
+            if ":" not in line:
+                continue
+            confidence_part = line.rsplit(":", 1)[-1]
+            confidence_part = re.sub(r"\$[^$]*\$", "", confidence_part)
+            for match in re.finditer(r"\b(?:0?\.\d+|1(?:\.0+)?|\d{1,3}%)\b", confidence_part):
                 raw = match.group(0)
                 value = float(raw[:-1]) / 100.0 if raw.endswith("%") else float(raw)
                 if value > max_value:
@@ -1277,7 +1285,7 @@ def update_state_files(root: Path, run_id: str, round_index: int, judge_text: st
 
 Timestamp: {timestamp}
 
-See `{round_ref}/judge/judge.md`.
+See `{round_ref}/judge/{judge_output_filename(round_index)}`.
 
 {judge_block}
 """
@@ -1515,8 +1523,8 @@ def run_round(
             agent=judge,
             prompt=prompt,
             prompt_path=round_dir / "prompts" / judge_prompt_filename(round_index),
-            output_path=round_dir / "judge" / "judge.md",
-            handoff_response_path=handoff_dir / "judge" / "judge.md",
+            output_path=round_dir / "judge" / judge_output_filename(round_index),
+            handoff_response_path=handoff_dir / "judge" / judge_output_filename(round_index),
             stage="judge",
             round_index=round_index,
             dry_run=dry_run,

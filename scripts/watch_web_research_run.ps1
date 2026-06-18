@@ -21,6 +21,11 @@ function Get-PromptPath([string] $PromptBase, [string] $Name, [int] $Round) {
     return "$PromptBase\$Name.md"
 }
 
+function Get-JudgeFile([string] $Base, [int] $Round) {
+    $RoundNo = "{0:D3}" -f $Round
+    return "$Base\judge\judge-$RoundNo.md"
+}
+
 function Test-RealResponse([string] $Path) {
     if (-not (Test-Path -LiteralPath $Path)) {
         return $false
@@ -78,7 +83,7 @@ function Show-NeededFiles([int] $Round) {
         "rounds\$RunId\$RoundName\reviews\A3.md",
         "rounds\$RunId\$RoundName\reviews\A4.md"
     )
-    $JudgeFile = "$Base\judge\judge.md"
+    $JudgeFile = Get-JudgeFile $Base $Round
 
     if (($ResponseFiles | Where-Object { -not (Test-RealResponse $_) }).Count -gt 0) {
         Write-Host ""
