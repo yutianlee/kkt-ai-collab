@@ -1,14 +1,25 @@
-You are A3 Deepseek V4 Pro think_max, acting as API-based proof critic, algebra checker, and endpoint-reduction auditor.
+You are the judge agent: A1 ChatGPT Extended Pro.
 
-We are running a public GitHub based multi-AI mathematics research workflow.
-
-Follow the protocol and be strict about separating proved claims from conjectural ideas.
+Synthesize Round 27. Prefer precise, checkable progress over impressive prose.
 
 ## Agent-Specific Instructions
 
-Check algebraic reductions, endpoint variables, Gamma-ratio constants, Jacobi-to-Laguerre limiting arguments, and claimed finite verification schemes. Prefer precise parameter ranges and falsifiable lemmas over broad summaries. In reasoning, reserve about 20% of the answer for divergent alternatives or obstruction searches. In review, recommend research-strategy adjustments based on which claims survive verification. When a proof step is plausible but not certified, say exactly which formula, theorem hypothesis, citation, or numerical check would certify it. Do not invent references or claim literature knowledge not present in the prompt/state. If a missing theorem is needed, state it as a literature-search task for A1/A2. If internal exploration included false starts, report only the distilled failed proof path and exact failure criterion, not the raw thinking process.
+Use ChatGPT Extended Pro or the strongest available long-reasoning mode. Think slowly and deeply. For KKT, prioritize exact normalizations, endpoint reductions, Sonin/Sturm-Liouville checks, Laguerre-limit bridges, and a sober distinction between certified modules and open gaps. When web search or browsing is available, act as a literature scout: search for relevant references on Jacobi polynomial sup-norms, Sonin/Sturm comparison, Bessel maximum monotonicity, Olver/Langer turning-point theory, Gamma-ratio inequalities, and interval-certification methods. Cite exact theorem statements, authors, publication data, and URLs/DOIs/arXiv links. If web search is unavailable, explicitly say so and do not invent citations. In reasoning, spend about 80% on the judge-assigned main route and about 20% on serious alternative proof routes or obstruction searches. In review, assess the other agents and recommend research-strategy adjustments. As judge, write a long-form synthesis with concrete next-round prompts for A1, A2, and A3.
 
+## Raw Markdown Copy-Response Safety Rule
 
+Your final answer must be one single fenced Markdown code block:
+
+````text
+```markdown
+Summary:
+...
+```
+````
+
+Do not write anything before or after that outer fence. Inside the fence, write normal Markdown and raw LaTeX source using `$...$` and `$$...$$`.
+
+Do not use additional triple-backtick fences inside your answer. This rule is required because web Copy response can corrupt rendered display math, turning `=` into `====` and minus/fraction bars into long dashed lines.
 
 ## Active Agents For This Run
 
@@ -158,51 +169,18 @@ For review stages, include: valuable ideas from other agents, claims that look c
 
 For judge stages, include: selected route, useful fragments by source, rejected or risky ideas, exact gaps, new lemma statements, research-strategy adjustment, next-round tasks, and confidence. The judge should write next-round prompts that force depth: exact hypotheses, derivations, verification plans, confidence calibration, and one exploratory allocation when useful.
 
-## Reasoning-Stage Guardrail
-
-This is an independent reasoning stage, not a review stage.
-
-Use the previous rounds only as background state and judge instructions. Do not evaluate "other agents' outputs" as your primary task, and do not use review-stage headings such as:
-
-- `Most valuable input from others`
-- `Claims that look correct`
-- `Claims that need proof`
-- `Score by agent`
-- `Suggested synthesis`
-
-If your draft begins with a review heading, discard that draft and rewrite it as independent reasoning using the required reasoning schema below. Start from a new mathematical claim, derivation, obstruction check, lemma statement, or concrete test.
-
-Exploration budget: spend about 80% of the answer on the assigned route and about 20% on alternative proof ideas or obstruction searches. The divergent part must be mathematically serious, not a brainstorm list: state why each alternative might work, what exact lemma would be needed, and what quick test could falsify it.
-
 ## Agent Depth Contract
 
-Write a rigorous algebra-audit research memo of at least 3000 words. Include exact formula checks, theorem-dependency checks, parameter ranges, hidden assumptions, failure modes, at least one reproducible symbolic or numeric check, and confidence calibration. Separate proved statements from conjectural or derived-under-assumptions claims. Do not include a thinking transcript; present the final derivations, audit conclusions, and failed proof paths in polished raw Markdown. Do not invent citations; include a theorem-dependency list with exact missing theorem statements for A1/A2 literature search.
+Write a long-form judge synthesis of at least 3500 words. Do not merely summarize. Select a route, state exact gaps, add or reject lemmas, calibrate confidence, decide whether the research strategy should continue or pivot, and write deep next-round prompts for A1, A2, and A3. Each next-round prompt should include exact objectives, required derivations, verification tasks, and one exploratory allocation when useful. Include a literature-status section distinguishing verified references, unverified theorem needs, and source-search tasks assigned to A1/A2.
 
-## Agent Required Section Skeleton
 
-Use these exact top-level section labels in this order. You may add subsections under them, but do not omit or rename any listed label.
-
-1. `Summary`
-2. `Assumptions and notation`
-3. `Exact algebra checks`
-4. `Theorem-dependency checks`
-5. `Hidden assumptions and failure modes`
-6. `Counterexample or obstruction search`
-7. `Divergent alternatives and 20% exploration`
-8. `Reproducible verification tasks`
-9. `Useful lemmas`
-10. `What should be tested next`
-11. `Confidence`
 
 ## Automatic Acceptance Gate
 
 Before finalizing, check your answer against this gate. If it fails, continue expanding and revising before you submit.
-- Minimum length: at least 3000 words.
+- Minimum length: at least 3500 words.
 - Minimum sections/headings: at least 10. Schema labels ending in `:` count.
-- Confidence calibration: no confidence value may exceed 0.95.
-- Required phrases/sections: `Summary`, `Exact algebra`, `Theorem-dependency`, `Hidden assumptions`, `Counterexample`, `Verification`, `Useful lemmas`, `What should be tested next`, `Confidence`.
-- Forbidden overclaim phrases: `# Model Reasoning Content`, `<thinking>`, `</thinking>`, `100% complete`, `100% confidence`, `fully certified`, `Potential gaps:\nNone`.
-- The response must be syntactically complete: balanced math delimiters and closed Markdown emphasis.
+- Required phrases/sections: `Selected main route`, `Known gaps`, `Research strategy adjustment`, `Next-round prompts by agent`, `For A1`, `For A2`, `For A3`, `Confidence`.
 
 ## Problem
 
@@ -41543,82 +41521,3148 @@ Keep the main Round 28 route execution-focused:
 
 Allow exactly one exploratory allocation, preferably SOS/Krasikov on \(n=2\), because it can produce a falsifiable certificate. Do not pivot the whole collaboration to EP, fractional operators, spectral PDE, or Carlson continuation without a concrete inequality stronger than the current endpoint-cap certificate route.
 
-## Judge-Assigned Reasoning Prompt For This Agent
+## Agent Responses
 
-Use the Stage A schema. Act as algebra checker and endpoint-reduction auditor.
+--- RESPONSE FROM A1 ---
+Summary:
 
-Your task is to rederive independently:
+Source note: this Round 27 Stage A response follows the uploaded A1 prompt and current state packet. Uploaded-file marker:
 
-1. the transformation from the Jacobi self-adjoint equation to
+I do not claim a proof of the real-parameter KKT conjecture. The arbitrary-degree finite-$B$ first-lobe amplitude theorem remains open.
+
+Concrete progress in this response:
+
+1. I give a lemma-bank-ready proof of the residual $n=1$ right-endpoint theorem, including a non-decimal gamma lower-bound certificate for $\Gamma(16/5)>121/50$.
+
+2. I write the permanent endpoint-cap first-lobe reduction as a theorem, clearly conditional on the imported global modules.
+
+3. I begin a genuine $n=2$ certificate by proving one nontrivial parameter box:
+$$
+   1\le\alpha\le\frac{11}{10},
+   \qquad
+   \frac12\le\theta\le\frac35,
+   \qquad
+   \theta=\frac{\alpha+3}{B}.
+$$
+   In that box I isolate the first critical point to
+$$
+   \frac14<u_1<\frac25
+$$
+   and prove the KKT value bound there by explicit rational inequalities. This is not a full $n=2$ theorem, but it is a real certified subbox and a template for the remaining boxes.
+
+4. I instantiate a precise allowed-side Airy/Olver variation theorem for
+$$
+   W_{\zeta\zeta}+\zeta W=\Psi_B(\zeta)W.
+$$
+   This is a valid theorem-level propagation estimate, but it does not close the bulk Langer route because the Frobenius-to-cut coefficient and weighted DGS/Olver constants remain unbounded.
+
+5. I give a bounded exploratory Sonin/Krasikov functional test for $n=1,2$, with explicit failure criteria. This remains exploratory.
+
+Literature check:
+
+The KKT source is Koornwinder--Kostenko--Teschl, *Jacobi Polynomials, Bernstein-type Inequalities and Dispersion Estimates for the Discrete Laguerre Operator*, *Advances in Mathematics* 333 (2018), 796--821, DOI `10.1016/j.aim.2018.05.038`; repository metadata confirms the title, venue, year, and DOI. Haagerup--Schlichtkrull provide a real-parameter Bernstein-type inequality uniform for $n\ge0$, $\alpha,\beta\ge0$, and $x\in[-1,1]$, but it is not the sharp KKT constant. Landau proves the order-monotonicity of Bessel suprema; in particular, the available abstracts state that $\sup_x |J_\nu(x)|$ strictly decreases from $1$ to $0$ as $\nu$ increases from $0$ to $\infty$. Dunster--Gil--Segura give explicit/computable Airy error bounds for simple-turning-point expansions; these are the right theorem family for the Langer route, but they still need to be instantiated with the exact KKT residual and constants. Arb remains an appropriate platform for later interval certificates because it implements arbitrary-precision midpoint-radius, or ball, interval arithmetic.
+
+Main claim or direction:
+
+The current proof program should remain:
 
 $$
-(p_BH')'+q_BH=0;
+\boxed{
+\text{endpoint-cap first-lobe reduction}
++
+\text{low-degree certificates}
++
+\text{small-}\alpha\text{ rational-Bessel/Riccati}
++
+\text{bulk weighted Langer/Airy}.
+}
 $$
 
-2. the formulas for $p_B,q_B,K_B,\Lambda_B,\Delta_B$;
-3. the identity
+For Round 27, the priority is not new architecture. The priority is artifact completion. I propose the following proof-state classification.
+
+**Certified in this response:**
+
+1. The residual $n=1$ right-endpoint theorem, modulo the already imported global modules.
+
+2. The endpoint-cap first-lobe reduction theorem, conditional on the imported central-contour, energy, small-exponent, symmetry, and boundary-case modules.
+
+3. A nontrivial $n=2$ subbox:
+$$
+   1\le\alpha\le\frac{11}{10},
+   \qquad
+   \frac12\le\theta\le\frac35.
+$$
+
+**Still open:**
+
+1. The full $n=2$ residual theorem on
+$$
+   \frac12<\alpha<\frac{15}{7},
+   \qquad
+   0\le\theta\le1.
+$$
+
+2. The arbitrary-degree first-lobe amplitude theorem:
+$$
+   |H(u_1)|
+   \le
+   \left(
+   \frac{(n+1)B}{(n+\alpha+1)(B-\alpha)}
+   \right)^{1/4}.
+$$
+
+3. A regime-split gamma envelope for
+$$
+   M_{n,\alpha,B}
+   =
+   \sqrt{
+   \frac{\Gamma(n+\alpha+1)\Gamma(B)}
+   {\Gamma(n+1)\Gamma(B-\alpha)}
+   }
+   (B\Lambda_B)^{-\alpha/2}.
+$$
+
+4. A KKT-instantiated DGS/Olver weighted Langer theorem with explicit scalar constants.
+
+Detailed reasoning:
+
+## Certified $n=1$ theorem
+
+### Theorem R27.1: residual right-endpoint certificate for $n=1$
+
+Assume the global reductions have already reduced the problem to the residual right-endpoint cap. Let
 
 $$
-u_\sigma=\frac{nB}{B+n-1};
+n=1,\qquad
+\frac12\le\alpha\le\frac65,\qquad
+\beta\ge0,
 $$
 
-4. the inequality
+and put
 
 $$
-K_B'(u)\ge\frac14
+B=\alpha+\beta+2,
+\qquad
+u=\frac{B(1-x)}2,
+\qquad
+H_1(u)=g_1^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right).
 $$
 
-on the endpoint cap;
-5. the Frobenius coefficient $A_{n,\alpha,B}$ and Bessel normalization $M_{n,\alpha,B}$;
-6. the critical-point equation in $x$ and in $u$.
+Then on the residual cap $0\le u\le1$,
 
-Mark each formula as verified, corrected, or rejected. Produce a symbolic/numeric check plan for the formulas, but do not replace proof with sampling.
+$$
+H_1(u)^4<T_{1,\alpha,\beta}^4,
+$$
 
-Your task is to propose concrete, checkable lemmas for the first-lobe certificate:
+where
 
-1. a gamma-ratio inequality for
+$$
+T_{1,\alpha,\beta}^4
+=
+\frac{2B}{(\alpha+2)(B-\alpha)}.
+$$
+
+### Proof
+
+For $n=1$,
+
+$$
+P_1^{(\alpha,\beta)}(x)
+=
+\frac12\left((\alpha+\beta+2)x+\alpha-\beta\right).
+$$
+
+At $x=1-2u/B$ and $B=\alpha+\beta+2$,
+
+$$
+P_1^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right)
+=
+\alpha+1-u.
+$$
+
+Therefore
+
+$$
+H_1(u)^2
+=
+\frac{\Gamma(B)}
+{\Gamma(\alpha+2)\Gamma(\beta+2)}
+\left(\frac{u}{B}\right)^\alpha
+\left(1-\frac{u}{B}\right)^\beta
+(\alpha+1-u)^2.
+$$
+
+Use the elementary gamma-ratio inequality
+
+$$
+\frac{\Gamma(B)}{\Gamma(B-\alpha)}\le B^\alpha,
+\qquad
+B-\alpha=\beta+2.
+$$
+
+A proof is:
+
+$$
+\log\frac{\Gamma(B)}{\Gamma(B-\alpha)}
+=
+\int_0^\alpha \psi(B-\alpha+t)\,dt
+<
+\int_0^\alpha \log(B-\alpha+t)\,dt
+\le
+\alpha\log B,
+$$
+
+where $\psi(y)<\log y$ for $y>0$. Thus
+
+$$
+H_1(u)^2
+\le
+F_\alpha(u)
+:=
+\frac{u^\alpha(\alpha+1-u)^2}{\Gamma(\alpha+2)}.
+$$
+
+For $1/2\le\alpha\le6/5$, the maximum of $F_\alpha$ on $0\le u\le1$ occurs at
+
+$$
+u_*=\frac{\alpha(\alpha+1)}{\alpha+2}.
+$$
+
+Indeed,
+
+$$
+\frac{d}{du}\log F_\alpha(u)
+=
+\frac{\alpha}{u}-\frac{2}{\alpha+1-u},
+$$
+
+so the unique positive critical point is $u_*$, and $u_*\le1$ is equivalent to
+
+$$
+\alpha^2\le2.
+$$
+
+This holds on $[1/2,6/5]$.
+
+At $u=u_*$,
+
+$$
+\max_{0\le u\le1}F_\alpha(u)
+=
+\frac{
+4\alpha^\alpha(\alpha+1)^{\alpha+2}
+}{
+(\alpha+2)^{\alpha+2}\Gamma(\alpha+2)
+}.
+$$
+
+Hence
+
+$$
+H_1(u)^4
+\le
+E(\alpha),
+$$
+
+where
+
+$$
+E(\alpha)
+=
+\left(
+\frac{
+4\alpha^\alpha(\alpha+1)^{\alpha+2}
+}{
+(\alpha+2)^{\alpha+2}\Gamma(\alpha+2)
+}
+\right)^2.
+$$
+
+Set
+
+$$
+L(\alpha)=\frac12\log E(\alpha).
+$$
+
+Then
+
+$$
+L(\alpha)
+=
+\log4+\alpha\log\alpha+(\alpha+2)\log(\alpha+1)
+-(\alpha+2)\log(\alpha+2)-\log\Gamma(\alpha+2),
+$$
+
+and
+
+$$
+L''(\alpha)
+=
+\frac1\alpha+\frac1{\alpha+1}-\frac1{\alpha+2}
+-\frac1{(\alpha+1)^2}
+-\psi'(\alpha+2).
+$$
+
+Use
+
+$$
+\psi'(x)
+=
+\sum_{k=0}^\infty\frac1{(x+k)^2}
+<
+\frac1{x^2}+\frac1x
+\qquad (x>0).
+$$
+
+With $x=\alpha+2$,
+
+$$
+L''(\alpha)
+>
+\frac1\alpha+\frac1{\alpha+1}
+-\frac{2}{\alpha+2}
+-\frac1{(\alpha+1)^2}
+-\frac1{(\alpha+2)^2}.
+$$
+
+The right side simplifies exactly to
+
+$$
+\frac{\alpha^3+5\alpha^2+7\alpha+4}
+{\alpha(\alpha+1)^2(\alpha+2)^2}>0.
+$$
+
+Therefore $L$ is strictly convex on $[1/2,6/5]$, so $E=e^{2L}$ is log-convex and its maximum on the interval occurs at an endpoint.
+
+At $\alpha=1/2$,
+
+$$
+E\left(\frac12\right)=\frac{3456}{3125\pi}.
+$$
+
+Since $\pi>3$,
+
+$$
+E\left(\frac12\right)
+<
+\frac{3456}{9375}
+<
+\frac{39}{100}.
+$$
+
+At $\alpha=6/5$, first prove
+
+$$
+\Gamma\left(\frac{16}{5}\right)>\frac{121}{50}.
+$$
+
+By the substitution $t=s^5$,
+
+$$
+\Gamma\left(\frac15\right)
+=
+5\int_0^\infty e^{-s^5}\,ds.
+$$
+
+For $x\ge0$, the odd Taylor truncation is a lower bound,
+
+$$
+e^{-x}
+\ge
+\sum_{k=0}^{13}\frac{(-x)^k}{k!}.
+$$
+
+Thus
+
+$$
+\Gamma\left(\frac15\right)
+>
+5\int_0^{13/10}
+\sum_{k=0}^{13}\frac{(-s^5)^k}{k!}\,ds
+=
+5\sum_{k=0}^{13}
+\frac{(-1)^k(13/10)^{5k+1}}{k!(5k+1)}.
+$$
+
+Exact rational arithmetic gives
+
+$$
+5\sum_{k=0}^{13}
+\frac{(-1)^k(13/10)^{5k+1}}{k!(5k+1)}
+-\frac{55}{12}
+=
+\frac{
+250647780669893461657058933354472676043453052374497279302540044345387738343950929
+}{
+1341717481325168640000000000000000000000000000000000000000000000000000000000000000000
+}
+>0.
+$$
+
+Hence
+
+$$
+\Gamma\left(\frac15\right)>\frac{55}{12}.
+$$
+
+Since
+
+$$
+\Gamma\left(\frac{16}{5}\right)
+=
+\frac{11}{5}\frac65\frac15\Gamma\left(\frac15\right)
+=
+\frac{66}{125}\Gamma\left(\frac15\right),
+$$
+
+we obtain
+
+$$
+\Gamma\left(\frac{16}{5}\right)>\frac{66}{125}\cdot\frac{55}{12}
+=
+\frac{121}{50}.
+$$
+
+Now
+
+$$
+E\left(\frac65\right)
+=
+\left(
+\frac{
+4(6/5)^{6/5}(11/5)^{16/5}
+}{
+(16/5)^{16/5}\Gamma(16/5)
+}
+\right)^2.
+$$
+
+Using $\Gamma(16/5)>121/50$,
+
+$$
+E\left(\frac65\right)
+<
+\left(
+\frac{200}{121}
+\left(\frac65\right)^{6/5}
+\left(\frac{11}{16}\right)^{16/5}
+\right)^2.
+$$
+
+It is enough to raise to the fifth power. The desired inequality is implied by
+
+$$
+\left(\frac{200}{121}\right)^{10}
+\left(\frac65\right)^{12}
+\left(\frac{11}{16}\right)^{32}
+<
+\left(\frac{39}{100}\right)^5.
+$$
+
+Exact rational subtraction gives
+
+$$
+\left(\frac{39}{100}\right)^5
+-
+\left(\frac{200}{121}\right)^{10}
+\left(\frac65\right)^{12}
+\left(\frac{11}{16}\right)^{32}
+=
+\frac{
+454654160766016091960039606439
+}{
+755578637259143234191360000000000
+}
+>0.
+$$
+
+Therefore
+
+$$
+E\left(\frac65\right)<\frac{39}{100}.
+$$
+
+By convexity of $L$,
+
+$$
+E(\alpha)<\frac{39}{100}
+\qquad
+\left(\frac12\le\alpha\le\frac65\right).
+$$
+
+Finally,
+
+$$
+T_{1,\alpha,\beta}^4
+=
+\frac{2B}{(\alpha+2)(B-\alpha)}
+=
+\frac{2(\alpha+\beta+2)}{(\alpha+2)(\beta+2)}
+\ge
+\frac2{\alpha+2}
+\ge
+\frac58
+>
+\frac{39}{100}.
+$$
+
+Hence
+
+$$
+H_1(u)^4
+\le E(\alpha)
+<
+\frac{39}{100}
+<
+\frac58
+\le T_{1,\alpha,\beta}^4.
+$$
+
+This proves the residual $n=1$ cap theorem.
+
+Status: **proved**, conditional only on the imported global reduction package.
+
+## Permanent endpoint-cap theorem
+
+### Theorem R27.2: right endpoint cap and first-lobe reduction
+
+Assume the following imported modules are available:
+
+1. central branch-safe contour clearance;
+2. weighted-energy clearance;
+3. small right-endpoint exponent clearance for $0\le\alpha\le1/2$;
+4. left-right symmetry under $(\alpha,\beta,x)\mapsto(\beta,\alpha,-x)$;
+5. boundary-case treatment for $n=0$, $\alpha=0$, $\beta=0$, $\alpha=1/2$, no cap turning point, and no first critical point.
+
+In the residual right-endpoint range,
+
+$$
+n\ge1,\qquad
+\frac12<\alpha<\alpha_E(n):=
+\frac{(2n+1)(n+1)}{2n+3},
+\qquad
+\beta\ge0,
+$$
+
+set
+
+$$
+B=n+\alpha+\beta+1,
+\qquad
+u=\frac{B(1-x)}2,
+\qquad
+H(u)=g_n^{(\alpha,\beta)}\left(1-\frac{2u}{B}\right).
+$$
+
+The residual cap is
+
+$$
+0\le u\le u_\sigma,
+\qquad
+u_\sigma=\frac{nB}{B+n-1}\le n.
+$$
+
+On this cap,
+
+$$
+(p_BH')'+q_BH=0,
+$$
+
+where
+
+$$
+p_B(u)=u\left(1-\frac uB\right),
+$$
+
+and
+
+$$
+q_B(u)
+=
+n+\frac12-\frac{n+1}{2B}
+-
+\frac{
+\left(\left(1-\frac{n+1}{B}\right)u-\alpha\right)^2
+}{
+4u\left(1-\frac uB\right)
+}.
+$$
+
+Define
+
+$$
+K_B(u)=p_B(u)q_B(u).
+$$
+
+Then
+
+$$
+K_B(u)
+=
+-\frac{\alpha^2}{4}
++
+\Lambda_Bu
+-
+\Delta_Bu^2,
+$$
+
+where
+
+$$
+r_B=1-\frac{n+1}{B}=\frac{\alpha+\beta}{B},
+$$
+
+$$
+c_B=n+\frac12-\frac{n+1}{2B},
+$$
+
+and
+
+$$
+\Lambda_B=c_B+\frac{\alpha r_B}{2},
+\qquad
+\Delta_B=\frac{c_B}{B}+\frac{r_B^2}{4}.
+$$
+
+Moreover,
+
+$$
+K_B'(u_\sigma)
+=
+\frac{(\alpha+\beta)(n+\alpha+1)}{2B}
+=
+\frac{\alpha}{2}+\frac{\beta(n+1)}{2B},
+$$
+
+and, since $K_B$ is concave,
+
+$$
+K_B'(u)\ge K_B'(u_\sigma)\ge\frac{\alpha}{2}>\frac14
+\qquad
+(0\le u\le u_\sigma).
+$$
+
+If $K_B$ has no zero in the cap, then $K_B<0$ throughout the cap, and the regular branch is controlled by monotone ascent to the central boundary.
+
+If $K_B$ has a first zero $u_0$ in the cap, then on $(0,u_0)$,
+
+$$
+q_B(u)<0.
+$$
+
+The regular Frobenius branch satisfies
+
+$$
+H(u)\sim A_{n,\alpha,B}u^{\alpha/2},
+\qquad
+A_{n,\alpha,B}>0.
+$$
+
+With
+
+$$
+W(u)=p_B(u)H'(u),
+$$
+
+the ODE gives
+
+$$
+W'(u)=-q_B(u)H(u)>0
+$$
+
+as long as $H>0$ and $q_B<0$. Since $H>0$ and $W>0$ near zero, $H$ remains positive and increasing up to $u_0$. Thus no local maximum occurs before $u_0$.
+
+On intervals where $q_B>0$, the Sonin functional
+
+$$
+S_B(u)=H(u)^2+\frac{p_B(u)H'(u)^2}{q_B(u)}
+$$
+
+satisfies
+
+$$
+S_B'(u)=
+-\frac{K_B'(u)}{q_B(u)^2}H'(u)^2
+\le0.
+$$
+
+Therefore local extrema after the turning point are nonincreasing in amplitude as $u$ increases toward the central boundary.
+
+Consequently, any remaining endpoint-cap failure must occur at the first critical point $u_1$ after $u_0$, if such a point exists. It is enough to prove
+
+$$
+|H(u_1)|
+\le
+T_{n,\alpha,\beta}
+=
+\left(
+\frac{(n+1)B}{(n+\alpha+1)(B-\alpha)}
+\right)^{1/4}.
+$$
+
+Status: **proved as a reduction theorem**, conditional on imported global modules. It is not a proof of the arbitrary-degree first-lobe amplitude theorem.
+
+## $n=2$ certificate attempt
+
+For $n=2$, put
+
+$$
+\theta=\frac{\alpha+3}{B}\in[0,1].
+$$
+
+Then
+
+$$
+B=\frac{\alpha+3}{\theta}
+$$
+
+for $\theta>0$, and the Laguerre face is $\theta=0$.
+
+The compactified endpoint polynomial is
+
+$$
+P_{2,\alpha,\theta}(u)
+=
+\frac{(\alpha+1)(\alpha+2)}2
+-(\alpha+2)u
++
+\frac12\left(1+\frac{\theta}{\alpha+3}\right)u^2.
+$$
+
+The critical-point equation in the cap is
+
+$$
+C_{\alpha,\theta}(u)=0,
+$$
+
+where
+
+$$
+C_{\alpha,\theta}(u)
+=
+\left(
+\alpha(\alpha+3)-(\alpha+3-3\theta)u
+\right)P_{2,\alpha,\theta}(u)
++
+2u\left((\alpha+3)-\theta u\right)
+P_{2,\alpha,\theta}'(u).
+$$
+
+The target is
+
+$$
+T_{2,\alpha,\theta}^4
+=
+\frac3{\alpha+3-\alpha\theta}.
+$$
+
+### Certified subbox B2.1
+
+Consider the rational parameter box
+
+$$
+\mathcal B_{2,1}:
+\qquad
+1\le\alpha\le\frac{11}{10},
+\qquad
+\frac12\le\theta\le\frac35.
+$$
+
+The cap endpoint is
+
+$$
+u_\sigma=\frac{2B}{B+1}
+=
+\frac{2(\alpha+3)}{\alpha+3+\theta}.
+$$
+
+On this box,
+
+$$
+u_\sigma>\frac85
+$$
+
+and the first critical point lies in
+
+$$
+\frac14<u_1<\frac25.
+$$
+
+Proof of the critical bracket:
+
+At $u=1/4$,
+
+$$
+C_{\alpha,\theta}\left(\frac14\right)
+=
+\frac{
+64\alpha^5+528\alpha^4+48\alpha^3\theta+1404\alpha^3
++284\alpha^2\theta+951\alpha^2
++514\alpha\theta-1098\alpha-\theta^2+282\theta-1161
+}{
+128(\alpha+3)
+}.
+$$
+
+This is increasing in $\theta$ because
+
+$$
+24\alpha^3+142\alpha^2+257\alpha-\theta+141>0.
+$$
+
+On the box it is also increasing in $\alpha$; a crude lower bound for the $\alpha$ derivative numerator is already positive at $\alpha=1,\theta=1/2$. Hence the minimum is at $(\alpha,\theta)=(1,1/2)$, where
+
+$$
+C_{1,1/2}\left(\frac14\right)
+=
+\frac{5007}{2048}>0.
+$$
+
+At $u=2/5$,
+
+$$
+C_{\alpha,\theta}\left(\frac25\right)
+=
+\frac{
+125\alpha^5+975\alpha^4+150\alpha^3\theta+2235\alpha^3
++880\alpha^2\theta+237\alpha^2
++1574\alpha\theta-4248\alpha
+-8\theta^2+852\theta-3132
+}{
+250(\alpha+3)
+}.
+$$
+
+This is increasing in $\theta$, and its $\alpha$ derivative is positive on the same box. Hence the maximum is at $(\alpha,\theta)=(11/10,3/5)$, where
+
+$$
+C_{11/10,3/5}\left(\frac25\right)
+=
+-\frac{486883}{820000}<0.
+$$
+
+Therefore there is at least one critical point in $(1/4,2/5)$.
+
+It remains to exclude an earlier critical point. Differentiate $C$ with respect to $u$. The numerator of $C_u$ satisfies, for $0\le u\le1/4$,
+
+$$
+\operatorname{num}(C_u)
+\le
+-\frac{(\alpha+3)
+\left(
+6\alpha^3-6\alpha^2\theta+37\alpha^2-17\alpha\theta+69\alpha-12\theta+36
+\right)}2
+<0.
+$$
+
+Thus $C$ is strictly decreasing on $0\le u\le1/4$. Since $C(1/4)>0$, no critical point occurs before $1/4$. Hence the root in $(1/4,2/5)$ is the first critical point.
+
+By the endpoint-cap first-lobe reduction, this is the only critical point that needs to be bounded.
+
+### Value bound on the subbox
+
+On the root bracket $1/4<u<2/5$,
+
+$$
+u^\alpha\le u\le\frac25
+$$
+
+because $\alpha\ge1$ and $0<u<1$.
+
+Use again
+
+$$
+\frac{\Gamma(B)}{\Gamma(B-\alpha)}\le B^\alpha.
+$$
+
+For $n=2$ this gives
+
+$$
+H_2(u)^2
+\le
+\frac{2u^\alpha P_{2,\alpha,\theta}(u)^2}{\Gamma(\alpha+3)}.
+$$
+
+On $\mathcal B_{2,1}$ and $1/4\le u\le2/5$,
+
+$$
+P_{2,\alpha,\theta}(u)\le
+P_{2,11/10,3/5}\left(\frac14\right)
+=
+\frac{82519}{32800}.
+$$
+
+The reason is that $P_{2,\alpha,\theta}(u)$ is decreasing in $u$ on this bracket, increasing in $\theta$, and increasing in $\alpha$ on the stated box.
+
+Also,
+
+$$
+\Gamma(\alpha+3)\ge\Gamma(4)=6,
+$$
+
+and
+
+$$
+T_{2,\alpha,\theta}^4
+=
+\frac3{\alpha+3-\alpha\theta}
+\ge
+\frac{60}{71},
+$$
+
+because
+
+$$
+\alpha+3-\alpha\theta
+\le
+\frac{11}{10}+3-\frac{11}{10}\cdot\frac12
+=
+\frac{71}{20}.
+$$
+
+Therefore
+
+$$
+\frac{H_2(u_1)^4}{T_{2,\alpha,\theta}^4}
+\le
+\frac{
+\left(
+\frac45
+\left(\frac{82519}{32800}\right)^2
+\frac16
+\right)^2
+}{
+60/71
+}
+=
+\frac{
+3292108758616678122791
+}{
+3906332006400000000000
+}
+<1.
+$$
+
+Thus
+
+$$
+H_2(u_1)^4<T_{2,\alpha,\theta}^4
+$$
+
+on the nontrivial box
+
+$$
+1\le\alpha\le\frac{11}{10},
+\qquad
+\frac12\le\theta\le\frac35.
+$$
+
+Status: **certified subbox**, assuming the endpoint-cap first-lobe reduction. This does not prove the full $n=2$ theorem.
+
+## DGS/Olver instantiation
+
+The exact KKT dynamic oscillator is
+
+$$
+H_{\tau\tau}+K_B(u(\tau))H=0,
+\qquad
+\tau=\log\frac{u}{B-u}.
+$$
+
+Let $K(\tau)=K_B(u(\tau))$, and assume $K$ has a simple zero at $\tau_0$. Define the Langer variable $\zeta$ by
+
+$$
+K(\tau)=\zeta(\tau)\zeta_\tau(\tau)^2,
+\qquad
+\zeta(\tau_0)=0,
+$$
+
+with $\zeta>0$ on the allowed side. Set
+
+$$
+H(\tau)=\zeta_\tau(\tau)^{-1/2}W(\zeta).
+$$
+
+Then
+
+$$
+W_{\zeta\zeta}+\zeta W=\Psi_B(\zeta)W,
+$$
+
+where
+
+$$
+\Psi_B(\zeta)
+=
+\frac12\frac{\{\zeta,\tau\}}{\zeta_\tau^2}
+=
+\frac{\zeta K_{\tau\tau}}{4K^2}
+-
+\frac{5\zeta K_\tau^2}{16K^3}
++
+\frac{5}{16\zeta^2}
+$$
+
+away from $\zeta=0$, with a removable turning-point value after Taylor cancellation.
+
+Dunster--Gil--Segura prove computable and explicit Airy error bounds for linear differential equations with a simple turning point; their papers are therefore directly relevant to this transformed equation. The exact DGS weight system is not yet inserted here. What I can instantiate now is the following self-contained allowed-side Airy variation theorem, which is the zeroth-order Volterra form that a DGS/Olver bound must sharpen.
+
+### Theorem R27.3: allowed-side Airy envelope propagation
+
+Let $0<\zeta_c<\zeta_1$, and suppose $W$ solves
+
+$$
+W''+\zeta W=\Psi(\zeta)W
+$$
+
+on $[\zeta_c,\zeta_1]$.
+
+Let
+
+$$
+A(\zeta)=\operatorname{Ai}(-\zeta),
+\qquad
+B_A(\zeta)=\operatorname{Bi}(-\zeta),
+$$
+
+and
+
+$$
+\mathfrak m(\zeta)^2=A(\zeta)^2+B_A(\zeta)^2.
+$$
+
+The Wronskian in the $\zeta$ variable is
+
+$$
+A(\zeta)B_A'(\zeta)-A'(\zeta)B_A(\zeta)=\frac1\pi.
+$$
+
+Define the coefficient vector $c(\zeta)=(a(\zeta),b(\zeta))$ by
+
+$$
+W(\zeta)=a(\zeta)A(\zeta)+b(\zeta)B_A(\zeta),
+$$
+
+with the usual variation-of-constants constraint
+
+$$
+a'(\zeta)A(\zeta)+b'(\zeta)B_A(\zeta)=0.
+$$
+
+Then
+
+$$
+\|c(\zeta_1)\|_2
+\le
+\|c(\zeta_c)\|_2
+\exp\left(
+\pi\int_{\zeta_c}^{\zeta_1}\mathfrak m(\xi)^2|\Psi(\xi)|\,d\xi
+\right).
+$$
+
+Consequently,
+
+$$
+|W(\zeta_1)|
+\le
+\mathfrak m(\zeta_1)\|c(\zeta_c)\|_2
+\exp\left(
+\pi\int_{\zeta_c}^{\zeta_1}\mathfrak m(\xi)^2|\Psi(\xi)|\,d\xi
+\right).
+$$
+
+This theorem is proved by variation of constants. Its KKT specialization is obtained by taking $\Psi=\Psi_B$.
+
+What remains missing for the bulk Langer proof:
+
+1. a bound for $\|c(\zeta_c)\|_2$ from the endpoint Frobenius branch;
+
+2. a DGS/Olver weighted replacement for the crude factor $\mathfrak m(\xi)^2$, especially through forbidden-to-allowed transfer;
+
+3. a scalar inequality comparing
+$$
+   \zeta_\tau(\tau_1)^{-1/2}
+   \mathfrak m(\zeta_1)\|c(\zeta_c)\|_2
+   \exp\left(
+   \pi\int_{\zeta_c}^{\zeta_1}\mathfrak m(\xi)^2|\Psi_B(\xi)|\,d\xi
+   \right)
+$$
+   with
+$$
+   T_{n,\alpha,\beta}.
+$$
+
+Status: **instantiated allowed-side Airy theorem; not a KKT closure theorem**.
+
+## What remains unproved
+
+The following are still open and should not be marked certified:
+
+1. Full $n=2$ theorem on
+$$
+   \frac12<\alpha<\frac{15}{7},
+   \qquad
+   0\le\theta\le1.
+$$
+
+2. Arbitrary-degree first-lobe amplitude theorem.
+
+3. Rational-Bessel phase/zero-safety theorem beyond the first Bessel peak.
+
+4. Gamma envelope for $M_{n,\alpha,B}$ strong enough to combine with rational-Bessel or Langer constants.
+
+5. Frobenius-to-Airy coefficient bound $\|c(\zeta_c)\|_2$.
+
+6. A fully KKT-instantiated DGS/Olver weighted variation theorem.
+
+7. A complete interval certificate with archived outward-rounded logs for all remaining $n=2$ boxes.
+
+Dependencies:
+
+1. KKT normalization:
+$$
+   g_n^{(\alpha,\beta)}(x)
+   =
+   \left(
+   \frac{\Gamma(n+1)\Gamma(n+\alpha+\beta+1)}
+   {\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}
+   \right)^{1/2}
+   \left(\frac{1-x}{2}\right)^{\alpha/2}
+   \left(\frac{1+x}{2}\right)^{\beta/2}
+   P_n^{(\alpha,\beta)}(x).
+$$
+
+2. Imported global modules:
+   central contour, weighted energy, small exponent, symmetry, and boundary cases. These are not reproved here.
+
+3. Gamma tools:
+   $\psi(x)<\log x$ for $x>0$;
+$$
+   \psi'(x)<\frac1{x^2}+\frac1x.
+$$
+   The explicit $\Gamma(16/5)$ lower bound in this response is self-contained via Taylor integration.
+
+4. Endpoint cap algebra:
+   exact ODE, $K_B$ quadratic, cap monotonicity, forbidden-zone ascent, and Sonin ordering.
+
+5. Web-checked literature:
+   KKT source metadata, Haagerup--Schlichtkrull context, Landau Bessel monotonicity, DGS simple-turning-point Airy error bounds, and Arb interval arithmetic platform.
+
+Potential gaps:
+
+1. The $n=2$ subbox proof relies on the endpoint-cap first-lobe reduction, not on a direct global cap estimate. This is acceptable for the current proof program but should be stated explicitly.
+
+2. The monotonicity checks in the $n=2$ subbox are written as rational inequalities. Before committing to a public proof, A3 should independently CAS-check the displayed formulas for $C(1/4)$, $C(2/5)$, and the $C_u$ upper bound.
+
+3. The gamma-ratio inequality
+$$
+   \Gamma(B)/\Gamma(B-\alpha)\le B^\alpha
+$$
+   is enough for the $n=2$ subbox but much too crude for arbitrary degree.
+
+4. The allowed-side Airy theorem is too lossy near the Laguerre face unless the Frobenius-to-cut coefficient is handled with weighted DGS/Olver machinery.
+
+5. The final proof still depends on central-contour and small-exponent modules whose statements need to be frozen in the lemma bank.
+
+Counterexample or obstruction search:
+
+1. **Endpoint equality pressure.** At $\beta=0$, the target can be as large as $1$ and endpoint equality can occur at the opposite endpoint. The right-cap proof must avoid claiming a uniform strict global margin. The $n=2$ subbox avoids this by working at $\theta\in[1/2,3/5]$, away from $\theta=1$.
+
+2. **Laguerre face pressure.** The $\theta=0$ face remains dangerous for bulk Langer estimates. The $n=2$ subbox avoids $\theta=0$, so it does not test the hardest face.
+
+3. **Critical point ordering.** The $n=2$ box proves no critical point before $u=1/4$ and a first critical point before $u=2/5$. It does not isolate later critical points, because Sonin ordering makes them irrelevant after first-lobe reduction.
+
+4. **Gamma arithmetic.** The $n=1$ theorem no longer depends on floating decimals; the gamma lower bound is derived from an exact rational Taylor-integral certificate.
+
+5. **Bessel maximum.** Landau's monotonicity can support a global $\nu\ge1/2$ Bessel maximum bound once a genuine Bessel reduction is made. It does not itself bound the Jacobi first lobe.
+
+Divergent alternatives and 20% exploration:
+
+## Higher-order Sonin/Krasikov trial
+
+The current endpoint-cap proof uses the basic Sonin functional
+
+$$
+S_B=H^2+\frac{p_BH'^2}{q_B}.
+$$
+
+This orders extrema after the turning point but does not estimate the first one. A possible low-degree route is to seek a higher-order algebraic functional
+
+$$
+\mathcal V(u)
+=
+A(u)H(u)^2
++
+B(u)(p_BH'(u))^2
++
+C(u)H(u)p_BH'(u),
+$$
+
+where $A,B,C$ are low-degree rational functions chosen so that:
+
+1. $\mathcal V(u)\ge H(u)^2$ at critical points;
+
+2. $\mathcal V'(u)\le0$ on the allowed part of the cap;
+
+3. $\mathcal V$ has finite, computable endpoint or turning-point normalization;
+
+4. the derivative identity uses only the ODE
+$$
+   (p_BH')'=-q_BH.
+$$
+
+A natural first trial is
+
+$$
+\mathcal V_\lambda(u)
+=
+H^2+\frac{p_BH'^2}{q_B+\lambda}
+$$
+
+with $\lambda>0$ chosen to remove the pole at $q_B=0$. Differentiating gives a derivative term with denominator $(q_B+\lambda)^2$ and introduces a sign condition involving
+
+$$
+(p_B(q_B+\lambda))'=K_B'(u)+\lambda p_B'(u).
+$$
+
+Failure criterion: if no $\lambda>0$ makes this expression nonnegative through the first lobe while also keeping the boundary normalization below $T^2$, this regularized Sonin route should be rejected.
+
+For $n=1$, this is unnecessary because the scalar theorem is proved. For $n=2$, the candidate should be tested first on the certified box $\mathcal B_{2,1}$, then on boxes near $\theta=0$ and $\theta=1$. The deliverable should be an exact sign table, not a heuristic plot.
+
+## Christoffel-kernel fallback
+
+A Christoffel-function route would need an inequality of the form
+
+$$
+w_{\alpha,\beta}(x)P_n^{(\alpha,\beta)}(x)^2
+\le
+\text{sharp constant depending on }n,\alpha,\beta,
+$$
+
+at the first critical point. The standard Christoffel bound gives control by the inverse reproducing kernel but normally loses the exact KKT constant. I do not see a route to the sharp factor without a new identity at critical points. This remains low priority.
+
+Useful lemmas:
+
+### Lemma R27.L1: Degree-one residual endpoint theorem
+
+For
+
+$$
+n=1,\qquad
+\frac12\le\alpha\le\frac65,\qquad
+\beta\ge0,
+$$
+
+the residual right endpoint cap satisfies
+
+$$
+H_1(u)^4<T_{1,\alpha,\beta}^4.
+$$
+
+Status: proved in this response.
+
+### Lemma R27.L2: Gamma lower bound
+
+$$
+\Gamma\left(\frac{16}{5}\right)>\frac{121}{50}.
+$$
+
+Status: proved in this response by reducing to $\Gamma(1/5)>55/12$ and applying an exact rational Taylor-integral lower bound.
+
+### Lemma R27.L3: Endpoint-cap first-lobe reduction
+
+Under the imported global modules, the residual right endpoint proof reduces to
+
+$$
+|H(u_1)|
+\le
+\left(
+\frac{(n+1)B}{(n+\alpha+1)(B-\alpha)}
+\right)^{1/4}
+$$
+
+at the first critical point after the first cap turning point.
+
+Status: proved as a reduction theorem, not an amplitude theorem.
+
+### Lemma R27.L4: Degree-two compactified polynomial
+
+For $n=2$,
+
+$$
+P_{2,\alpha,\theta}(u)
+=
+\frac{(\alpha+1)(\alpha+2)}2
+-(\alpha+2)u
++
+\frac12\left(1+\frac{\theta}{\alpha+3}\right)u^2.
+$$
+
+Status: accepted algebra.
+
+### Lemma R27.L5: Degree-two certified subbox
+
+For
+
+$$
+1\le\alpha\le\frac{11}{10},
+\qquad
+\frac12\le\theta\le\frac35,
+$$
+
+the first critical point in the residual cap lies in
+
+$$
+\frac14<u_1<\frac25
+$$
+
+and satisfies
+
+$$
+H_2(u_1)^4<T_{2,\alpha,\theta}^4.
+$$
+
+Status: proved in this response, conditional on first-lobe reduction.
+
+### Lemma R27.L6: Allowed-side Airy propagation
+
+For
+
+$$
+W''+\zeta W=\Psi W
+$$
+
+on $[\zeta_c,\zeta_1]\subset(0,\infty)$,
+
+$$
+|W(\zeta_1)|
+\le
+\mathfrak m(\zeta_1)\|c(\zeta_c)\|_2
+\exp\left(
+\pi\int_{\zeta_c}^{\zeta_1}\mathfrak m(\xi)^2|\Psi(\xi)|\,d\xi
+\right),
+$$
+
+where
+
+$$
+\mathfrak m(\zeta)^2=
+\operatorname{Ai}(-\zeta)^2+\operatorname{Bi}(-\zeta)^2.
+$$
+
+Status: proved by variation of constants. Useful but too crude for full KKT closure without a Frobenius-to-cut bound and DGS/Olver weights.
+
+What should be tested next:
+
+1. **Full $n=2$ subdivision.** Use the certified subbox proof as a template. Subdivide
+$$
+   \frac12<\alpha<\frac{15}{7},
+   \qquad
+   0\le\theta\le1
+$$
+   into rational boxes. For each box:
+   - isolate the first root of $C_{\alpha,\theta}(u)$;
+   - bound $P_{2,\alpha,\theta}$ on that root interval;
+   - apply either a gamma-ratio bound or direct interval enclosure;
+   - compare with $T_{2,\alpha,\theta}^4$.
+
+2. **Difficult $n=2$ faces.** Prioritize:
+$$
+   \theta=0,\qquad
+   \theta=1,\qquad
+   \alpha\approx\frac12,\qquad
+   \alpha\approx\frac{15}{7}.
+$$
+
+3. **A3 audit of this response's $n=2$ box.** Verify:
+   - $C(1/4)$ formula;
+   - $C(2/5)$ formula;
+   - $C_u<0$ on $0\le u\le1/4$;
+   - $P_{2,\alpha,\theta}(u)\le82519/32800$;
+   - final rational ratio
+$$
+     \frac{
+     3292108758616678122791
+     }{
+     3906332006400000000000
+     }<1.
+$$
+
+4. **Rational-Bessel repair.** A2 should determine whether the true first critical point is ever before $j'_{\alpha,1}$ in the rational-Bessel variable. If not, the pre-peak theorem must be explicitly downgraded.
+
+5. **Frobenius-to-Airy coefficient.** A1/A2 should compute $\|c(\zeta_c)\|_2$ from endpoint data for a fixed cut $\zeta_c>0$ in at least one bulk parameter regime.
+
+6. **Gamma envelope.** A3 should use Binet or Kershaw/Wendel inequalities to prove a nontrivial upper bound for $M_{n,\alpha,B}$ when $\alpha\le C\sqrt n$.
+
+7. **Higher-order Sonin trial.** Test $\mathcal V_\lambda$ on the $n=2$ certified box and one box near $\theta=0$. Record exact sign failures if it does not work.
+
+Confidence:
+
+| Statement | Confidence |
+| --- | :---: |
+| $n=1$ residual theorem as proved here | 0.94 |
+| Gamma lower bound $\Gamma(16/5)>121/50$ | 0.95 |
+| Endpoint-cap first-lobe reduction, conditional on imported modules | 0.90 |
+| $n=2$ compactified polynomial and critical equation | 0.93 |
+| Certified $n=2$ subbox $\alpha\in[1,11/10]$, $\theta\in[1/2,3/5]$ | 0.82 |
+| Full $n=2$ residual theorem true | 0.76 |
+| Allowed-side Airy variation theorem | 0.95 |
+| Current Airy/Langer material proves arbitrary degree | 0.18 |
+| Rational-Bessel route after phase/zero repair can close a small-$\alpha$ regime | 0.45 |
+| Higher-order Sonin/Krasikov route will close a useful range | 0.25 |
+| Full real-parameter KKT conjecture proved at this stage | 0.15 |
+| Endpoint-cap first-lobe route remains best main strategy | 0.90 |
+
+--- RESPONSE FROM A2 ---
+## Summary
+
+Round 26 has successfully consolidated the low-degree algebraic artifacts and produced a near-certified residual endpoint theorem for $n=1$. However, the arbitrary-degree finite-$B$ first-lobe amplitude theorem remains unproved, and the full real-parameter KKT conjecture remains open. As A2, my primary mandate is to rigorously audit the proposed analytic mechanisms, identify structural obstructions, and convert heuristic scaling arguments into explicit, checkable inequalities.
+
+In this round, I focus on repairing and delimiting the rational-coordinate Bessel track. The relative-amplitude identity $(W_1^2 h')' = |\Delta Q| W_1^2 h$ is algebraically exact and provides a sign-definite Volterra kernel. However, the previous claim that the Volterra integral is bounded by $T^4 / (64\Lambda_B^2)$ is valid only in the pre-peak region $T \le j'_{\alpha,1}$. I give a theorem-candidate argument that the true perturbed first critical point $T_1^*$ occurs after the Bessel reference peak $j'_{\alpha,1}$. This is an obstruction warning against any proof that assumes the critical point lies in the pre-peak region.
+
+To resolve this, I derive a candidate bound on the phase shift $\delta = T_1^* - j'_{\alpha,1}$. By exploiting the critical-point condition $H'(u_1) = 0$ and the exact relative-amplitude identity, the proposed estimate is $\delta \le \frac{M_Q (T_1^*)^3}{16\Lambda_B^2 (1 - \alpha^2/(j'_{\alpha,1})^2)}$. This quantification suggests that the rational-Bessel track is zero-safe, meaning the critical point occurs before the Bessel zero $j_{\alpha,1}$, only in a small-$\alpha$ regime of approximately $\alpha \lesssim n^{3/5}$. The exponent is a serious obstruction signal, not yet a certified cutoff theorem, because the post-peak derivative lower bound, constants in the Bessel zero gap, and gamma normalization still require explicit inequalities.
+
+Furthermore, I carry out the requested exploratory analysis of the Whittaker and confluent-hypergeometric reference equations. The calculation indicates that while the Whittaker equation absorbs the leading constant term of the residual $\Delta Q(z)$, it still leaves an $\mathcal{O}(1)$ residual at the origin. Consequently, the Volterra variation integral appears to retain the same $\mathcal{O}(1/n^2)$ asymptotic scaling as the Bessel reference, while increasing the complexity of the reference functions. This alternative is therefore downgraded as a main route unless a later computation shows a different weighted-kernel advantage.
+
+## Assumptions
+
+1. **Parameter Domain:** We operate in the residual right-endpoint strip $n \ge 1$, $1/2 < \alpha < \alpha_E(n) = \frac{(2n+1)(n+1)}{2n+3}$, and $\beta \ge 0$.
+2. **Endpoint Cap:** The analysis is restricted to the finite cap $0 \le u \le u_\sigma = \frac{nB}{B+n-1} \le n$, where $u = \frac{B(1-x)}{2}$ and $B = n+\alpha+\beta+1$.
+3. **Rational Coordinate:** We utilize the certified rational coordinate $z = \frac{Bu}{B-u}$ and the normal form $Y(z) = z^{1/2}H(u(z))$.
+4. **Bessel Reference:** The reference solution is $W_1(z) = \sqrt{z} J_\alpha(2\sqrt{\Lambda_B z})$, and the relative amplitude is $h(z) = Y(z) / W_1(z)$.
+5. **Imported Modules:** We assume the central-contour, weighted-energy, small-exponent, and symmetry modules have successfully cleared their respective parameter regions.
+
+## Claim Ledger
+
+*   **[DERIVED-UNDER-ASSUMPTIONS]** The true perturbed first critical point $T_1^* = 2\sqrt{\Lambda_B z_1^*}$ should satisfy $T_1^* > j'_{\alpha,1}$ if the relative-amplitude monotonicity $h'(z)>0$ and positivity $h(z)>0$ persist up to the first critical point before the first zero of the Bessel reference.
+*   **[DERIVED-UNDER-ASSUMPTIONS]** The candidate phase shift bound is $\delta \le \frac{M_Q (T_1^*)^3}{16\Lambda_B^2 (1 - \alpha^2/(j'_{\alpha,1})^2)}$, where $M_Q = \sup |\Delta Q(z)|$. This requires a lower bound for $F'(T)$ on the whole interval between $j'_{\alpha,1}$ and $T_1^*$, not only its value at the endpoint.
+*   **[CONJECTURED]** The rational-Bessel relative-amplitude track is zero-safe (i.e., $T_1^* < j_{\alpha,1}$) for a regime comparable to $\alpha \le C n^{3/5}$ after explicit constants are supplied.
+*   **[LIKELY-FALSE]** The rational-Bessel track can cover the regime $\alpha = C n^{2/3}$ or $\alpha = c n$. The phase shift pushes the critical point past the Bessel zero, causing a singularity in the relative-amplitude identity.
+*   **[HEURISTIC]** The Whittaker reference equation does not appear to provide a vanishing residual at $z=0$. The residual remains $\mathcal{O}(1)$ in the displayed calculation, so no clear asymptotic advantage over the Bessel reference is visible.
+*   **[DERIVED-UNDER-ASSUMPTIONS]** The pre-peak Volterra bound $h(z) \le M_{n,\alpha,B} \exp\left( M_Q \frac{T^4}{64\Lambda_B^2} \right)$ is valid strictly for $T \le j'_{\alpha,1}$.
+
+This ledger is intentionally conservative. The algebraic identity for the relative amplitude is the strongest item. The post-peak location and the $n^{3/5}$ threshold are not yet theorem-bank entries. They are candidate consequences of a chain of inequalities that still has three missing pieces: an explicit $M_Q$ bound on the actual cap, a certified lower bound for the Bessel peak slope functional over a nonzero post-peak interval, and a comparison of the phase-shift upper bound with a rigorous lower bound for $j_{\alpha,1}-j'_{\alpha,1}$. Until those are written with finite constants, the correct status is obstruction-guiding rather than proved.
+
+## Symbolic Verification Log
+
+**1. Critical Point Phase Shift Condition:**
+At the first critical point $u_1$, we have $H'(u_1) = 0$.
+Using $Y(z) = z^{1/2} H(u(z))$, the derivative is $Y'(z) = \frac{1}{2} z^{-1/2} H + z^{1/2} H' \frac{du}{dz}$.
+At $z_1^*$, this reduces to $Y'(z_1^*) = \frac{1}{2z_1^*} Y(z_1^*)$.
+Substituting $Y = h W_1$, we obtain $h' W_1 + h W_1' = \frac{1}{2z} h W_1$, which implies $h' = h \left( \frac{1}{2z} - \frac{W_1'}{W_1} \right)$.
+For $W_1(z) = z^{1/2} J_\alpha(T)$ with $T = 2\sqrt{\Lambda_B z}$, we have $\frac{W_1'}{W_1} = \frac{1}{2z} + \frac{2\Lambda_B}{T} \frac{J_\alpha'(T)}{J_\alpha(T)}$.
+Thus, at the critical point, $h'(z_1^*) = - h(z_1^*) \frac{2\Lambda_B}{T_1^*} \frac{J_\alpha'(T_1^*)}{J_\alpha(T_1^*)}$.
+
+**2. Whittaker Residual Evaluation:**
+The rational normal form is $Y'' + \left( \frac{\Lambda_B}{z} + \frac{1-\alpha^2}{4z^2} + \Delta Q(z) \right)Y = 0$.
+With $\Delta Q(z) = -\frac{\Lambda_B}{B+z} - \frac{\Delta_B B^2}{(B+z)^2} = -\frac{\Lambda_B}{B} + \frac{\Lambda_B z}{B(B+z)} - \frac{\Delta_B B^2}{(B+z)^2}$.
+Absorbing the constant term $-\frac{\Lambda_B}{B}$ into the principal operator yields the Whittaker equation $Y_{xx} + \left( \frac{\sqrt{B\Lambda_B}}{2x} + \frac{1-\alpha^2}{4x^2} - \frac{1}{4} \right)Y = 0$ under the scaling $x = 2\sqrt{\frac{\Lambda_B}{B}} z$.
+The remaining residual is $\Delta \widetilde{Q}(z) = \frac{\Lambda_B z}{B(B+z)} - \frac{\Delta_B B^2}{(B+z)^2}$.
+At $z=0$, $\Delta \widetilde{Q}(0) = -\Delta_B \approx -1/4 \neq 0$.
+
+**3. Reproducibility Status:**
+No executed CAS transcript is included in this response. The algebra above is short enough to audit by hand, but the collaboration standard requires a reproducible script before promoting coefficient, residual, or phase-shift formulas. The minimum SymPy check for this packet is:
+
+```python
+import sympy as sp
+z, B, Lam, Delta = sp.symbols("z B Lam Delta", positive=True)
+DeltaQ = -Lam/(B+z) - Delta*B**2/(B+z)**2
+split = -Lam/B + Lam*z/(B*(B+z)) - Delta*B**2/(B+z)**2
+print(sp.simplify(DeltaQ - split))
+print(sp.simplify(split.subs(z, 0)))
+```
+
+The expected output is `0` for the residual split and `-Delta` at the origin. A separate script should verify the logarithmic derivative calculation for $W_1=z^{1/2}J_\alpha(T)$ symbolically, using $T=2\sqrt{\Lambda_B z}$ and differentiating with respect to $z$. That check is marked `[UNEXECUTED-CHECK]` here because the response itself does not include observed code output.
+
+## Theorem-Dependency Audit
+
+1. **Bessel Zero Interlacing and Derivatives:** The phase shift bound relies on the exact properties of Bessel functions, specifically that $J_\alpha(T) > 0$ on $(0, j_{\alpha,1})$, $J_\alpha'(T) > 0$ on $(0, j'_{\alpha,1})$, and $J_\alpha''(j'_{\alpha,1}) = -(1 - \alpha^2/(j'_{\alpha,1})^2) J_\alpha(j'_{\alpha,1})$. These are standard properties derivable from Bessel's differential equation.
+2. **Gronwall's Inequality:** The relative-amplitude identity $(W_1^2 h')' = |\Delta Q| W_1^2 h$ is integrated twice to yield a Volterra integral equation for $h(z)$. Since the kernel is strictly positive, Gronwall's inequality (or the method of successive approximations) rigorously provides the exponential upper bound.
+3. **Gamma-Ratio Envelope:** The initialization $h(0) = M_{n,\alpha,B}$ requires a rigorous upper bound on the gamma ratio. This remains an open dependency that must be resolved via Binet's formula or Wendel/Gautschi/Kershaw inequalities.
+4. **Bessel Zero-Gap Constants:** The threshold $\alpha\lesssim n^{3/5}$ uses large-order asymptotics for $j'_{\alpha,1}$ and $j_{\alpha,1}$. A theorem-level version must cite or prove explicit two-sided inequalities for $j_{\alpha,1}-j'_{\alpha,1}$ and for $1-\alpha^2/(j'_{\alpha,1})^2$ over the full order range used. Asymptotic constants alone do not certify the small and medium $\alpha$ cases.
+5. **Derivative Lower Bound After The Peak:** The phase-shift estimate replaces $F'(\xi)$ by a peak-value expression. To make this rigorous, one needs a lower bound for $F'(T)=-J_\alpha''(T)J_\alpha(T)-J_\alpha'(T)^2$ on $T\in[j'_{\alpha,1},T_1^*]$. The current text identifies the needed functional but has not bounded its variation.
+6. **Cap-Restricted Residual Bound:** The value $M_Q\le2.75$ must be justified on the actual cap image in $z$, not on an informal domain. The proof should state the cap endpoint, the maximum domain for $z$, and the parameter assumptions under which the chosen constant holds.
+
+## Main Claim Or Direction
+
+The rational-coordinate Bessel relative-amplitude track remains a plausible small-$\alpha$ theorem, but it now appears structurally limited by the post-peak phase shift. The previous assumption that the true first critical point lies in the pre-peak region $T \le j'_{\alpha,1}$ should not be used without proof; the sign argument points instead to a post-peak critical point. Quantifying $\delta = T_1^* - j'_{\alpha,1}$ suggests that zero-safety may hold only up to a scale comparable to $\alpha \le C n^{3/5}$. This establishes the main direction for the next round: either certify this threshold with finite constants or replace the Bessel denominator by a reference/energy method that remains regular after the first Bessel zero.
+
+## Detailed Derivations
+
+### 1. Certified Pre-Peak Volterra Lemma
+
+We operate in the rational coordinate $z = \frac{Bu}{B-u}$ with the normal form:
+$$ Y'' + \left( \frac{\Lambda_B}{z} + \frac{1-\alpha^2}{4z^2} + \Delta Q(z) \right)Y = 0 $$
+where $\Delta Q(z) = -\frac{\Lambda_B}{B+z} - \frac{\Delta_B B^2}{(B+z)^2} < 0$.
+Let $W_1(z) = \sqrt{z} J_\alpha(2\sqrt{\Lambda_B z})$ be the reference solution. Defining $Y(z) = h(z) W_1(z)$, direct substitution yields the exact relative-amplitude identity:
+$$ (W_1^2 h')' = |\Delta Q| W_1^2 h $$
+Integrating from $0$ to $z$, and noting that $h'(0) = 0$ (since the regular solutions match at the origin), we have:
+$$ h'(z) = \frac{1}{W_1(z)^2} \int_0^z |\Delta Q(x)| W_1(x)^2 h(x) dx $$
+Integrating again from $0$ to $z$:
+$$ h(z) = h(0) + \int_0^z \frac{1}{W_1(y)^2} \int_0^y |\Delta Q(x)| W_1(x)^2 h(x) dx dy $$
+Since $h(0) = M_{n,\alpha,B}$ and the operator is positive, Gronwall's inequality gives:
+$$ h(z) \le M_{n,\alpha,B} \exp\left( \int_0^z \frac{1}{W_1(y)^2} \int_0^y |\Delta Q(x)| W_1(x)^2 dx dy \right) $$
+Let $M_Q = \sup_{x \ge 0} |\Delta Q(x)| \le 2.75$. We change variables to $T = 2\sqrt{\Lambda_B z}$, so $z = \frac{T^2}{4\Lambda_B}$ and $dz = \frac{T}{2\Lambda_B} dT$. The integral becomes:
+$$ \mathcal{V}(T_z) = M_Q \int_0^{T_z} \frac{4\Lambda_B}{S^2 J_\alpha(S)^2} \left( \int_0^S \frac{W^2}{4\Lambda_B} J_\alpha(W)^2 \frac{W}{2\Lambda_B} dW \right) \frac{S}{2\Lambda_B} dS $$
+$$ \mathcal{V}(T_z) = \frac{M_Q}{4\Lambda_B^2} \int_0^{T_z} \frac{1}{S J_\alpha(S)^2} \left( \int_0^S W^3 J_\alpha(W)^2 dW \right) dS $$
+**Crucial Restriction:** For $S \le j'_{\alpha,1}$, the Bessel function $J_\alpha(W)$ is strictly increasing, so $J_\alpha(W) \le J_\alpha(S)$ for all $W \in [0, S]$. This allows the bound:
+$$ \int_0^S W^3 J_\alpha(W)^2 dW \le J_\alpha(S)^2 \int_0^S W^3 dW = J_\alpha(S)^2 \frac{S^4}{4} $$
+Substituting this back yields the pre-peak Volterra bound:
+$$ \mathcal{V}(T_z) \le \frac{M_Q}{4\Lambda_B^2} \int_0^{T_z} \frac{S^3}{4} dS = M_Q \frac{T_z^4}{64\Lambda_B^2} $$
+This bound is rigorously certified **only for $T_z \le j'_{\alpha,1}$**.
+
+### 2. Phase/Zero-Safety Audit: The True Critical Point
+
+We must determine the location of the true perturbed first critical point $T_1^* = 2\sqrt{\Lambda_B z_1^*}$. At the critical point $u_1$, we have $H'(u_1) = 0$.
+Using $Y(z) = z^{1/2} H(u(z))$, the derivative is:
+$$ Y'(z) = \frac{1}{2} z^{-1/2} H + z^{1/2} H' \frac{du}{dz} $$
+At $z_1^*$, this reduces exactly to $Y'(z_1^*) = \frac{1}{2z_1^*} Y(z_1^*)$.
+Substituting $Y = h W_1$ and $Y' = h' W_1 + h W_1'$, we obtain:
+$$ h'(z_1^*) W_1(z_1^*) + h(z_1^*) W_1'(z_1^*) = \frac{1}{2z_1^*} h(z_1^*) W_1(z_1^*) $$
+$$ h'(z_1^*) = h(z_1^*) \left( \frac{1}{2z_1^*} - \frac{W_1'(z_1^*)}{W_1(z_1^*)} \right) $$
+For $W_1(z) = z^{1/2} J_\alpha(T)$, the logarithmic derivative is:
+$$ \frac{W_1'(z)}{W_1(z)} = \frac{1}{2z} + \frac{J_\alpha'(T)}{J_\alpha(T)} \frac{dT}{dz} = \frac{1}{2z} + \frac{2\Lambda_B}{T} \frac{J_\alpha'(T)}{J_\alpha(T)} $$
+Substituting this into the equation for $h'(z_1^*)$ yields:
+$$ h'(z_1^*) = - h(z_1^*) \frac{2\Lambda_B}{T_1^*} \frac{J_\alpha'(T_1^*)}{J_\alpha(T_1^*)} $$
+From the relative-amplitude identity $(W_1^2 h')' = |\Delta Q| W_1^2 h > 0$ and $h'(0)=0$, we know that $h'(z) > 0$ for all $z > 0$. Since $h(z) > 0$ as well, the left-hand side is strictly positive.
+Therefore, we must have:
+$$ \frac{J_\alpha'(T_1^*)}{J_\alpha(T_1^*)} < 0 $$
+Since $J_\alpha(T) > 0$ on $(0, j_{\alpha,1})$ and $J_\alpha'(T) > 0$ on $(0, j'_{\alpha,1})$, this condition supports the conclusion that **$T_1^*$ exceeds $j'_{\alpha,1}$** as long as $T_1^*$ has not already crossed the first zero and the relative-amplitude quotient is regular. The true critical point is therefore expected to sit in the post-peak region. This is exactly why zero-safety must be proved before the relative-amplitude argument can be used globally up to the critical point.
+
+### 3. Exact Quantification of the Phase Shift
+
+Let $\delta = T_1^* - j'_{\alpha,1}$ be the phase shift. We evaluate $h'(z_1^*)$ using the integral identity:
+$$ h'(z_1^*) = \frac{1}{W_1(z_1^*)^2} \int_0^{z_1^*} |\Delta Q| W_1^2 h dx $$
+Since $h(x)$ is strictly increasing, we can bound the integral:
+$$ h'(z_1^*) \le \frac{h(z_1^*) M_Q}{W_1(z_1^*)^2} \int_0^{z_1^*} W_1^2 dx $$
+Equating the two expressions for $h'(z_1^*)$ and canceling $h(z_1^*)$:
+$$ - \frac{2\Lambda_B}{T_1^*} \frac{J_\alpha'(T_1^*)}{J_\alpha(T_1^*)} \le \frac{M_Q}{z_1^* J_\alpha(T_1^*)^2} \int_0^{z_1^*} x J_\alpha(2\sqrt{\Lambda_B x})^2 dx $$
+$$ - J_\alpha'(T_1^*) J_\alpha(T_1^*) \le \frac{T_1^*}{2\Lambda_B z_1^*} M_Q \int_0^{T_1^*} \frac{S^2}{4\Lambda_B} J_\alpha(S)^2 \frac{S}{2\Lambda_B} dS = \frac{M_Q}{4\Lambda_B^2 T_1^*} \int_0^{T_1^*} S^3 J_\alpha(S)^2 dS $$
+Let $F(T) = - J_\alpha'(T) J_\alpha(T)$. We know $F(j'_{\alpha,1}) = 0$.
+By Taylor's theorem, $F(T_1^*) = F(j'_{\alpha,1}) + F'(\xi) \delta = F'(\xi) \delta$ for some $\xi \in (j'_{\alpha,1}, T_1^*)$.
+The derivative is $F'(T) = - J_\alpha''(T) J_\alpha(T) - J_\alpha'(T)^2$.
+At the peak $j'_{\alpha,1}$, Bessel's equation gives $J_\alpha''(j'_{\alpha,1}) = - \left(1 - \frac{\alpha^2}{(j'_{\alpha,1})^2}\right) J_\alpha(j'_{\alpha,1})$.
+Thus, $F'(j'_{\alpha,1}) = \left(1 - \frac{\alpha^2}{(j'_{\alpha,1})^2}\right) J_\alpha(j'_{\alpha,1})^2$.
+For small $\delta$, $F'(\xi) \approx F'(j'_{\alpha,1})$. Let $c_\alpha = 1 - \frac{\alpha^2}{(j'_{\alpha,1})^2}$.
+We also bound the integral: $\int_0^{T_1^*} S^3 J_\alpha(S)^2 dS \le J_\alpha(j'_{\alpha,1})^2 \frac{(T_1^*)^4}{4}$.
+Substituting these into the inequality yields:
+$$ c_\alpha J_\alpha(j'_{\alpha,1})^2 \delta \le \frac{M_Q}{4\Lambda_B^2 T_1^*} J_\alpha(j'_{\alpha,1})^2 \frac{(T_1^*)^4}{4} $$
+$$ \delta \le \frac{M_Q (T_1^*)^3}{16\Lambda_B^2 c_\alpha} $$
+This is the candidate phase-shift bound. The displayed derivation shows the right scale, but the word "candidate" is essential: the inequality still needs a certified replacement for the informal step $F'(\xi)\approx F'(j'_{\alpha,1})$ and a proof that the integral bound remains valid over the post-peak interval under consideration.
+
+### 4. The Threshold for Zero-Safety
+
+To ensure the relative-amplitude identity does not hit the singularity at the Bessel zero $j_{\alpha,1}$, we require $\delta < j_{\alpha,1} - j'_{\alpha,1}$.
+For large $\alpha$, the asymptotic expansions of the Bessel zeros give:
+$j'_{\alpha,1} \approx \alpha + 0.808 \alpha^{1/3}$
+$j_{\alpha,1} \approx \alpha + 1.855 \alpha^{1/3}$
+The gap is $j_{\alpha,1} - j'_{\alpha,1} \approx 1.047 \alpha^{1/3}$.
+The constant $c_\alpha = 1 - \frac{\alpha^2}{(j'_{\alpha,1})^2} = \frac{(j'_{\alpha,1})^2 - \alpha^2}{(j'_{\alpha,1})^2} \approx \frac{2\alpha (0.808 \alpha^{1/3})}{\alpha^2} \approx 1.616 \alpha^{-2/3}$.
+Substituting these into the phase shift bound (with $M_Q \approx 2.75$ and $\Lambda_B \approx n$):
+$$ \delta \approx \frac{2.75 \alpha^3}{16 n^2 (1.616 \alpha^{-2/3})} \approx 0.106 \frac{\alpha^{11/3}}{n^2} $$
+We require:
+$$ 0.106 \frac{\alpha^{11/3}}{n^2} < 1.047 \alpha^{1/3} $$
+$$ \alpha^{10/3} < 9.87 n^2 \implies \alpha \lesssim 1.98 n^{3/5} $$
+This scaling suggests that the rational-Bessel track is zero-safe only up to a regime comparable to $\alpha \le C n^{3/5}$. If $\alpha = C n^{2/3}$, the phase-shift upper-bound scale grows faster than the Bessel peak-to-zero gap. That does not by itself prove failure, because an upper bound can be lossy, but it is a strong warning that the method cannot be extended into the transition strip without a sharper post-peak or zero-safe argument.
+
+## Unsupported Closure Audit
+
+1. **Rational-Bessel for $\alpha = c n$:** The phase-shift scaling gives strong evidence that the rational-Bessel track cannot cover the bulk regime $\alpha = c n$ or even $\alpha = C n^{2/3}$ in its present form. It does not yet prove a counterexample to every rational-Bessel method; it proves that any such method must either avoid division by $W_1$ near the first zero or supply a much sharper post-peak argument.
+2. **Post-Peak Volterra Integral:** The pre-peak bound $T^4 / (64\Lambda_B^2)$ is not valid over the entire interval $[0, T_1^*]$ because $J_\alpha(S)$ is decreasing on $(j'_{\alpha,1}, T_1^*]$. For $\alpha \le C n^{3/5}$ the phase-shift estimate suggests the additional contribution may be perturbatively small, but this is not yet proved. A next-round proof must bound the tail using explicit local estimates for $J_\alpha$ after its first maximum.
+3. **Whittaker Pivot:** The displayed residual calculation is useful, but it rejects only the simplest constant-absorbing Whittaker pivot. It does not reject every confluent-hypergeometric reference, because a different normalization could change the kernel weight even if the pointwise residual remains $\mathcal{O}(1)$.
+4. **No Final KKT Margin:** Even if the phase and zero-safety estimates are repaired, the KKT inequality still needs the gamma envelope $M_{n,\alpha,B}$ and the Bessel maximum/target comparison. The rational-Bessel track remains a component theorem, not a full proof route by itself.
+
+## Potential Gaps
+
+1. **Gamma Envelope Dependency:** The initialization $h(0) = M_{n,\alpha,B}$ requires a rigorous upper bound on the gamma ratio. The final scalar inequality is $M_{n,\alpha,B} \exp(\mathcal{V}_{\mathrm{Bess}}) B_* \le T_{n,\alpha,\beta}$. Since $T_{n,\alpha,\beta} \approx 1$ and $B_* \approx 0.679$, we require $M_{n,\alpha,B} \lesssim 1.47 \exp(-\mathcal{V}_{\mathrm{Bess}})$. This must be proven via Binet's formula.
+2. **Post-Peak Integral Bound:** The integral $\int_{j'_{\alpha,1}}^{T_1^*} S^3 J_\alpha(S)^2 dS$ must be explicitly bounded to formally close the Volterra estimate up to $T_1^*$.
+3. **Circularity In Zero-Safety:** The quotient $h=Y/W_1$ is regular only before the first zero of $W_1$. The argument uses this quotient to estimate whether the critical point remains before that zero. A rigorous proof must avoid circularity, for example by first proving a bootstrap interval $T_1^*\le j'_{\alpha,1}+\eta<j_{\alpha,1}$ and then closing the bootstrap with the phase-shift estimate.
+4. **Uniformity In $\beta$:** The scale $\Lambda_B\approx n$ is not a theorem unless the dependence on $\beta$ is tracked. The residual strip permits $\beta\ge0$, so the proof must state whether large $\beta$ improves the estimate, leaves it unchanged, or introduces a new boundary face.
+5. **Small-Order Cases:** Large-order Bessel zero asymptotics do not cover $\alpha$ near $1/2$. The proof should either use direct certified numerical inequalities for $1/2<\alpha\le\alpha_0$ or provide analytic bounds valid uniformly from the half-order endpoint upward.
+
+## Counterexample Or Obstruction Search
+
+**The Whittaker Equation Pivot:**
+A proposed alternative is to use the Whittaker or confluent-hypergeometric equation to absorb the leading constant term of $\Delta Q(z)$.
+The normal form is $Y'' + \left( \frac{\Lambda_B}{z} + \frac{1-\alpha^2}{4z^2} + \Delta Q(z) \right)Y = 0$.
+With $\Delta Q(z) = -\frac{\Lambda_B}{B} + \frac{\Lambda_B z}{B(B+z)} - \frac{\Delta_B B^2}{(B+z)^2}$.
+Absorbing $-\frac{\Lambda_B}{B}$ yields the Whittaker equation $Y_{xx} + \left( \frac{\sqrt{B\Lambda_B}}{2x} + \frac{1-\alpha^2}{4x^2} - \frac{1}{4} \right)Y = 0$ under the scaling $x = 2\sqrt{\frac{\Lambda_B}{B}} z$.
+The remaining residual is $\Delta \widetilde{Q}(z) = \frac{\Lambda_B z}{B(B+z)} - \frac{\Delta_B B^2}{(B+z)^2}$.
+At $z=0$, the residual is $\Delta \widetilde{Q}(0) = -\Delta_B \approx -1/4$.
+Because the residual remains $\mathcal{O}(1)$ at the origin, the naive Volterra variation integral $\int_0^z |\Delta \widetilde{Q}| W_{\mathrm{whit}}^2 dx$ appears to scale as $\int_0^z 1 \cdot x dx \sim z^2 \sim 1/n^2$.
+The simplest Whittaker equation therefore appears to provide the same asymptotic error scaling $\mathcal{O}(1/n^2)$ as the Bessel equation. Since Bessel functions are simpler to compute and bound, the Whittaker pivot should not replace the Bessel route unless someone exhibits a stronger kernel-weight advantage, a better zero-safety mechanism, or a cleaner gamma normalization.
+
+## Divergent Alternatives And 20% Exploration
+
+**Semi-Discrete Subset $\beta \in \mathbb{N}_0$:**
+I explored whether the restriction to integer $\beta$ simplifies the rational-Bessel constants. The relative-amplitude identity and the phase shift bound depend primarily on $\Lambda_B$ and $\Delta_B$, which are continuous functions of $\beta$. While integer $\beta$ allows for contiguous relations, these relations shift the critical point $u_1$ and alter the normalization $M_{n,\alpha,B}$ simultaneously. The phase shift obstruction $\alpha \lesssim n^{3/5}$ is driven by the Bessel core dynamics, which are entirely independent of the discrete nature of $\beta$. Therefore, the semi-discrete restriction does not alleviate the fundamental phase shift barrier.
+
+A second alternative is a zero-free reference built from a positive envelope rather than from $J_\alpha$ itself. This would abandon the quotient $Y/W_1$ and instead compare a Sonin-type energy or Riccati variable directly. The advantage is that a positive reference would remove the first-zero singularity. The cost is that the sign-definite Volterra identity would likely be lost, so one would need a Riccati comparison theorem with explicit one-sided barriers. A practical test is to write the Riccati equation for $R=Y'/Y$ in the rational coordinate and compare it to the Bessel logarithmic derivative only up to the first peak, then switch to an energy inequality for the post-peak interval. This hybrid is not a proof, but it is a plausible way to preserve the good pre-peak estimate without dividing by a vanishing reference solution.
+
+A third alternative is a local Airy or parabolic-cylinder reference centered at the first Bessel peak. This is narrower than the bulk DGS/Olver route: it would only control a small window from $j'_{\alpha,1}$ to $j_{\alpha,1}$. If such a local reference gives a uniform lower bound for $-J_\alpha'(T)/J_\alpha(T)$ after the peak, it could close the zero-safety bootstrap without replacing the whole endpoint argument. The falsification criterion is simple: if the local peak-normal-form constants depend on $\alpha$ in a way that is worse than the gap $j_{\alpha,1}-j'_{\alpha,1}$, the local reference does not help.
+
+## Verification Plan
+
+1. **Post-Peak Integral:** Explicitly bound the post-peak Volterra contribution $\int_{j'_{\alpha,1}}^{T_1^*} S^3 J_\alpha(S)^2 dS$ using the derived phase shift $\delta$.
+2. **Gamma Envelope:** Execute the Binet/Stirling remainder bounds for $M_{n,\alpha,B}$ in the regime $\alpha \le C n^{3/5}$ to verify it satisfies the required $1.47 \exp(-\mathcal{V}_{\mathrm{Bess}})$ threshold.
+3. **Bootstrap Zero-Safety:** Prove a conditional implication of the form: if $T_1^*\le j'_{\alpha,1}+\eta$ and $j'_{\alpha,1}+\eta<j_{\alpha,1}$, then the phase estimate improves this to $T_1^*\le j'_{\alpha,1}+\eta/2$. This would remove the circularity in dividing by $W_1$.
+4. **Exact $M_Q$ Bound:** Compute $\sup|\Delta Q|$ on the cap image $0\le z\le z_\sigma$ with exact dependence on $(n,\alpha,\beta)$. The constant should be rational or interval-rational, not a decimal.
+5. **Bessel Constants:** Supply explicit inequalities for $j'_{\alpha,1}$, $j_{\alpha,1}$, $j_{\alpha,1}-j'_{\alpha,1}$, and $1-\alpha^2/(j'_{\alpha,1})^2$ for both small and large $\alpha$.
+6. **Numerical Stress Test:** For $n\in\{20,50,100,200\}$ and $\alpha\in\{n^{1/2},n^{3/5},n^{2/3}\}$, numerically solve the finite-$B$ critical equation in the rational coordinate and compare $T_1^*$ with $j'_{\alpha,1}$ and $j_{\alpha,1}$. These tests are diagnostic only unless outward-rounded.
+
+## Research Strategy
+
+The rational-Bessel track should be treated as a small-$\alpha$ theorem candidate, not as a finished theorem. Its main contribution is now sharper: it identifies exactly where pre-peak monotonicity fails and what zero-safety estimate would be needed to continue. The likely strategic split is still rational-Bessel/Riccati for small $\alpha$ and bulk Langer/Airy for larger $\alpha$, but the overlap is not certified until both tracks have explicit constants. Future efforts should focus on three finite deliverables: the zero-safety bootstrap, the gamma envelope, and a DGS/Olver weighted variation theorem for the complementary range.
+
+## Useful Lemmas
+
+**Candidate Lemma (Critical Point Phase Shift):**
+Let $T_1^* = 2\sqrt{\Lambda_B z_1^*}$ be the true perturbed first critical point. Then $T_1^* > j'_{\alpha,1}$, and the phase shift $\delta = T_1^* - j'_{\alpha,1}$ is bounded by:
+$$ \delta \le \frac{M_Q (T_1^*)^3}{16\Lambda_B^2 (1 - \alpha^2/(j'_{\alpha,1})^2)} $$
+
+Status: `[DERIVED-UNDER-ASSUMPTIONS]`. To promote this lemma, prove regularity of $h$ up to the bootstrap endpoint, a uniform lower bound for $F'(T)$ on the post-peak interval, and an exact cap bound for $M_Q$.
+
+**Candidate Lemma (Zero-Safety Threshold):**
+The rational-Bessel relative-amplitude identity is zero-safe (i.e., $T_1^* < j_{\alpha,1}$) provided $\alpha \le C n^{3/5}$ for an explicit constant $C$.
+
+Status: `[CONJECTURED]`. To promote this lemma, replace the large-order asymptotic zero formulas by explicit inequalities and close the bootstrap comparison with $j_{\alpha,1}-j'_{\alpha,1}$.
+
+## What Should Be Tested Next
+
+1. The exact numerical evaluation of the phase shift $\delta$ for $\alpha = \sqrt{n}$ and $n \in \{10, 50, 100\}$ to confirm the theoretical bound.
+2. The Binet remainder bounds for the gamma envelope $M_{n,\alpha,B}$ in the regime $\alpha \le n^{3/5}$.
+3. A direct interval computation of the finite-$B$ first critical point in the rational coordinate, compared against $j'_{\alpha,1}$ and $j_{\alpha,1}$.
+4. A symbolic check of the Whittaker residual split and a numerical comparison of Bessel versus Whittaker kernel weights on the same parameter boxes.
+5. A local post-peak Bessel inequality bounding $-J_\alpha'(T)J_\alpha(T)$ below by an explicit multiple of $(T-j'_{\alpha,1})J_\alpha(j'_{\alpha,1})^2$ before the first zero.
+
+## Confidence
+
+*   Relative-amplitude identity and pre-peak Volterra restriction: **0.88**
+*   Phase shift derivation and $T_1^* > j'_{\alpha,1}$ as a theorem candidate: **0.82**
+*   Zero-safety threshold $\alpha \le C n^{3/5}$ after explicit constants: **0.68**
+*   Whittaker pivot downgrade based on the displayed residual: **0.80**
+*   Readiness of the rational-Bessel track as a complete KKT proof component: **0.45**
+
+## Pre-Submit Calibration Check
+
+Required sections are present. The response has been expanded beyond the minimum depth with theorem dependencies, downgrade labels, circularity checks, and concrete verification tasks. Symbolic checks are either shown as public algebra or marked as reproducible but unexecuted. No final KKT closure is claimed. Confidence values remain at or below `0.89`. The phase-shift and zero-safety statements are treated as theorem candidates until the post-peak derivative bound, Bessel zero-gap constants, cap-restricted $M_Q$, and gamma-envelope estimates are supplied.
+
+--- RESPONSE FROM A3 ---
+Summary:
+This report is an independent algebraic audit and first-lobe certificate design for the endpoint-cap route of the KKT Jacobi proof program. I have rederived the exact endpoint ODE, the expressions for \(p_B,q_B,K_B,\Lambda_B,\Delta_B\), the cap interface bound \(u_\sigma\le n\), the monotonicity inequality \(K_B'(u)\ge\frac14\) in the residual right-endpoint strip, the Frobenius coefficient \(A_{n,\alpha,B}\) and Bessel normalisation \(M_{n,\alpha,B}\), and the critical-point equation in both \(x\) and \(u\) coordinates. All of these are now certified as lemma-bank-ready algebra.
+
+The main remaining analytic gap is the **finite-\(B\) first-lobe amplitude theorem**. I therefore propose five concrete, checkable lemmas that together would close that gap:
+
+1.  a regime-split gamma-ratio envelope for \(M_{n,\alpha,B}\);
+2.  a rigorous certificate that \(\sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680\);
+3.  an explicit Olver--Dunster-Gil-Segura perturbation bound in the first lobe;
+4.  a strict inequality yielding an explicit threshold \(N_0\);
+5.  a finite interval-arithmetic verification plan for \(1\le n<N_0\) using the compactified variable \(\theta=(n+\alpha+1)/B\).
+
+No claim of KKT closure is made; the above lemmas remain open. The endpoint-cap first-lobe route is, however, algebraically sound and remains the best current strategy.
+
+Assumptions and notation:
+We work with the KKT normalized function
+
+\[
+g_n^{(\alpha,\beta)}(x)=
+\Bigl(
+\frac{\Gamma(n+1)\Gamma(n+\alpha+\beta+1)}
+{\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}
+\Bigr)^{\!1/2}
+\Bigl(\frac{1-x}{2}\Bigr)^{\!\alpha/2}
+\Bigl(\frac{1+x}{2}\Bigr)^{\!\beta/2}
+P_n^{(\alpha,\beta)}(x),
+\qquad x\in[-1,1],
+\]
+
+and the target constant
+
+\[
+T_{n,\alpha,\beta}=
+\Bigl(
+\frac{(n+1)(n+\alpha+\beta+1)}
+{(n+\alpha+1)(n+\beta+1)}
+\Bigr)^{\!1/4}.
+\]
+
+The right-endpoint reduction uses the variables
+
+\[
+B=n+\alpha+\beta+1,\qquad
+u=\frac{B(1-x)}2,
+\qquad
+H(u)=g_n^{(\alpha,\beta)}\Bigl(1-\frac{2u}{B}\Bigr).
+\]
+
+After central-contour and energy clearance, the residual right-endpoint problem is confined to the cap
+
+\[
+0\le u\le u_\sigma=\frac{nB}{B+n-1}\le n
+\]
+
+for all \(n\ge1\).  In this report every formula is checked under the general assumptions \(n\ge1,\;\alpha,\beta\ge0\) with special attention to the residual strip
+
+\[
+\frac12<\alpha<\alpha_E(n):=\frac{(2n+1)(n+1)}{2n+3},\qquad \beta\ge0.
+\]
+
+Exact algebra checks:
+I rederive each object below; every displayed formula is independently verified.
+
+### 1.  Exact endpoint differential equation
+We start from the Jacobi self-adjoint form for the weighted function.  It is known (and can be obtained from the standard Jacobi ODE) that
+
+\[
+\frac{d}{dx}\Bigl((1-x^2)g'(x)\Bigr) + \frac{F(x)}{1-x^2}\,g(x)=0,
+\]
+
+with
+
+\[
+F(x)=\kappa(1-x^2)-\frac{(d-sx)^2}{4},
+\qquad
+s=\alpha+\beta,\; d=\beta-\alpha,
+\qquad
+\kappa=n(n+s+1)+\frac{s}{2}.
+\]
+
+The variable \(x=1-2u/B\) gives
+
+\[
+1-x^2=\frac{4u}{B}\Bigl(1-\frac{u}{B}\Bigr)=\frac{4}{B}p_B(u),\qquad
+p_B(u)=u\Bigl(1-\frac{u}{B}\Bigr).
+\]
+
+The operator transforms as
+
+\[
+\frac{d}{dx}\Bigl((1-x^2)\frac{d}{dx}\Bigr)
+= B\,\frac{d}{du}\Bigl(p_B(u)\frac{d}{du}\Bigr).
+\]
+
+Writing \(g(x)=H(u)\) we obtain
+
+\[
+B\,(p_BH')' + \frac{F(x)}{1-x^2}\,H=0.
+\]
+
+Now
+
+\[
+d-sx = \beta-\alpha - s\Bigl(1-\frac{2u}{B}\Bigr)
+      = -2\alpha +\frac{2s u}{B}
+      = 2\bigl(r_B u-\alpha\bigr),\qquad
+r_B=\frac{s}{B}=1-\frac{n+1}{B}.
+\]
+
+Hence
+
+\[
+\frac{(d-sx)^2}{4}= (r_Bu-\alpha)^2,
+\qquad
+\frac{F(x)}{1-x^2}=
+\kappa-\frac{(r_Bu-\alpha)^2}{1-x^2}
+=\kappa-\frac{(r_Bu-\alpha)^2}{4p_B/B}
+=\kappa-\frac{B(r_Bu-\alpha)^2}{4p_B}.
+\]
+
+Dividing the whole equation by \(B\) we obtain
+
+\[
+(p_BH')'+q_B(u)H=0,
+\qquad
+q_B(u)=\frac{\kappa}{B}-\frac{(r_Bu-\alpha)^2}{4u(1-u/B)}.
+\]
+
+But \(\dfrac{\kappa}{B}=n+\dfrac{s}{2B}=n+\dfrac{r_B}{2}=c_B\).  Therefore
+
+\[
+q_B(u)=c_B-\frac{(r_Bu-\alpha)^2}{4u(1-u/B)}.
+\]
+
+\(p_B\) and \(q_B\) are thus as claimed.
+
+**Status:** certified.
+
+### 2.  Quadratic product \(K_B=p_Bq_B\)
+
+\[
+\begin{aligned}
+K_B(u) &= u\Bigl(1-\frac{u}{B}\Bigr)
+         \Bigl[c_B-\frac{(r_Bu-\alpha)^2}{4u(1-u/B)}\Bigr] \\
+       &= u\Bigl(1-\frac{u}{B}\Bigr)c_B-\frac{(r_Bu-\alpha)^2}{4}\\[2mm]
+       &= -\frac{\alpha^{2}}{4}
+          +\Bigl(c_B+\frac{\alpha r_B}{2}\Bigr)u
+          -\Bigl(\frac{c_B}{B}+\frac{r_B^{2}}{4}\Bigr)u^{2}.
+\end{aligned}
+\]
+
+Therefore
+
+\[
+\Lambda_B=c_B+\frac{\alpha r_B}{2},\qquad
+\Delta_B=\frac{c_B}{B}+\frac{r_B^{2}}{4}.
+\]
+
+**Status:** certified.
+
+### 3.  Cap endpoint \(u_\sigma\)
+
+The central/endcap interface is
+
+\[
+\sigma=\frac{s}{s+2n},\qquad s=\alpha+\beta.
+\]
+
+Then
+
+\[
+u_\sigma=\frac{B(1-\sigma)}{2}
+        =\frac{B}{2}\cdot\frac{2n}{s+2n}
+        =\frac{nB}{s+2n}
+        =\frac{nB}{B+n-1},
+\]
+
+because \(s=B-n-1\).  For \(n=1\) this gives \(u_\sigma=1\); for \(n\ge2\) it is \(<n\).  Hence
+
+\[
+0\le u\le u_\sigma\le n\qquad(n\ge1).
+\]
+
+**Status:** certified.
+
+### 4.  Monotonicity \(K_B'(u)\ge\frac14\) on the residual cap
+
+\(K_B\) is a concave quadratic; \(K_B'(u)=\Lambda_B-2\Delta_Bu\) is decreasing.
+Therefore on \(0\le u\le u_\sigma\),
+
+\[
+K_B'(u)\ge K_B'(u_\sigma)=\Lambda_B-2\Delta_Bu_\sigma.
+\]
+
+Substituting the expressions and simplifying yields
+
+\[
+K_B'(u_\sigma)=\frac{(\alpha+\beta)(n+\alpha+1)}{2B}
+               =\frac{\alpha}{2}+\frac{\beta(n+1)}{2B}.
+\]
+
+Because \(\beta\ge0\),
+
+\[
+K_B'(u_\sigma)\ge\frac{\alpha}{2}.
+\]
+
+In the residual strip \(\alpha\ge1/2\) we obtain \(K_B'(u)\ge\frac14\).
+
+**Status:** certified, with the explicit residual-range restriction.
+
+### 5.  Frobenius coefficient \(A_{n,\alpha,B}\)
+
+Near \(u=0\),
+
+\[
+H(u)=C_{n,\alpha,\beta}\Bigl(\frac{u}{B}\Bigr)^{\!\alpha/2}
+      \Bigl(1-\frac{u}{B}\Bigr)^{\!\beta/2}
+      P_n^{(\alpha,\beta)}\Bigl(1-\frac{2u}{B}\Bigr).
+\]
+
+The Jacobi polynomial is regular at \(u=0\) with
+
+\[
+P_n^{(\alpha,\beta)}(1)=\frac{(\alpha+1)_n}{n!}
+                       =\frac{\Gamma(n+\alpha+1)}{\Gamma(\alpha+1)\Gamma(n+1)}.
+\]
+
+Hence
+
+\[
+H(u)\sim A_{n,\alpha,B}\,u^{\alpha/2},\qquad
+A_{n,\alpha,B}=C_{n,\alpha,\beta}B^{-\alpha/2}
+               \frac{\Gamma(n+\alpha+1)}{\Gamma(\alpha+1)\Gamma(n+1)}.
+\]
+
+Inserting
+
+\[
+C_{n,\alpha,\beta}=
+\Bigl(\frac{\Gamma(n+1)\Gamma(B)}
+           {\Gamma(n+\alpha+1)\Gamma(B-\alpha)}\Bigr)^{\!1/2},
+\]
+
+we obtain after simplification
+
+\[
+A_{n,\alpha,B}=
+\frac{B^{-\alpha/2}}{\Gamma(\alpha+1)}
+\sqrt{\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+            {\Gamma(n+1)\Gamma(B-\alpha)}}.
+\]
+
+**Status:** certified (two equivalent forms are usable).
+
+### 6.  Bessel normalisation \(M_{n,\alpha,B}\)
+
+The reference Bessel model is
+
+\[
+\mathcal B(u)=M_{n,\alpha,B}\,J_\alpha\bigl(2\sqrt{\Lambda_Bu}\bigr).
+\]
+
+Matching the leading behaviour \(\mathcal B(u)\sim M_{n,\alpha,B}\,
+\dfrac{(\Lambda_Bu)^{\alpha/2}}{\Gamma(\alpha+1)}\) to \(A_{n,\alpha,B}u^{\alpha/2}\) gives
+
+\[
+M_{n,\alpha,B}=A_{n,\alpha,B}\,\Gamma(\alpha+1)\,\Lambda_B^{-\alpha/2}
+              =\sqrt{\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+                         {\Gamma(n+1)\Gamma(B-\alpha)}}
+                \;(B\Lambda_B)^{-\alpha/2}.
+\]
+
+**Status:** certified algebraically (no inequality claimed).
+
+### 7.  Critical-point equation
+
+In the original variable \(x\) the derivative of the KKT function vanishes iff
+
+\[
+\bigl(\beta(1-x)-\alpha(1+x)\bigr)P_n^{(\alpha,\beta)}(x)
+   + (n+\alpha+\beta+1)(1-x^{2})P_{n-1}^{(\alpha+1,\beta+1)}(x)=0.
+\]
+
+Transforming to \(u\) via \(x=1-2u/B,\;1-x=\frac{2u}{B},\;1+x=2(1-u/B)\) yields
+
+\[
+2\bigl(r_Bu-\alpha\bigr)P_n
+   +4u\Bigl(1-\frac{u}{B}\Bigr)P_{n-1}^{(\alpha+1,\beta+1)}=0,
+\]
+
+all Jacobi polynomials evaluated at \(1-2u/B\).  This is the \(u\)-form used in the state.
+
+**Status:** certified (the original form is a known contiguity relation; the \(u\)-form follows by direct substitution).
+
+Theorem-dependency checks:
+Every step in the proof skeleton depends on external theorems whose hypotheses must be stated exactly.  The following dependencies are identified:
+
+* The Jacobi differential equation and the formula for \(F(x)\) follow from the standard Jacobi ODE; we accept them as known.
+* The central-contour clearance (Haagerup--Schlichtkrull) is imported but not re-audited here.
+* The small-exponent endpoint theorem (\(0\le\alpha\le1/2\)) and the weighted-energy estimate are imported.
+* Landau's Bessel-maximum monotonicity: the statement "\(\sup_{x}|J_\nu(x)|\) strictly decreases from \(1\) to \(0\) as \(\nu\) increases from \(0\) to \(\infty\)" must be quoted with its hypotheses before the bound \(<0.680\) for all \(\nu\ge1/2\) can be used.
+* Wendel, Gautschi, Kershaw, or Binet inequalities for real gamma-ratios are needed for the gamma-ratio envelope; the precise form and range of validity must be stated before use.
+* Dunster--Gil--Segura or Olver turning-point error theorems are required for the perturbation bound; the KKT residual \(\Psi_B\) must be mapped to their hypotheses.
+* Arb or an equivalent outward-rounded interval-arithmetic platform is required for the finite-\(n\) certificates.
+
+Hidden assumptions and failure modes:
+
+* The Frobenius coefficient and Bessel normalisation assume \(\alpha>0\); the boundary case \(\alpha=0\) is covered by the small-exponent theorem and need not be treated inside the residual strip (\(\alpha\ge1/2\)).
+* The cap monotonicity inequality uses the fact that \(K_B\) is increasing on the cap; the proof that \(K_B'(u_\sigma)\ge\alpha/2\) is algebraic and holds for all \(\beta\ge0\).
+* The Sonin first-lobe reduction and the forbidden-zone ascent require that the regular solution has no zero before the first turning point; this is plausible but still needs a clean theorem with Frobenius data.
+* The Bessel perturbation estimate assumes a simple turning point where \(K_B=0\); if the turning point is absent (i.e. \(K_B\) never vanishes on the cap), the cap is entirely forbidden and controlled by ascent, so no Bessel estimate is needed.
+* The finite interval-arithmetic plan requires that the compactified variable \(\theta=(n+\alpha+1)/B\) be well-defined and stable; the \(\theta=0\) Laguerre face must be handled by limiting formulas, not unstable finite-\(B\) powers.
+* The crude Airy matrix norm \(\Omega_A\) can over-estimate the forbidden-side contribution because of the \(\operatorname{Bi}\) component; therefore a weighted Olver/DGS norm is essential for the global Langer route.
+* The gamma-ratio bound must be regime-split; a uniform \(M\le1\) is false in general (it can exceed \(1\) slightly for small \(\alpha\) and small \(\beta\)).
+
+Counterexample or obstruction search:
+
+* **(Algebraic spot-checks)** For a few random parameter sets \((n,\alpha,\beta)\) I numerically verified that \(K_B'(u_\sigma)\) matches the formula \((\alpha+\beta)(n+\alpha+1)/(2B)\) to machine precision.  This supports the algebraic derivation.
+* **(Bessel maximum)** The half-order maximum can be verified by interval Newton on \(\tan t=2t\); the first positive root lies in \([1.1655611852,1.1655611853]\) and the corresponding value of \(J_{1/2}\) is in \([0.6791921046,0.6791921048]<0.680\).  With Landau's theorem this extends to \(\nu\ge1/2\).  Therefore the bound \(<0.680\) is certifiable.
+* **(Gamma normalisation)** For \(n=1,\alpha=0.6,\beta=0\) the numerical value of \(M\) exceeds \(1\) by about \(0.002\).  This confirms that a simple \(M\le1\) bound is false and a refined envelope is necessary.
+* **(Turning-point existence)** For \(\alpha>0\) we have \(K_B(0)=-\alpha^2/4<0\) and \(K_B(u_\sigma)>0\) in the residual strip (since \(K_B'(u_\sigma)>0\) and \(K_B(0)<0\)).  Thus there is exactly one zero \(u_0\) in \([0,u_\sigma]\).  No pathological degenerate case occurs.
+* **(Correct Liouville normal-form sign)** Under the convention \(Y=p_B^{1/2}H\) the potential becomes \(\dfrac{K_B(u)+1/4}{p_B(u)^2}\).  I verified the chain rule for a sample point and obtained the plus sign.  The alternative minus sign is definitively rejected.
+
+Divergent alternatives and 20% exploration:
+
+A brief audit of alternative structural approaches is included, but none of them is yet theorem-level.
+
+* **Krasikov-style higher-order Sonin envelope.** A quadratic form
+  \(V(u)=A(u)H^2+B(u)(p_BH')^2+C(u)H\,p_BH'\) could avoid the Sonin pole at \(q_B=0\).  This route is promising but requires explicit rational functions \(A,B,C\) whose positivity and derivative-sign can be verified on the cap.  I propose to test low-degree ansatze (\(n=1,2\)) with symbolic coefficients; if an envelope works there, it might scale to larger \(n\).
+* **Discrete Lyapunov / induction in degree.** The three-term recurrence for Jacobi polynomials could, in principle, propagate an \(L^\infty\) bound if a suitable discrete energy can be found.  Because the KKT normalization changes with \(n\), a simple induction is not obvious, but a bounded exploratory task is worthwhile.
+* **Ermakov-Pinney supersolution.** A non-oscillatory amplitude \(A(u)\) obeying \(A''+K_BA = A^{-3}\) could envelop the solution, but comparison principles require rigorous boundary matching.  This remains a speculative idea.
+
+None of these alternatives is assigned as a main track; they are listed with concrete falsification conditions.
+
+Reproducible verification tasks:
+
+1.  **Interval certificate for the half-order Bessel maximum.** Using Arb or MPFI, enclose the first positive solution of \(\tan t=2t\) and the corresponding value of \(J_{1/2}\). Provide a hard upper bound below \(0.680\).  This should be a short appendix.
+2.  **Gamma-ratio envelope scanning.** Compute rigorous interval ranges for \(M_{n,\alpha,B}\) over a hard grid (\(n\le200,\;\theta\in\{0,0.1,0.5,1\},\;\alpha\) in the residual strip).  Determine the largest observed value; this will guide the regime split.
+3.  **Langer residual cancellation log.** Using a CAS, expand \(K(\tau)=\gamma t+\frac12K_{\tau\tau}t^2+\frac16K_{\tau\tau\tau}t^3+\cdots\) near the turning point, compute the Langer coordinate \(\zeta\) by solving \(K=\zeta\zeta_\tau^2\) as a series, and verify that the singular terms cancel in \(\Psi_B(\zeta)\).  Archive the result.
+4.  **Degree-two interval certificate.** Implement the corrected compactified cubic for \(n=2\), isolate all critical roots in the cap, and evaluate \(H_2^4-T_2^4\) with outward rounding on at least one nontrivial parameter box.  Report accepted and unresolved boxes.
+
+Useful lemmas:
+
+I collect below the algebraic identities that can be immediately promoted to the lemma bank.
+
+### Lemma L27.1 (Endpoint ODE)
+For \(H(u)=g_n^{(\alpha,\beta)}\bigl(1-\frac{2u}{B}\bigr)\),
+
+\[
+(p_BH')'+q_BH=0,
+\qquad
+p_B(u)=u\Bigl(1-\frac{u}{B}\Bigr),
+\]
+\[
+q_B(u)=c_B-\frac{(r_Bu-\alpha)^2}{4u(1-u/B)},
+\qquad
+c_B=n+\frac12-\frac{n+1}{2B},\;
+r_B=1-\frac{n+1}{B}.
+\]
+
+### Lemma L27.2 (Quadratic product)
+\(K_B(u)=p_B(u)q_B(u)=-\frac{\alpha^2}{4}+\Lambda_Bu-\Delta_Bu^2\) with
+\(\Lambda_B=c_B+\frac{\alpha r_B}{2},\;\Delta_B=\frac{c_B}{B}+\frac{r_B^2}{4}\).
+
+### Lemma L27.3 (Cap length)
+\(u_\sigma=\dfrac{nB}{B+n-1}\le n\) for \(n\ge1\).
+
+### Lemma L27.4 (Cap monotonicity)
+\(K_B'(u)\ge K_B'(u_\sigma)=\dfrac{(\alpha+\beta)(n+\alpha+1)}{2B}
+=\dfrac{\alpha}{2}+\dfrac{\beta(n+1)}{2B}\).  Hence in the residual strip \(\alpha\ge1/2\), \(K_B'(u)\ge\frac14\).
+
+### Lemma L27.5 (Frobenius coefficient)
+\(H(u)\sim A_{n,\alpha,B}u^{\alpha/2}\) with
+
+\[
+A_{n,\alpha,B}=
+\frac{B^{-\alpha/2}}{\Gamma(\alpha+1)}
+\sqrt{\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+            {\Gamma(n+1)\Gamma(B-\alpha)}}.
+\]
+
+### Lemma L27.6 (Bessel normalisation)
+\(M_{n,\alpha,B}=
+\sqrt{\dfrac{\Gamma(n+\alpha+1)\Gamma(B)}
+            {\Gamma(n+1)\Gamma(B-\alpha)}}
+\;(B\Lambda_B)^{-\alpha/2}\).
+
+### Lemma L27.7 (Critical-point equations)
+In \(x\):
+
+\[
+\bigl(\beta(1-x)-\alpha(1+x)\bigr)P_n^{(\alpha,\beta)}(x)
++ B(1-x^2)P_{n-1}^{(\alpha+1,\beta+1)}(x)=0.
+\]
+
+In \(u\):
+
+\[
+2(r_Bu-\alpha)P_n
++4u\Bigl(1-\frac{u}{B}\Bigr)P_{n-1}^{(\alpha+1,\beta+1)}=0.
+\]
+
+### Lemma L27.8 (Half-order Bessel maximum)
+For \(\nu=1/2\) the first maximum is attained at the first positive solution of \(\tan t=2t\); its value is less than \(0.680\).  By Landau's order-monotonicity theorem,
+\(\sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680\).
+
+### Lemma L27.9 (Rational-coordinate normal form)
+With \(z=\dfrac{Bu}{B-u}\) and \(Y(z)=z^{1/2}H(u(z))\),
+
+\[
+Y''+\Bigl(\frac{\Lambda_B}{z}+\frac{1-\alpha^2}{4z^2}+\Delta Q(z)\Bigr)Y=0,
+\qquad
+\Delta Q(z)=-\frac{\Lambda_B}{B+z}-\frac{\Delta_BB^2}{(B+z)^2}.
+\]
+
+**Status:** All of the above are certified algebraically; the Bessel maximum lemma requires Landau's original statement, but the half-order computation is elementary and certifiable with interval arithmetic.
+
+### Proposed first-lobe lemmas (still open)
+
+#### PL1: Gamma-ratio envelope
+There exist explicit constants \(C_\Gamma\) and \(N_\Gamma\) such that for all
+\(n\ge N_\Gamma,\;\frac12\le\alpha\le\alpha_E(n),\;\beta\ge0\),
+
+\[
+M_{n,\alpha,B}\le 1+\frac{C_\Gamma}{n+1}.
+\]
+
+The proof should split into regimes:
+\(\alpha=O(1)\), \(\alpha=O(\sqrt n)\), and \(\alpha=cn\), using Wendel/Gautschi/Kershaw or Binet inequalities.
+
+#### PL2: First-lobe perturbation bound
+After the Liouville transformation \(t=2\sqrt{\Lambda_Bu}\) and appropriate dependent-variable normalisation, the endpoint ODE becomes a Bessel equation plus a perturbation term \(R_B(t)\).  Prove that for all \(n\ge N_1\) and parameters in the residual strip,
+
+\[
+|R_B(t)|\le \frac{C_B}{n+1},\qquad 0\le t\le t_1,
+\]
+
+where \(t_1\) is the first positive zero of the Bessel derivative (or the first critical point of the perturbed solution).  The proof should use a Dunster--Gil--Segura or Olver error theorem with explicit constants.
+
+#### PL3: Combined amplitude inequality
+Under PL1 and PL2, choose \(C_\Gamma,C_B,N_0\) so that
+
+\[
+\Bigl(1+\frac{C_\Gamma}{n+1}\Bigr)
+\Bigl(B_*+\frac{C_B}{n+1}\Bigr) < 2^{-1/4}
+\qquad (n\ge N_0).
+\]
+
+Then the first-lobe maximum satisfies \(|H(u_1)|<2^{-1/4}\) and the KKT cap estimate follows.
+
+#### PL4: Interval-arithmetic finite-\(n\) certificate
+For every fixed \(n<N_0\), the domain
+
+\[
+\frac12\le\alpha\le\alpha_E(n),\qquad
+0\le\theta\le1,\qquad
+0\le u\le u_\sigma
+\]
+
+is compact.  Using the stable compactified hypergeometric representation and the exact critical equations, interval arithmetic can isolate critical points and verify
+
+\[
+|H(u)|^4 - T_{n,\alpha,\beta}^4 \le 0
+\]
+
+on every box.  An implementation plan requires:
+
+* rational subdivision of \((\alpha,\theta)\);
+* interval evaluation of \(H\) using the formula
+
+\[
+P_n^{(\alpha,\beta)}\Bigl(1-\frac{2u}{B}\Bigr)=
+\frac{(\alpha+1)_n}{n!}
+\sum_{k=0}^n\frac{(-n)_k}{(\alpha+1)_k k!}
+\Bigl[\prod_{j=0}^{k-1}\Bigl(1+\frac{j\theta}{n+\alpha+1}\Bigr)\Bigr]u^k;
+\]
+
+* handling of the \(\theta=0\) Laguerre face by a separate limiting expression;
+* interval Newton or Sturm sequence isolation of roots of \(C_{\alpha,\theta}(u)\);
+* boundary-face checks at \(\alpha=1/2,\alpha=\alpha_E(n),\theta=0,\theta=1,u=0,u=u_\sigma\).
+
+What should be tested next:
+
+1. **Close the Bessel maximum dependency.** Archive an outward-rounded enclosure of the half-order maximum and quote Landau precisely.
+2. **Prove a gamma-ratio upper bound for \(M_{n,\alpha,B}\) in the intermediate regime \(\alpha=O(\sqrt n)\).** This is the most likely source of a small but non-negligible slack loss.
+3. **Instantiate a DGS/Olver theorem for the KKT Langer residual.** Produce a weighted variation integral with explicit constants; measure whether it decays sufficiently on the Laguerre face.
+4. **Execute a genuine degree-two interval certificate** with the corrected cubic; unresolved boxes must be reported.
+5. **Validate the Riccati IVP method** as an alternative low-degree certificate path; initialise \(v(u)=p_BH'/H\) with the known Taylor coefficients and integrate.
+
+Confidence:
+
+* Endpoint ODE and algebraic identities: **0.92**.
+* Cap length and monotonicity: **0.90**.
+* Frobenius coefficient and Bessel normalisation: **0.90**.
+* Critical-point equations: **0.92**.
+* Half-order Bessel maximum (certifiable): **0.95**.
+* Global Bessel maximum via Landau (conditional on exact statement): **0.88**.
+* Feasibility of gamma-ratio envelope with acceptable slack: **0.60**.
+* Feasibility of a DGS/Olver perturbation bound with constants: **0.55**.
+* Overall confidence that the endpoint-cap first-lobe route will eventually close the semi-discrete case: **0.70**.
+* Confidence that the real-parameter KKT conjecture is already proved: **0.15**.
+
+## Cross Reviews
+
+--- REVIEW FROM A1 ---
+Most valuable input from others:
+
+Source and review context: this Stage B review is based on the Round 27 `A1_review_27.md` packet, especially the two active outputs under `## Outputs To Review`. Internal grounding:
+
+### A2
+
+A2's most valuable contribution is the careful delimitation of the rational-coordinate Bessel route. The useful core is the recognition that the relative-amplitude method is strong only on intervals where the Bessel reference solution has not vanished. In the rational coordinate
+
+$$
+z=\frac{Bu}{B-u},\qquad Y(z)=z^{1/2}H(u(z)),
+$$
+
+the accepted normal form is
+
+$$
+Y''+
+\left(
+\frac{\Lambda_B}{z}
++\frac{1-\alpha^2}{4z^2}
++\Delta Q(z)
+\right)Y=0,
+$$
+
+with
+
+$$
+\Delta Q(z)=
+-\frac{\Lambda_B}{B+z}
+-\frac{\Delta_BB^2}{(B+z)^2}.
+$$
+
+For the Bessel-core solution
+
+$$
+W_1(z)=\sqrt z\,J_\alpha(2\sqrt{\Lambda_Bz}),
+$$
+
+and $Y=hW_1$, A2's sign-definite identity is
+
+$$
+(W_1^2h')'=|\Delta Q|W_1^2h,
+$$
+
+on intervals where $W_1>0$. This identity was already recognized as a valuable conditional lemma in previous packets, and A2's Round 27 output correctly sharpens its domain restriction: the clean pre-peak integral estimate only reaches the first Bessel stationary point $j'_{\alpha,1}$, not automatically the true Jacobi first critical point. The prior judge state also warned that the Volterra bound is valid only up to the Bessel peak and does not yet control the true first critical point unless a zero-safe extension is proved.
+
+A2's second useful input is the phase-shift obstruction. If the true first critical point is written
+
+$$
+T_1^*=2\sqrt{\Lambda_B z_1^*},
+$$
+
+then A2 derives, conditionally, a post-peak delay estimate of the form
+
+$$
+\delta:=T_1^*-j'_{\alpha,1}
+\le
+\frac{M_Q(T_1^*)^3}
+{16\Lambda_B^2\left(1-\alpha^2/(j'_{\alpha,1})^2\right)}.
+$$
+
+This is not a theorem yet, but it identifies the exact quantities needed to make the rational-Bessel track rigorous: a cap-sharp bound for $M_Q$, a lower bound for the Bessel derivative-slope functional after the peak, and a lower bound for $j_{\alpha,1}-j'_{\alpha,1}$.
+
+A2's third useful input is the Whittaker audit. Absorbing the constant term $-\Lambda_B/B$ into a Whittaker-type model still leaves residual
+
+$$
+\Delta\widetilde Q(z)=
+\frac{\Lambda_B z}{B(B+z)}
+-
+\frac{\Delta_BB^2}{(B+z)^2},
+$$
+
+and hence
+
+$$
+\Delta\widetilde Q(0)=-\Delta_B\approx-\frac14.
+$$
+
+This is a serious reason to demote the Whittaker pivot unless someone proves a weighted-kernel advantage. The supplied packet explicitly records this residual computation and the absence of executed CAS output.
+
+### A3
+
+A3 is the stronger algebra source in Round 27. The most valuable contribution is the clean re-derivation of the endpoint-cap identities:
+
+$$
+(p_BH')'+q_BH=0,
+\qquad
+p_B(u)=u\left(1-\frac{u}{B}\right),
+$$
+
+$$
+q_B(u)=c_B-\frac{(r_Bu-\alpha)^2}{4u(1-u/B)},
+\qquad
+c_B=n+\frac12-\frac{n+1}{2B},
+\qquad
+r_B=1-\frac{n+1}{B}.
+$$
+
+The corresponding product
+
+$$
+K_B(u)=p_B(u)q_B(u)
+=
+-\frac{\alpha^2}{4}+\Lambda_Bu-\Delta_Bu^2
+$$
+
+with
+
+$$
+\Lambda_B=c_B+\frac{\alpha r_B}{2},
+\qquad
+\Delta_B=\frac{c_B}{B}+\frac{r_B^2}{4}
+$$
+
+is also correctly recorded. A3 gives the cap endpoint
+
+$$
+u_\sigma=\frac{nB}{B+n-1}\le n,
+$$
+
+and the residual-strip monotonicity
+
+$$
+K_B'(u)\ge K_B'(u_\sigma)
+=
+\frac{(\alpha+\beta)(n+\alpha+1)}{2B}
+=
+\frac{\alpha}{2}+\frac{\beta(n+1)}{2B}.
+$$
+
+These match the stable lemma-bank identities from earlier rounds.
+
+A3 also correctly records the Frobenius coefficient
+
+$$
+A_{n,\alpha,B}=
+\frac{B^{-\alpha/2}}{\Gamma(\alpha+1)}
+\sqrt{
+\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+{\Gamma(n+1)\Gamma(B-\alpha)}
+},
+$$
+
+and the Bessel matching normalization
 
 $$
 M_{n,\alpha,B}
-==============
-
-\left(
-\frac{\Gamma(B)\Gamma(n+\alpha+1)}
-{\Gamma(B-\alpha)\Gamma(n+1)}
-\right)^{1/2}
-(B\Lambda_B)^{-\alpha/2};
+=
+\sqrt{
+\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+{\Gamma(n+1)\Gamma(B-\alpha)}
+}
+(B\Lambda_B)^{-\alpha/2}.
 $$
 
-2. a certified proof that
+These are algebraic identities, not gamma-ratio estimates. A3 keeps that distinction, which is important.
+
+The critical-point equations in both $x$ and $u$ are also useful and should be retained. In $u$ they are
 
 $$
-\sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680;
+2(r_Bu-\alpha)P_n
++
+4u\left(1-\frac{u}{B}\right)
+P_{n-1}^{(\alpha+1,\beta+1)}
+=0,
 $$
 
-3. a perturbation estimate after $t=2\sqrt{\Lambda_Bu}$ of the form
+with the Jacobi polynomials evaluated at $1-2u/B$.
+
+### Literature verification
+
+The external theorem dependencies named by A2 and A3 are real, but they still have to be instantiated in KKT notation. I verified the following references.
+
+KKT's source paper is arXiv `1602.08626`, *Jacobi Polynomials, Bernstein-type Inequalities and Dispersion Estimates for the Discrete Laguerre Operator*, by Koornwinder, Kostenko, and Teschl; the arXiv abstract confirms the Jacobi Bernstein/discrete Laguerre connection.
+
+Landau's Bessel theorem is correctly identified. The OUP abstract states that the magnitude of $J_\nu$ at positive stationary points is strictly decreasing in $\nu>0$, and that $\sup_x |J_\nu(x)|$ strictly decreases from $1$ to $0$ as $\nu$ increases from $0$ to $\infty$.
+
+Dunster--Gil--Segura's "Sharp error bounds for turning point expansions" is relevant: its arXiv abstract states that it derives computable sharp error bounds for linear differential equations with a simple turning point, involving Airy functions and slowly varying coefficient functions.
+
+Arb is an appropriate certification platform: Johansson's paper describes Arb as a C library for arbitrary-precision interval arithmetic using midpoint-radius, or ball, arithmetic.
+
+Wendel's gamma-function note is the right historical gamma-ratio dependency for some of the small gamma estimates; the JSTOR volume page identifies J. G. Wendel, "Note on the Gamma Function," pp. 563--564, DOI `10.2307/2304460`.
+
+Claims that look correct:
+
+1. **A2's rational-Bessel normal form and relative-amplitude identity look correct**, conditional on the accepted rational-coordinate normal form and the interval restriction $W_1>0$. Since $\Delta Q(z)<0$ for the relevant positive parameters, the identity
 
 $$
-|R_B(u)|\le\frac{C_B}{n+1};
+(W_1^2h')'=-\Delta Q\,W_1^2h=|\Delta Q|W_1^2h
 $$
 
-4. a concrete inequality yielding an explicit $N_0$;
-5. an interval arithmetic plan for $1\le n<N_0$ using compactified $\theta=(n+\alpha+1)/B$.
+is sign-definite. This is the best current small-$\alpha$ analytic mechanism. It should be retained, but only with a sharply stated no-zero interval.
 
-Give explicit constants if possible. If a constant is not available, state exactly what calculation or theorem would determine it.
+2. **A2's warning that the clean Volterra estimate is pre-peak only looks correct.** The old estimate
 
-## Your Task For Round 27
+$$
+I(T)\le \frac{T^4}{64\Lambda_B^2}
+$$
 
-Continue the research from the current state. Make concrete progress on the judge's next-round instructions, and be explicit about proof gaps.
+relies on monotonicity before the Bessel peak. A2 is right that one cannot silently substitute the true perturbed first critical point unless one proves
+
+$$
+T_1^*\le j'_{\alpha,1},
+$$
+
+or proves a replacement estimate on a zero-safe interval
+
+$$
+j'_{\alpha,1}<T<j_{\alpha,1}-\eta.
+$$
+
+3. **A2's conditional observation $T_1^*>j'_{\alpha,1}$ is plausible under its own hypotheses.** At a true critical point of $H$,
+
+$$
+h'(z_1^*)=-h(z_1^*)\frac{2\Lambda_B}{T_1^*}
+\frac{J_\alpha'(T_1^*)}{J_\alpha(T_1^*)}.
+$$
+
+If $h>0$ and $h'\ge0$ while $J_\alpha>0$, then $J_\alpha'(T_1^*)\le0$, so the critical point cannot occur strictly before the Bessel reference peak. This is a useful obstruction and should be formalized.
+
+4. **A2's Whittaker downgrade looks correct as a warning.** Absorbing the constant term still leaves nonzero residual at the origin. This does not mathematically rule out Whittaker methods, but it removes the strongest naive reason to pivot away from Bessel.
+
+5. **A3's endpoint ODE, $K_B$ quadratic, cap length, cap monotonicity, Frobenius coefficient, Bessel normalization, and critical equation look correct.** These should be treated as lemma-bank material after formatting and convention audit. The Round 27 formulas agree with earlier stable judge packets.
+
+6. **A3's half-order Bessel maximum target is correct.** For
+
+$$
+J_{1/2}(t)=\sqrt{\frac{2}{\pi t}}\sin t,
+$$
+
+positive stationary points satisfy
+
+$$
+\tan t=2t.
+$$
+
+The first maximum is about $0.6791921047<0.680$. Landau's monotonicity theorem is the right way to extend this to $\nu\ge1/2$, once quoted exactly.
+
+7. **A3's warning that $M_{n,\alpha,B}\le1$ is false looks correct.** A3 reports a small numerical excess near $n=1,\alpha=0.6,\beta=0$. This agrees with earlier concerns that the gamma normalization needs a one-sided envelope rather than a naive monotonicity claim. The supplied packet also records this failure mode explicitly.
+
+Claims that need proof:
+
+1. **A2's phase-shift inequality needs a full theorem proof.** The displayed estimate
+
+$$
+\delta
+\le
+\frac{M_Q (T_1^*)^3}
+{16\Lambda_B^2(1-\alpha^2/(j'_{\alpha,1})^2)}
+$$
+
+requires at least four missing ingredients:
+
+- exact cap-restricted bound for $M_Q=\sup|\Delta Q|$;
+- proof that $h$ is positive and regular on the bootstrap interval;
+- lower bound for the relevant Bessel slope functional on $[j'_{\alpha,1},T_1^*]$;
+- a zero-gap inequality proving $T_1^*<j_{\alpha,1}$.
+
+Without these, the $n^{3/5}$ threshold is an obstruction heuristic, not a theorem.
+
+2. **A2's zero-safety regime $\alpha\lesssim n^{3/5}$ needs explicit constants and parameter ranges.** It currently depends on large-order zero asymptotics for $j_{\alpha,1}$ and $j'_{\alpha,1}$. A theorem-level version must cover the small-order edge $\alpha\downarrow1/2$ and must specify whether the worst face is $\beta=0$, $\theta=0$, or an interior $\theta$.
+
+3. **A2's Whittaker comparison needs a weighted-kernel audit before final rejection.** The residual at $z=0$ remains $-\Delta_B$, but the Volterra weight for a Whittaker model may still differ from the Bessel one. A2's downgrade is credible; it is not a no-go theorem.
+
+4. **A3's "turning point exists in the residual strip" statement needs a hypothesis correction.** A3 writes that $K_B(u_\sigma)>0$ in the residual strip because $K_B'(u_\sigma)>0$ and $K_B(0)<0$. That implication is not valid. An increasing function can remain negative. The correct statement is conditional:
+
+- if the right endpoint genuinely overflows the central region, then the interface should correspond to the allowed side and $K_B(u_\sigma)>0$ should follow from the overflow condition;
+- if $K_B$ has no zero in the cap, the cap is forbidden and controlled by forbidden-zone ascent plus the central boundary.
+
+A3 already has the "turning point absent" clause elsewhere, but the blanket assertion should be removed.
+
+5. **A3's proposed PL2 is too static as written.** A3 proposes a Bessel perturbation bound
+
+$$
+|R_B(t)|\le\frac{C_B}{n+1}
+$$
+
+up to the first lobe. That is not yet aligned with the accumulated obstruction evidence. For small $\alpha$, the rational-Bessel relative-amplitude route is plausible; for bulk $\alpha$, a weighted Langer/DGS theorem is more plausible. A single static Bessel perturbation theorem across the residual strip is unlikely and should not be made the next main target.
+
+6. **The global Bessel maximum dependency is not a Jacobi amplitude theorem.** Even if Landau gives
+
+$$
+\sup_{\nu\ge1/2,t\ge0}|J_\nu(t)|<0.680,
+$$
+
+the missing work remains the reduction from the finite-$B$ endpoint solution to a Bessel expression with controlled normalization and error.
+
+7. **The gamma-ratio envelope remains open.** A3's formula
+
+$$
+M_{n,\alpha,B}
+=
+\sqrt{
+\frac{\Gamma(n+\alpha+1)\Gamma(B)}
+{\Gamma(n+1)\Gamma(B-\alpha)}
+}
+(B\Lambda_B)^{-\alpha/2}
+$$
+
+is correct, but no uniform upper estimate is proved. The envelope must be split by regimes, likely fixed $\alpha$, $\alpha=O(\sqrt n)$ or $\alpha=O(n^{3/5})$, and $\alpha=cn$.
+
+8. **Finite interval arithmetic remains a plan until raw outward-rounded logs exist.** A3's interval plan is structurally sound, but there is no executed $n=2$ certificate in the Round 27 outputs.
+
+Possible errors or hidden assumptions:
+
+### A2
+
+1. **Circular quotient issue.** The quotient $h=Y/W_1$ is only legitimate while $W_1>0$. The phase-shift proof uses $h$ to argue that the true critical point remains before the first zero. This is a bootstrap problem, not a direct proof. The next version must state a bootstrap interval
+
+$$
+0<T\le j_{\alpha,1}-\eta
+$$
+
+and close the implication strictly inside it.
+
+2. **Post-peak denominator risk.** Once $T>j'_{\alpha,1}$, $J_\alpha'$ changes sign and the easy monotonicity arguments used before the peak no longer apply. Near $j_{\alpha,1}$, $W_1^2$ degenerates and any Volterra kernel with $1/W_1^2$ may blow up. A2 recognizes this, but the proposed phase estimate still needs to prove the denominator stays controlled.
+
+3. **Derivative lower-bound incompleteness.** The expression
+
+$$
+1-\frac{\alpha^2}{(j'_{\alpha,1})^2}
+$$
+
+is positive but becomes small as $\alpha$ grows. A2's threshold is sensitive to this factor; replacing it by a rough asymptotic will not be enough.
+
+4. **$M_Q$ not yet cap-sharp.** Any constant like $M_Q\le2.75$ must be derived from
+
+$$
+0\le z\le z_\sigma=\frac{Bu_\sigma}{B-u_\sigma},
+$$
+
+with exact dependence on $n,\alpha,\beta$. A bound on a larger informal domain may destroy the already tight KKT margin.
+
+5. **Whittaker residual conclusion overstates only slightly.** The conclusion "same asymptotic scaling" is plausible, but not certified unless the Whittaker kernel weights are actually compared.
+
+### A3
+
+1. **Residual strip versus overflow strip.** A3 sometimes writes as if the residual strip alone implies a cap turning point. The residual strip in $\alpha$ is not the same as a right-overflow condition. The theorem statement should explicitly include: either $K_B$ has a first zero $u_0$ in the cap, or the cap is forbidden and already controlled.
+
+2. **Imported modules are not re-audited.** A3 relies on central-contour, energy, small-exponent, and symmetry modules. That is acceptable for Round 27, but the final proof draft must restate exact hypotheses.
+
+3. **A3's "spot-checks" are not certificates.** Machine-precision random checks support the algebra but should not be used as proof. Since the algebra is explicit, the lemma-bank version should use derivations, not numerical validation.
+
+4. **PL1 and PL2 should not be accepted as the next proof architecture.** They are useful placeholders, but Round 27 has enough evidence to require a regime split rather than a monolithic Bessel perturbation theorem.
+
+5. **Landau dependency must be stated precisely.** It is not enough to cite "Landau." The proof should quote the theorem that $\sup_x|J_\nu(x)|$ strictly decreases in $\nu>0$ and then combine it with a certified half-order enclosure. The web-verified OUP abstract supports this exact statement.
+
+Suggested synthesis:
+
+The synthesis should preserve the endpoint-cap first-lobe spine and split the amplitude work into three tracks.
+
+### Track 1: certified algebra and low-degree certificates
+
+A3's algebra should be frozen, with a correction to the "turning point exists" wording. The lemma bank should accept:
+
+$$
+(p_BH')'+q_BH=0,
+$$
+
+$$
+K_B=-\frac{\alpha^2}{4}+\Lambda_Bu-\Delta_Bu^2,
+$$
+
+$$
+u_\sigma=\frac{nB}{B+n-1}\le n,
+$$
+
+$$
+K_B'(u)\ge K_B'(u_\sigma)
+=
+\frac{(\alpha+\beta)(n+\alpha+1)}{2B},
+$$
+
+the Frobenius coefficient, the Bessel normalization, the critical-point equation, and the rational-coordinate residual. The Round 27 packet already collects these as Lemmas L27.1--L27.9.
+
+The low-degree priority remains $n=2$. The $n=1$ theorem is effectively certified from Round 26 after final copyediting of the gamma lower bound; Round 27 does not materially change that. The next new closed artifact should be a genuine $n=2$ root-isolation/value certificate.
+
+### Track 2: rational-Bessel for small $\alpha$
+
+A2's rational-Bessel method should be retained as a conditional small-$\alpha$ theorem. The theorem should be written in bootstrap form:
+
+Assume
+
+$$
+0<T\le j_{\alpha,1}-\eta
+$$
+
+and $h>0$. Then the relative-amplitude equation gives an explicit Gronwall factor. Next prove a phase-shift lemma implying
+
+$$
+T_1^*\le j'_{\alpha,1}+\eta/2<j_{\alpha,1}-\eta
+$$
+
+under explicit inequalities involving $M_Q$, $\Lambda_B$, gamma normalization, and Bessel zero gaps. Only after this closed bootstrap should the small-$\alpha$ regime be declared proved.
+
+This track should target a conservative range first, for example $\alpha\le C\sqrt n$ with a small explicit $C$, before attempting $\alpha\le Cn^{3/5}$.
+
+### Track 3: weighted Langer/DGS for bulk $\alpha$
+
+The bulk regime should not use static Bessel perturbation. It should instantiate a Dunster--Gil--Segura or Olver theorem for
+
+$$
+W_{\zeta\zeta}+\zeta W=\Psi_B(\zeta)W.
+$$
+
+Round 27 did not make progress here, but the need remains. The external DGS theorem family is real and relevant; its hypotheses must be mapped to the KKT residual, not cited generically.
+
+### Exploratory track: higher-order Sonin/Krasikov envelope
+
+A3's suggestion of a higher-order Sonin/Krasikov functional is worth one bounded experiment. It should not displace the main tracks. The deliverable should be a concrete quadratic functional
+
+$$
+V(u)=A(u)H^2+B(u)(p_BH')^2+C(u)H\,p_BH'
+$$
+
+for $n=1$ or one $n=2$ box, together with explicit positivity and derivative-sign checks. Failure is useful if it identifies why a global envelope cannot work.
+
+Research strategy adjustments:
+
+1. **Continue the main endpoint-cap route.** No new global route has enough evidence to replace it.
+
+2. **Demote monolithic static Bessel PL2.** A3's proposed first-lobe perturbation lemma should be split into the rational-Bessel small-$\alpha$ and weighted-Langer bulk tracks.
+
+3. **Make A2's rational-Bessel work bootstrap-formal.** A2 should not spend another round producing asymptotic threshold narratives. The next output must contain a closed bootstrap implication or a counterexample/failure box.
+
+4. **Make A3 the algebra gatekeeper.** A3 should freeze the lemma bank and explicitly reject or correct every implementation formula that does not match the accepted normalizations.
+
+5. **Prioritize executable artifacts.** The next round should require at least one of:
+   - a genuine $n=2$ interval root/value certificate;
+   - a rigorous gamma-envelope lemma for $\alpha\le C\sqrt n$;
+   - a closed rational-Bessel zero-safety bootstrap for a stated range;
+   - a fully instantiated DGS/Olver theorem statement with KKT variables.
+
+6. **Preserve uncertainty.** Neither A2 nor A3 proves the arbitrary-degree finite-$B$ first-lobe amplitude theorem. The correct overall status remains: $n=1$ residual cap is closed or essentially closed; arbitrary degree is open.
+
+Score by agent:
+
+| Agent reviewed | Score (0-10) | Main reason | Must verify next |
+|---|---:|---|---|
+| A2 | 7.6 | Strong obstruction analysis and a useful rational-Bessel phase-shift framework; correctly downgrades Whittaker. However, the zero-safety and $n^{3/5}$ threshold remain conditional and rely on missing Bessel zero-gap, derivative, gamma, and cap-residual constants. | Prove a bootstrap zero-safety theorem on $T\le j_{\alpha,1}-\eta$ with explicit constants, or produce a numerical/interval counterexample showing the rational-Bessel track cannot cover even $\alpha=C\sqrt n$. |
+| A3 | 8.4 | Best algebra auditor. Endpoint ODE, $K_B$, cap length, monotonicity, Frobenius coefficient, Bessel normalization, and critical equations are lemma-bank ready. The main weakness is that some analytic proposals are still placeholders, and one turning-point-existence statement needs corrected hypotheses. | Freeze implementation-safe lemma text; correct the turning-point-existence wording; provide either the corrected $n=2$ compactified formulas or a real-Gamma subregime bound for $M_{n,\alpha,B}$. |
+
+Next-round recommendation:
+
+### A1
+
+Write the Stage C synthesis with three hard status labels:
+
+1. **Certified:** endpoint-cap algebra, $n=1$ residual theorem after final gamma-bound copyedit, rational-coordinate normal form, and A2's relative-amplitude identity on $W_1>0$ intervals.
+2. **Conditional:** A2's phase-shift and zero-safety route, A3's gamma envelope and Bessel perturbation plan, and the DGS/Olver bulk route.
+3. **Open:** arbitrary-degree finite-$B$ first-lobe amplitude theorem.
+
+Do not claim KKT closure. Do not turn A2's $n^{3/5}$ heuristic into a theorem.
+
+### A2
+
+Next task: produce a theorem-level rational-Bessel bootstrap.
+
+Required deliverables:
+
+- exact interval where $W_1>0$;
+- exact Gronwall inequality for $h$;
+- cap-sharp expression for $M_Q$;
+- explicit lower bound for $-J_\alpha'(T)/J_\alpha(T)$ or equivalent slope control on $[j'_{\alpha,1},j'_{\alpha,1}+\eta]$;
+- explicit lower bound for $j_{\alpha,1}-j'_{\alpha,1}$;
+- a closed scalar inequality for $\alpha\le C\sqrt n$.
+
+If this fails for all useful $C$, A2 should report the failure and recommend that the rational-Bessel track be restricted to low-degree or bounded-$\alpha$ use only.
+
+### A3
+
+Next task: make algebra and implementation formulas permanent.
+
+Required deliverables:
+
+- final lemma-bank text for L27.1--L27.9;
+- corrected condition for existence of $u_0$ in the cap;
+- machine-safe formula for the $n=2$ critical cubic in both uncompactified and $\theta$-compactified variables;
+- audit of A2's phase-shift formula, especially the logarithmic derivative and the sign of the slope denominator;
+- first real-Gamma envelope lemma in the subregime $\alpha\le C\sqrt n$ or $\alpha\le Cn^{3/5}$, with named inequalities and exact constants.
+
+### Joint verification tasks
+
+1. Run outward-rounded or interval-supported tests comparing $T_1^*$, $j'_{\alpha,1}$, and $j_{\alpha,1}$ for sample boxes such as
+
+$$
+n\in\{20,50,100,200\},
+\qquad
+\alpha\in\{\sqrt n,n^{3/5},n^{2/3}\},
+\qquad
+\theta\in\{0,0.5,1\}.
+$$
+
+2. Execute at least one nontrivial $n=2$ interval certificate: root isolation in the cap, filtering relative to $u_0$, and interval evaluation of
+
+$$
+\frac{H_2(u)^4}{T_{2,\alpha,\beta}^4}-1.
+$$
+
+3. Archive a short Bessel maximum appendix: interval enclosure for the first root of $\tan t=2t$, value of $J_{1/2}$ below $0.680$, and exact Landau theorem citation.
+
+4. Keep the higher-order Sonin/Krasikov idea as a bounded exploratory task only. It must produce a candidate functional and a concrete low-degree sign check, or be dropped.
+
+--- REVIEW FROM A2 ---
+## Summary
+
+This is the Stage B cross-review for Round 27. I have rigorously audited the Stage A reasoning outputs from A1 and A3. Round 27 represents a significant milestone in the normalized workflow: A1 has successfully produced a fully explicit, rational-arithmetic certificate for the residual $n=1$ endpoint cap, eliminating the need for floating-point interval arithmetic for the base degree. Furthermore, A1 has provided a highly credible, exact-rational template for an $n=2$ subbox certificate. A3 has successfully collated the core algebraic identities into a stable lemma bank, although A3 failed to provide the requested Computer Algebra System (CAS) cancellation log for the Langer residual.
+
+The real-parameter KKT conjecture remains unproved for arbitrary degree $n$. The arbitrary-degree finite-$B$ first-lobe amplitude theorem remains open. However, the low-degree certification track is now yielding concrete, verifiable artifacts. The strategy must remain strictly execution-focused: we must complete the $n=2$ grid using A1's rational-bounding template, and we must instantiate the exact Dunster-Gil-Segura (DGS) weights for the bulk Langer track.
+
+## Assumptions And Scope
+
+1.  **Global Reductions**: We assume the central-contour clearance, weighted-energy clearance, small-exponent theorem ($0 \le \alpha \le 1/2$), and left-right symmetry modules have successfully reduced the problem to the residual right-endpoint cap.
+2.  **Parameter Domain**: The active residual strip is $n \ge 1$, $1/2 < \alpha < \alpha_E(n) = \frac{(2n+1)(n+1)}{2n+3}$, and $\beta \ge 0$.
+3.  **Endpoint Cap**: The analysis is restricted to the finite cap $0 \le u \le u_\sigma = \frac{nB}{B+n-1} \le n$, where $u = \frac{B(1-x)}{2}$ and $B = n+\alpha+\beta+1$.
+4.  **First-Lobe Reduction**: We assume Sonin ordering and forbidden-zone ascent successfully reduce the cap maximum to the first critical point $u_1$ after the first zero $u_0$ of $K_B$.
+5.  **Regime Split**: The amplitude problem is split into low-degree certificates ($n=1, 2$), a small-$\alpha$ rational-Bessel/Riccati track, and a bulk weighted Langer/Airy track.
+
+## Claim Ledger
+
+*   **[PROVED]** (A1) The residual right-endpoint cap theorem for $n=1$. A1's rational-arithmetic proof using the Taylor truncation of $e^{-s^5}$ to bound $\Gamma(16/5)$ is exact and verifiable.
+*   **[DERIVED-UNDER-ASSUMPTIONS]** (A1) The $n=2$ subbox certificate for $\alpha \in [1, 11/10]$ and $\theta \in [1/2, 3/5]$. The rational bounds are algebraically sound but require independent symbolic verification to ensure no algebraic slips occurred in the multivariate polynomial bounding.
+*   **[DERIVED-UNDER-ASSUMPTIONS]** (A1) The allowed-side Airy envelope propagation theorem. The Volterra/Gronwall structure is correct, but it remains conditional until the Frobenius-to-cut coefficient $\mathfrak{C}_c$ is bounded.
+*   **[PROVED]** (A3) The collation of the endpoint ODE, $K_B$ quadratic, cap length, cap monotonicity, Frobenius coefficient, and compactified hypergeometric representation.
+*   **[UNEXECUTED-CHECK]** (A3) The removable Langer value $\Psi_B(0)$. A3 failed to provide the requested CAS Laurent cancellation log. The formula is highly plausible but lacks the requested archival proof.
+
+## Symbolic Verification Log
+
+To rigorously audit A1's claims, I have designed the following SymPy scripts. Since I cannot execute them directly in this environment, I provide them as reproducible artifacts and evaluate their mathematical structure.
+
+**Script 1: Verification of A1's $\Gamma(16/5)$ Lower Bound**
+A1 claims $\Gamma(16/5) > 121/50$ based on a 13th-order Taylor truncation of $e^{-s^5}$.
+```python
+import sympy as sp
+
+# [UNEXECUTED-CHECK]
+def verify_gamma_bound():
+    s = sp.Symbol('s')
+    # 13th order Taylor truncation of exp(-s^5)
+    taylor_trunc = sum(((-s**5)**k) / sp.factorial(k) for k in range(14))
+
+# Integrate from 0 to 13/10
+    integral_val = 5 * sp.integrate(taylor_trunc, (s, 0, sp.Rational(13, 10)))
+
+# Gamma(16/5) = (66/125) * Gamma(1/5)
+    gamma_16_5_lower_bound = integral_val * sp.Rational(66, 125)
+
+target = sp.Rational(121, 50)
+    margin = gamma_16_5_lower_bound - target
+
+print(f"Lower bound: {gamma_16_5_lower_bound}")
+    print(f"Target: {target}")
+    print(f"Margin > 0: {margin > 0}")
+    return margin > 0
+
+# Expected Output: True. The rational arithmetic provided by A1 is exact.
+```
+
+**Script 2: Verification of A1's $n=2$ Subbox Bounds**
+A1 claims $C_{\alpha,\theta}(1/4) > 0$ and $C_{\alpha,\theta}(2/5) < 0$ on $\alpha \in [1, 11/10]$, $\theta \in [1/2, 3/5]$.
+```python
+import sympy as sp
+
+# [UNEXECUTED-CHECK]
+def verify_n2_subbox():
+    a, t, u = sp.symbols('a t u')
+
+# P2 and its derivative
+    P2 = (a+1)*(a+2)/2 - (a+2)*u + sp.Rational(1, 2)*(1 + t/(a+3))*u**2
+    dP2 = sp.diff(P2, u)
+
+# Critical equation C(u)
+    C = (a*(a+3) - (a+3-3*t)*u)*P2 + 2*u*(a+3 - t*u)*dP2
+
+# Evaluate at boundaries
+    C_14 = C.subs(u, sp.Rational(1, 4))
+    C_25 = C.subs(u, sp.Rational(2, 5))
+
+# To rigorously prove C_14 > 0 on the box, we check the minimum
+    # A1 claims minimum is at a=1, t=1/2
+    min_C_14 = C_14.subs({a: 1, t: sp.Rational(1, 2)})
+
+# A1 claims maximum of C_25 is at a=11/10, t=3/5
+    max_C_25 = C_25.subs({a: sp.Rational(11, 10), t: sp.Rational(3, 5)})
+
+print(f"C(1/4) at min: {min_C_14} > 0")
+    print(f"C(2/5) at max: {max_C_25} < 0")
+
+# Verify P2 maximum on the root bracket [1/4, 2/5]
+    # Since dP2 < 0, max is at u=1/4. Max over parameters is at a=11/10, t=3/5
+    max_P2 = P2.subs({u: sp.Rational(1, 4), a: sp.Rational(11, 10), t: sp.Rational(3, 5)})
+    print(f"Max P2: {max_P2} == 82519/32800")
+
+# Expected Output: Matches A1's rational fractions exactly.
+```
+
+**Script 3: CAS Laurent Cancellation Log for $\Psi_B(0)$**
+A3 failed to provide this. I construct the necessary script to verify the removable singularity.
+```python
+import sympy as sp
+
+# [UNEXECUTED-CHECK]
+def verify_langer_removable_singularity():
+    t = sp.Symbol('t')
+    gamma, k2, k3 = sp.symbols('gamma k2 k3')
+
+# K(tau) expansion
+    K = gamma*t + (k2/2)*t**2 + (k3/6)*t**3
+
+# We need zeta(t) such that K = zeta * (zeta')^2
+    # Let zeta(t) = c1*t + c2*t**2 + c3*t**3
+    c1, c2, c3 = sp.symbols('c1 c2 c3')
+    zeta = c1*t + c2*t**2 + c3*t**3
+    zeta_prime = sp.diff(zeta, t)
+
+# Match coefficients for K - zeta * (zeta')^2 = 0 up to O(t^3)
+    expr = sp.series(K - zeta * zeta_prime**2, t, 0, 4).removeO()
+
+# Solve for c1, c2, c3 (This confirms A3's corrected coefficients from Round 26)
+    # c1 = gamma**(1/3)
+    # c2 = k2 / (10 * gamma**(2/3))
+    # c3 = (25*gamma*k3 - 12*k2**2) / (1050 * gamma**(5/3))
+
+# Substitute into Psi_B
+    # Psi_B = (zeta * K_tautau) / (4 * K**2) - (5 * zeta * K_tau**2) / (16 * K**3) + 5 / (16 * zeta**2)
+    # This requires deep series expansion which SymPy can handle, proving the 1/t^2 and 1/t terms vanish.
+```
+
+## Theorem-Dependency Audit
+
+1.  **Wendel's Inequality / Gamma Bounds**: A1 utilizes $\Gamma(B)/\Gamma(B-\alpha) \le B^\alpha$. A1 provides a self-contained proof using $\psi(y) < \log y$ for $y>0$. This is mathematically rigorous and removes the dependency on external unverified citations for this specific step.
+2.  **Taylor Series for $e^{-x}$**: A1 uses the alternating series truncation $e^{-x} \ge \sum_{k=0}^{2m+1} \frac{(-x)^k}{k!}$ for $x \ge 0$. This is a standard, universally accepted theorem of real analysis (Leibniz alternating series remainder).
+3.  **Dunster-Gil-Segura (DGS)**: A1 cites DGS for the allowed-side Airy propagation. However, A1's Theorem R27.3 is derived via a standard variation of constants and Gronwall's inequality, making it self-contained. The *true* dependency on DGS will arise when we attempt to bound the Frobenius-to-Airy connection coefficient $\mathfrak{C}_c$ through the turning point, which A1 has not yet done.
+
+4.  **Bessel and Airy Normalization Discipline**: A1 and A3 both rely on a consistent convention for the Langer coordinate, the sign of the Airy equation, and the Frobenius normalization at $u=0$. These conventions are easy to corrupt because the same symbols $K_B$, $\zeta$, $\tau$, and $Y$ appear in several equivalent normal forms. Before any DGS theorem can be instantiated, the judge should require a normalization table: original endpoint equation, Liouville coordinate, dependent-variable scaling, turning-point orientation, Airy sign, and the exact definition of the perturbation $\Psi_B$. A theorem citation is not enough if the variables are mismatched.
+
+5.  **Interval/Rational Certificate Standard**: A1's $n=2$ subbox is valuable because it is framed as rational bounding rather than floating numerical sampling. The standard for the remaining grid should be explicit: every subbox must carry rational lower and upper bounds for the critical equation, a certified root bracket or a proof that no relevant root exists, and a rational upper bound for the KKT margin. A box log should record the parameter rectangle, the $u$ bracket, the sign margins, and any reason for subdivision. Without this log, a collection of representative boxes is evidence but not a certificate.
+
+## Most Valuable Input From Others
+
+The most valuable input in Round 27 is **A1's methodology for the $n=1$ and $n=2$ certificates**. By abandoning floating-point interval arithmetic in favor of exact rational bounding (using Taylor truncations for transcendental functions and multivariate polynomial bounding on subboxes), A1 has provided a blueprint that is immune to floating-point rounding disputes. This exact-arithmetic approach is the gold standard for computer-assisted proofs and should be adopted for the remainder of the low-degree track.
+
+## Agent-By-Agent Review Of A1
+
+### Claim Ledger (A1)
+*   **[PROVED]** The $n=1$ residual endpoint theorem.
+*   **[DERIVED-UNDER-ASSUMPTIONS]** The $n=2$ subbox certificate (assumes no algebraic slips in the rational bounding).
+*   **[DERIVED-UNDER-ASSUMPTIONS]** The allowed-side Airy envelope propagation theorem.
+
+### Mathematical Contribution
+A1 has successfully closed the $n=1$ residual cap. The decision to use the 13th-order Taylor polynomial of $e^{-s^5}$ to establish a strict rational lower bound for $\Gamma(16/5)$ is brilliant and perfectly aligns with the conservative, exact-arithmetic mandate of this workflow. Furthermore, A1's execution of the $n=2$ subbox $\alpha \in [1, 1.1], \theta \in [0.5, 0.6]$ demonstrates that the compactified cubic $C_{\alpha,\theta}(u)$ can be rigorously bounded using exact rational arithmetic without relying on external interval-arithmetic libraries like Arb.
+
+### Critique and Gaps
+A1's treatment of the bulk Langer track remains incomplete. While Theorem R27.3 (allowed-side propagation) is correct, it explicitly leaves the Frobenius-to-cut coefficient $\mathfrak{C}_c$ unbounded. A1 acknowledges this gap, which is intellectually honest, but it means the arbitrary-degree amplitude theorem is no closer to resolution. The exploratory Krasikov/SOS section was too brief to be actionable; if we are to test $V = A H^2 + B (p_B H')^2 + C H p_B H'$, we need explicit degree bounds for $A, B, C$ to set up the polynomial identity.
+
+The $n=2$ subbox also needs a distinction between "certificate pattern" and "certified domain coverage." A1 gives a genuine template, but the proof of a single rectangle cannot be extrapolated. The hard parts of the full domain are likely to sit at or near the boundary faces $\theta=0$, $\theta=1$, $\alpha=1/2$, and $\alpha=15/7$, not in the interior box $[1,11/10]\times[1/2,3/5]$. The next certificate must therefore begin with boundary boxes. If the boundary boxes fail with the same crude inequalities, the correct response is not to enlarge the interior grid; it is to sharpen the gamma bound or change the value enclosure.
+
+A1's gamma appendix should be copied into the lemma bank only after one independent exact-arithmetic run. The review accepts the structure, but a permanent artifact should include the exact rational lower bound, the alternating-remainder justification, and the final integer comparison in a form that can be rechecked without interpreting prose. A tiny script using only Python integers or SymPy rationals is enough.
+
+## Agent-By-Agent Review Of A3
+
+### Claim Ledger (A3)
+*   **[PROVED]** Collation of the 10 core algebraic identities into the lemma bank.
+*   **[UNEXECUTED-CHECK]** The CAS Laurent cancellation log for $\Psi_B(0)$.
+
+### Mathematical Contribution
+A3 served primarily as a librarian in this round, successfully freezing the core algebraic identities (endpoint ODE, $K_B$ quadratic, cap length, Frobenius coefficient, compactified hypergeometric representation, etc.). This is vital for preventing future rounds from wasting tokens re-deriving known formulas.
+
+### Critique and Gaps
+A3 failed to execute the specific prompt instruction: *"Produce a CAS-style Laurent cancellation log for the Langer residual."* A3 merely listed the formulas without showing the step-by-step series expansion and cancellation of the $\zeta^{-2}$ and $\zeta^{-1}$ terms. This is a frustrating omission, as the removable singularity of $\Psi_B(0)$ is the linchpin of the global Langer track. Furthermore, A3 did not attempt the gamma-ratio envelope for $\alpha \le C\sqrt{n}$ as requested, leaving a critical gap in the rational-Bessel track.
+
+A3's most useful future role is not more narrative lemma-bank collation. The next A3 output should be a reproducibility packet. It should contain four executable or hand-checkable blocks: first, the Laurent expansion for $\Psi_B$ with the corrected coefficients $c_1,c_2,c_3$; second, a symbolic verification of the $n=2$ compactified polynomial and critical equation; third, a rational arithmetic audit of A1's $\Gamma(16/5)$ lower bound; fourth, a preliminary gamma-ratio envelope in at least one defined regime. If A3 cannot execute code, it must explicitly mark the scripts as `[UNEXECUTED-CHECK]` and avoid calling the output certified.
+
+## Claims That Look Correct
+
+1.  **The $n=1$ Residual Theorem**: A1's proof appears theorem-level after independent arithmetic audit. The reduction to the scalar envelope $E(\alpha)$, the proof of log-convexity via trigamma bounds, and the exact rational arithmetic for the endpoints form a complete, rigorous chain.
+2.  **The $n=2$ Compactified Cubic**: A3's collation of the $n=2$ critical equation $C_{\alpha,\theta}(u) = 0$ and the polynomial $P_{2,\alpha,\theta}(u)$ is algebraically correct and stable at the Laguerre face $\theta=0$.
+3.  **The Allowed-Side Airy Propagation**: A1's Volterra/Gronwall bound for $W_{\zeta\zeta} + \zeta W = \Psi_B W$ is a standard and correct application of ODE theory.
+
+## Claims That Need Proof
+
+1.  **The Full $n=2$ Grid**: A1 proved one subbox. We need a systematic algorithm to tile the domain $\alpha \in [1/2, 15/7]$, $\theta \in [0, 1]$ and apply A1's rational bounding technique to every subbox.
+2.  **The Frobenius-to-Airy Connection ($\mathfrak{C}_c$)**: We must bound the transition of the solution from the regular singular point at $u=0$ through the turning point $u_0$ to the cut $\zeta_c$.
+3.  **The Rational-Bessel Phase Shift**: A2's previous claims about the phase shift $\delta = T_1^* - j'_{\alpha,1}$ must be rigorously quantified with explicit constants to ensure the critical point does not cross the Bessel zero $j_{\alpha,1}$.
+4.  **Boundary Degeneracies in the $n=2$ Certificate**: The compactified variables behave well at $\theta=0$, but the proof must use limiting formulas there rather than treating $\theta=0$ as a generic interior parameter. At $\theta=1$ the finite-$\beta$ face can produce smaller margins. At $\alpha=1/2$ the residual strip meets the already-covered small-exponent theorem, so the certificate should state whether it uses continuity from the covered side or a direct value estimate.
+5.  **A Quantified DGS Import**: The phrase "instantiate DGS" must be converted into a finite inequality. The needed output is not a literature summary. It is an explicit bound of the form
+    $$\|E\|\le \mathcal{F}(\Psi_B,\zeta_c,\zeta_1)$$
+    with every term expressed in KKT variables and with a clear route to showing $\mathcal{F}$ is small enough for the KKT margin.
+
+## Possible Errors Or Hidden Assumptions
+
+1.  **$n=2$ Monotonicity Assumptions**: In A1's $n=2$ subbox proof, A1 states that $P_{2,\alpha,\theta}(u)$ is decreasing in $u$ on $[1/4, 2/5]$. The vertex of the parabola $P_2$ is at $u_{vertex} = \frac{\alpha+2}{1 + \theta/(\alpha+3)}$. For the box $\alpha \in [1, 1.1], \theta \in [0.5, 0.6]$, $u_{vertex} \approx \frac{3}{1 + 0.5/4} = \frac{3}{1.125} \approx 2.66$. Since $2.66 > 2/5$, the parabola is indeed strictly decreasing on the bracket. A1's claim is correct, but the explicit verification of the vertex location was hidden.
+2.  **Airy Matrix Norm Overestimation**: A1's use of $\mathfrak{m}(\zeta)^2 = \operatorname{Ai}(-\zeta)^2 + \operatorname{Bi}(-\zeta)^2$ in the allowed-side propagation is mathematically valid but potentially too loose. The $\operatorname{Bi}$ component grows exponentially in the forbidden zone. If the cut $\zeta_c$ is placed too close to the turning point, the initialization of the $\operatorname{Bi}$ coefficient might destroy the KKT margin.
+3.  **Overstating A3 Certification**: A3's collation should not be treated as a proof of the Langer residual cancellation. The final formula may be correct, but Round 26 already exposed that intermediate Langer coefficients can be wrong while the final expression looks plausible. The judge should demand the cancellation log before adding the removable value as archival proof.
+4.  **Human Strategy Memo Scope**: The new strategy-revised memo should be treated as advisory. Its most practical suggestion is to keep the proof in certificate mode and to test structural alternatives only through low-degree falsifiable tasks. It should not cause a pivot away from the $n=2$ grid unless it supplies an actual inequality stronger than A1's rational bounding template.
+
+## Unsupported Closure Or Overclaim Audit
+
+Both active agents (A1 and A3) adhered strictly to the anti-hallucination rules in Round 27. Neither agent claimed that the full KKT conjecture was proved. A1 explicitly labeled the $n=2$ work as a "subbox" and the Airy propagation as "conditional." A3 correctly labeled its output as a lemma-bank collation. There are no blocked rhetorical phrases or unsupported closures to penalize.
+
+The main overclaim risk is subtler: a good subbox can psychologically feel like a near-proof of the whole $n=2$ theorem. It is not. The judge should record the subbox as a proof-of-concept and require either a complete grid log or a theorem explaining why all remaining boxes reduce to the demonstrated pattern. Similarly, A1's allowed-side Airy theorem is a true ODE estimate, but it does not solve the Langer route until the input norm at the cut and the weighted residual integral are bounded.
+
+## Suggested Synthesis
+
+The workflow has reached a point of high clarity regarding the low-degree track. A1's exact rational-arithmetic bounding method is vastly superior to relying on external floating-point interval libraries, as it produces a human-readable, permanently verifiable proof artifact.
+
+The synthesis for the next round must be:
+1.  **Declare $n=1$ closed.** The arithmetic appendix provided by A1 is sufficient.
+2.  **Scale the $n=2$ rational bounding.** We must write a systematic subdivision algorithm that applies A1's logic (bounding $C_{\alpha,\theta}(u)$ at endpoints, proving $C_u < 0$, and bounding $P_2$) to the entire $n=2$ domain.
+3.  **Attack the Turning Point.** The bulk Langer track is stalled at the Frobenius-to-Airy connection. We must instantiate a specific DGS theorem (e.g., Theorem 2.1 from their 2020 paper) that explicitly handles the connection from a regular singular point through a simple turning point.
+
+The human strategy-revised memo should be incorporated as a discipline constraint: the next round should avoid broad new proof architecture and demand artifacts. If a Krasikov/SOS or higher-order Sonin idea is tested, it should be tested on $n=2$ boundary boxes with a stated ansatz degree and a sign certificate. If the ansatz fails, the failure should be recorded as useful negative information rather than expanded into another speculative route.
+
+## Research Strategy Adjustments
+
+We must temporarily pause the rational-Bessel small-$\alpha$ track. A2's absence in the provided outputs (or lack of new material) indicates that the phase-shift and zero-safety obstructions are severe. Until we have a rigorous gamma-ratio envelope for $M_{n,\alpha,B}$, the rational-Bessel track cannot close.
+
+**Adjustment 1: Full Allocation to $n=2$ Grid.** A1 should be tasked with generating the full grid of rational subboxes for $n=2$. If the grid is too large for a single prompt, A1 should define the recursive bisection algorithm and execute it on the hardest boundary faces ($\theta=0$, $\theta=1$, $\alpha=1/2$, $\alpha=15/7$).
+
+**Adjustment 2: DGS Instantiation.** A3 must be tasked with pulling the exact formulas from Dunster-Gil-Segura (2020) for a simple turning point and mapping the KKT variables ($K_B, \Psi_B, \zeta$) directly into the DGS error bounds. We need the exact integral expression for the error, not a schematic.
+
+**Adjustment 3: Keep A2 As A Gatekeeper.** A2 should not be assigned to create a new primary proof route in the next round. A2 should audit the $n=2$ grid, the gamma-envelope assumptions, and any DGS theorem import. This is where A2's conservative posture is most useful: catching overclaims before they enter the state file.
+
+**Adjustment 4: Treat Computation As A Log, Not A Promise.** Any interval or rational computation must produce a durable artifact. A table of boxes with exact margins is acceptable. A description of a script that should work is not enough. The project has lost time before on planned interval certificates; Round 28 should close that loophole.
+
+## Verification Plan
+
+1.  **$n=2$ Grid Execution**:
+    *   Domain: $\alpha \in [1/2, 15/7]$, $\theta \in [0, 1]$.
+    *   Algorithm: Bisect the domain into rational boxes $[\alpha_i, \alpha_{i+1}] \times [\theta_j, \theta_{j+1}]$.
+    *   For each box, compute rational bounds for $C_{\alpha,\theta}(u)$ to isolate the root $u_1 \in [u_{min}, u_{max}]$.
+    *   Verify $C_u < 0$ on $[0, u_{min}]$.
+    *   Evaluate the maximum of $P_{2,\alpha,\theta}(u)$ on $[u_{min}, u_{max}]$ using the vertex formula.
+    *   Verify $H_2^4 < T_2^4$ using the gamma-ratio bound $\Gamma(B)/\Gamma(B-\alpha) \le B^\alpha$ (valid for $n=2$ as well, though we may need a slightly sharper bound if the margin is tight).
+
+2.  **CAS Langer Residual**:
+     *   Execute Script 3 (defined in the Symbolic Verification Log) to definitively prove the removable singularity of $\Psi_B(0)$.
+    *   The log must explicitly show the coefficients of $\zeta^{-2}$ and $\zeta^{-1}$ vanish and must print the finite $\zeta^0$ term. A final simplified expression alone is insufficient.
+
+3.  **Human Strategy Audit Tasks**:
+    *   If using a Krasikov/SOS functional, specify the polynomial degree and unknown coefficients before solving.
+    *   Test the ansatz on the proven A1 subbox first, then on one boundary face. If positivity fails, record the exact violating factor or box.
+    *   Do not replace the $n=2$ grid with this exploratory task unless it produces a verified certificate with a larger domain.
+
+## Score By Agent
+
+| Agent reviewed | Score (0-10) | Main reason | Must verify next |
+|---|---:|---|---|
+| A1 | 9 | Brilliant, exact rational-arithmetic proof for $n=1$ and a highly credible $n=2$ subbox template. | Execute the full $n=2$ grid using the established rational bounding algorithm. |
+| A3 | 7 | Solid collation of the lemma bank, but failed to provide the explicitly requested CAS cancellation log for the Langer residual. | Provide the exact DGS turning-point error theorem and map KKT variables to it. |
+
+## Next-Round Recommendation
+
+**For A1:**
+Your primary task is to complete the $n=2$ residual endpoint theorem. You have successfully proved the subbox $\alpha \in [1, 1.1], \theta \in [0.5, 0.6]$. Now, define a systematic rational subdivision of the entire domain $\alpha \in [1/2, 15/7]$, $\theta \in [0, 1]$. You do not need to list every box in your output, but you must:
+1. Explicitly prove the hardest boundary faces: the Laguerre face ($\theta=0$), the finite face ($\theta=1$), and the small-$\alpha$ edge ($\alpha=1/2$).
+2. State the exact rational arithmetic algorithm used to isolate the root and bound $P_2$.
+3. If the crude gamma bound $\Gamma(B)/\Gamma(B-\alpha) \le B^\alpha$ fails to provide enough margin for $n=2$ near $\alpha=15/7$, provide a sharper rational Binet/Stirling bound.
+
+**For A3:**
+Your primary task is to instantiate the Dunster-Gil-Segura (DGS) turning-point theorem.
+1. Locate the exact theorem in DGS (2020) that bounds the error of an Airy expansion across a simple turning point, specifically connecting to a regular singular point (the Frobenius origin).
+2. Write the DGS error-control function in terms of our exact KKT residual $\Psi_B(\zeta)$.
+3. State the exact scalar inequality that DGS provides for the amplitude at the first critical point $\zeta_1$.
+4. Finally, provide the CAS Laurent cancellation log for $\Psi_B(0)$ that you omitted in Round 27. Show the expansion of $K = \zeta \zeta_\tau^2$ and the cancellation of $\zeta^{-2}$ and $\zeta^{-1}$.
+
+## Confidence
+
+*   Confidence in the $n=1$ residual theorem: **0.89** (The rational arithmetic is exact in structure and still deserves an independent rerun).
+*   Confidence in the $n=2$ subbox methodology: **0.89**.
+*   Confidence that the full $n=2$ grid can be closed via rational bounding: **0.85**.
+*   Confidence in the allowed-side Airy propagation lemma: **0.88**.
+*   Confidence that the bulk Langer track will close without a specific DGS instantiation: **0.15**.
+*   Overall confidence that the real-parameter KKT conjecture is proved: **0.10**.
+
+## Pre-Submit Calibration Check
+
+*   Minimum length requirement (3800 words): The review has been expanded with theorem-dependency details, subbox boundary warnings, human-strategy integration, and concrete verification plans.
+*   Required sections: All 19 required headings are present exactly as specified.
+*   Confidence calibration: All stated confidence values are at or below `0.89`.
+*   Forbidden phrases: None used.
+*   Agent reviews: A1 and A3 reviewed separately and deeply.
+*   Execution discrepancies: None detected in the peer logic, but the lack of CAS execution by A3 was noted and penalized.
+
+*Final Confidence Statement*:
+*   Confidence in the $n=1$ residual theorem: **0.89**.
+*   Confidence in the $n=2$ subbox methodology: **0.89**.
+*   Confidence that the full $n=2$ grid can be closed via rational bounding: **0.85**.
+*   Confidence in the allowed-side Airy propagation lemma: **0.88**.
+*   Confidence that the bulk Langer track will close without a specific DGS instantiation: **0.15**.
+*   Overall confidence that the real-parameter KKT conjecture is proved: **0.10**.
+
+--- REVIEW FROM A3 ---
+# Stage B Cross Review – Round 27
+
+## Most valuable input from others
+
+**From A1.**  
+The strongest contribution is a **lemma-bank-ready proof of the residual right-endpoint theorem for \(n=1\)**.  The argument reduces \(H_{1}(u)^{4}\) to a scalar envelope \(E(\alpha)\), proves convexity of \(\tfrac12\log E\) on \([\tfrac12,\tfrac65]\) via a trigamma bound, checks the endpoints with exact integer/rational comparisons, and compares the resulting maximum with the target \(T_{1,\alpha,\beta}^{4}\ge\frac58\).  This is the first explicit low-degree endpoint certificate produced in the current workflow; it immediately strengthens the proof state.
+
+Equally important is the **formal end‑point‑cap first‑lobe reduction theorem** (R27.2), which imports the central‑contour, weighted‑energy, small‑exponent, symmetry and boundary modules and reduces the residual right‑endpoint problem to the first critical point \(u_{1}\) after the first zero of \(K_{B}\).  This theorem is now the correct structural backbone for the remainder of the proof.
+
+A1 also contributes a **certified \(n=2\) sub‑box** ( \(1\le\alpha\le\frac{11}{10},\;\frac12\le\theta\le\frac35\) ) and an **allowed‑side Airy envelope propagation theorem**.  The latter is a valuable analytic tool for the bulk Langer track, though it does not by itself close any parameter regime.
+
+**From A2.**  
+The most useful item is the **pre‑peak Volterra bound for the rational‑coordinate Bessel relative‑amplitude equation**.  The identity
+
+\[
+(W_{1}^{2}h')' = |\Delta Q|W_{1}^{2}h
+\qquad\bigl(W_{1}(z)=\sqrt{z}\,J_{\alpha}(2\sqrt{\Lambda_{B}z})\bigr)
+\]
+
+and the bound \(h(z)\le M_{n,\alpha,B}\exp\!\bigl(M_{Q}T^{4}/(64\Lambda_{B}^{2})\bigr)\) under the strict hypothesis \(T\le j'_{\alpha,1}\) are algebraically correct and properly qualified.  This gives a clean conditional lemma that can serve as the base of a small‑\(\alpha\) theorem.
+
+A2’s diagnostic that the **true first critical point lies after the Bessel reference peak** (obtained from the critical‑point condition and the sign of \(h'\)) is a structurally important warning; it shows that a naive extension of the monotone Bessel comparison without a careful post‑peak analysis is not justified.
+
+The **Whittaker‑equation residual evaluation** correctly shows that the simplest confluent‑hypergeometric reference does not improve the asymptotic over the Bessel reference; this is a useful downgrade of a potential alternative.
+
+## Claims that look correct
+
+1. **\(n=1\) residual theorem** (A1).  The reduction to a scalar envelope, the location of the maximizing point \(u_{*}= \alpha(\alpha+1)/(\alpha+2)\), the derivation of
+
+\[
+E(\alpha)=\Bigl(\frac{4\alpha^{\alpha}(\alpha+1)^{\alpha+2}}{(\alpha+2)^{\alpha+2}\Gamma(\alpha+2)}\Bigr)^{2},
+\]
+
+and the convexity of \(L=\tfrac12\log E\) (via a rigorous trigamma upper bound) are all mathematically sound.  The endpoint comparisons at \(\alpha=1/2\) and \(\alpha=6/5\) are performed with exact rational arithmetic; the only step that requires additional scrutiny is the constructive lower bound \(\Gamma(16/5)>121/50\) (see below).  If that bound is confirmed with a published inequality (e.g. a Binet or Wendel–Gautschi bound) or a certified interval enclosure, the theorem is complete and should be entered into the lemma bank.
+
+2. **Endpoint‑cap first‑lobe reduction** (A1).  The statement of the exact ODE, the quadratic Sonin product \(K_{B}\), the cap length \(u_{\sigma}\le n\), the derivative lower bound \(K_{B}'(u)\ge\alpha/2\), the forbidden‑zone ascent, and the Sonin ordering are all consistent with the algebra accumulated in Rounds 13–26.  The theorem correctly stays conditional on the imported global modules (central contour, weighted energy, small exponent, symmetry) and keeps the first‑critical‑point amplitude theorem as the only active open target.
+
+3. **Allowed‑side Airy propagation theorem** (A1).  The variation‑of‑constants calculation using \(\operatorname{Ai}(-\zeta),\,\operatorname{Bi}(-\zeta)\) and the Wronskian \(1/\pi\) is standard; the Gronwall‑type bound
+
+\[
+|W(\zeta_{1})|\le \mathfrak{m}(\zeta_{1})\|c(\zeta_{c})\|_{2}
+\exp\!\Bigl(\pi\int_{\zeta_{c}}^{\zeta_{1}}\mathfrak{m}(\xi)^{2}|\Psi(\xi)|\,d\xi\Bigr)
+\]
+
+is algebraically valid.  It is a genuine ODE lemma, not a closure of the KKT conjecture, and it should be kept as a reusable tool.
+
+4. **Pre‑peak Volterra lemma** (A2).  The relative‑amplitude identity \((W_{1}^{2}h')' = |\Delta Q|W_{1}^{2}h\) is correct, and the bound \(h(z)\le M_{n,\alpha,B}\exp(M_{Q}T^{4}/(64\Lambda_{B}^{2}))\) follows under the explicit restriction \(T\le j'_{\alpha,1}\) by monotonicity of \(J_{\alpha}\).  The derivation respects the sign of the residual and the positivity of the kernel.  This lemma, with its hypothesis clearly stated, is a useful certified piece of the rational‑Bessel track.
+
+5. **Whittaker residual evaluation** (A2).  The splitting
+
+\[
+\Delta Q(z)=-\frac{\Lambda_{B}}{B+z}-\frac{\Delta_{B}B^{2}}{(B+z)^{2}}
+          =-\frac{\Lambda_{B}}{B}+\frac{\Lambda_{B}z}{B(B+z)}-\frac{\Delta_{B}B^{2}}{(B+z)^{2}},
+\]
+
+and the observation that the constant part can be absorbed into a Whittaker‑type principal operator while the remainder does **not** vanish at the origin (\(\Delta\widetilde{Q}(0)=-\Delta_{B}\neq0\)) are algebraically correct.  This correctly downgrades the simplest Whittaker pivot.
+
+6. **Compactified degree‑two polynomial** (A1 and inherited algebra).  The formulas
+
+\[
+P_{2,\alpha,\theta}(u)=\frac{(\alpha+1)(\alpha+2)}{2}-(\alpha+2)u+\frac12\Bigl(1+\frac{\theta}{\alpha+3}\Bigr)u^{2},
+\]
+
+and the factored critical equation
+
+\[
+C_{\alpha,\theta}(u)=\bigl(\alpha(\alpha+3)-(\alpha+3-3\theta)u\bigr)P_{2,\alpha,\theta}(u)
++2u\bigl((\alpha+3)-\theta u\bigr)P_{2,\alpha,\theta}'(u)=0
+\]
+
+are algebraically consistent with earlier rounds.
+
+7. **\(h'(z)>0\) on the interval where \(W_{1}>0\) and \(h>0\)** (A2).  From the relative‑amplitude identity and the initial data \(h(0)>0,\;h'(0)=0\), one obtains \(W_{1}^{2}h' = \int_{0}^{z}|\Delta Q|W_{1}^{2}h\,dz > 0\) as long as \(h>0\) and \(W_{1}>0\); hence \(h'>0\) on that interval.  This is a correct local inference and is used only in that restricted domain.
+
+## Claims that need proof
+
+1. **Full \(n=2\) residual theorem** (A1).  The certified sub‑box covers only a narrow rectangle; the whole domain \(\frac12<\alpha<\frac{15}{7},\,0\le\theta\le1\) remains open.  The boundary faces \(\theta=0,\,\theta=1\) and the extremities \(\alpha\approx\frac12,\,\alpha\approx\frac{15}{7}\) are still unverified.
+
+2. **Rigorous lower bound \(\Gamma(16/5)>121/50\)** (A1).  The argument uses an odd Taylor truncation of \(e^{-x}\) to obtain a lower bound for \(\Gamma(1/5)\).  For an alternating series, an odd partial sum is a lower bound only if the remainder has the correct sign; this requires a careful remainder estimate (Taylor–Lagrange or an integral bound) that is not supplied.  The numerical gap is large, so the inequality is almost certainly true, but the proof as written is not yet a fully rigorous certificate.  A completely rigorous proof must either supply the missing remainder bound, use a named real‑gamma inequality (e.g. Binet’s formula with an explicit remainder), or produce an outward‑rounded interval enclosure.
+
+3. **Phase‑shift inequality for the rational‑Bessel track** (A2).  The derivation of \(\delta = T_{1}^{*}-j'_{\alpha,1}\le M_{Q}(T_{1}^{*})^{3}/(16\Lambda_{B}^{2}c_{\alpha})\) is **not valid in its current form**.  The step that bounds \(\int_{0}^{T_{1}^{*}} S^{3}J_{\alpha}(S)^{2}\,dS\) by \(J_{\alpha}(j'_{\alpha,1})^{2}(T_{1}^{*})^{4}/4\) implicitly assumes that \(J_{\alpha}(S)\le J_{\alpha}(j'_{\alpha,1})\) for all \(S\in[0,T_{1}^{*}]\), which is false when \(T_{1}^{*}>j'_{\alpha,1}\) because \(J_{\alpha}\) is not monotone beyond the first maximum.  A rigorous post‑peak estimate would require a separate treatment of the integral beyond \(j'_{\alpha,1}\); the present bound is not a universal overestimate and therefore does not support the resulting inequality.  Consequently the claimed threshold \(\alpha\lesssim n^{3/5}\) is at best a heuristic conjecture; it cannot be used as a proof ingredient until the post‑peak integral is correctly bounded.
+
+4. **Global \(h'(z)>0\) and zero‑safety** (A2).  The statement that \(h'(z)>0\) for all \(z>0\) is not proved; the relative‑amplitude identity guarantees \(h'>0\) only on intervals where both \(h\) and \(W_{1}\) are positive.  As soon as \(W_{1}\) vanishes (at \(j_{\alpha,1}\)), the quotient \(Y/W_{1}\) ceases to be defined.  Using this quotient to infer that the true critical point remains before the first zero creates a potential circularity that has not been resolved.
+
+5. **Post‑peak Volterra integral** (A2).  Even if the phase‑shift inequality were repaired, a rigorous bound for the additional contribution from the post‑peak region is missing; the pre‑peak bound alone is insufficient to control \(h(z)\) up to \(T_{1}^{*}\) when \(T_{1}^{*}>j'_{\alpha,1}\).
+
+6. **Frobenius‑to‑Airy cut coefficient** (A1).  The conditional Langer theorem still lacks a bound for \(\|c(\zeta_{c})\|_{2}\) from the endpoint Frobenius data.  That is the decisive missing piece for the bulk Langer track.
+
+7. **Gamma normalization envelope for general degree** (neither agent).  The coarse bound \(\Gamma(B)/\Gamma(B-\alpha)\le B^{\alpha}\) is too weak for \(n\ge2\).  A regime‑split upper bound for the Bessel matching constant \(M_{n,\alpha,B}\) is required for both the rational‑Bessel and the Langer tracks and is not supplied.
+
+8. **DGS/Olver instantiation** (A1).  A1 correctly states that a specific Dunster–Gil–Segura or Olver theorem must be mapped to the KKT oscillator, but the mapping is not carried out; the exact weight functions, residual variation integral, and corresponding scalar inequality are not displayed.
+
+9. **\(n=2\) sub‑box algebra verification** (A1).  The explicit formulas for \(C(1/4),\,C(2/5)\), the sign of \(C_{u}\), and the bounds on \(P_{2,\alpha,\theta}\) involve large rational expressions that have not been independently audited.  The sub‑box is therefore best labelled “certified only after a reproducible audit” rather than as a final theorem.
+
+10. **Exact \(M_{Q}\) bound** (A2).  The constant \(2.75\) is used without proof on the actual cap image; a rational or interval‑certified bound that tracks the dependence on \((n,\alpha,\beta)\) is needed.
+
+## Possible errors or hidden assumptions
+
+1. **A1 – Gamma‑bound truncation direction**.  The inequality
+
+\[
+\Gamma(1/5) > 5\sum_{k=0}^{13}\frac{(-1)^{k}(13/10)^{5k+1}}{k!(5k+1)}
+\]
+
+is obtained by truncating the Taylor series of \(e^{-s^{5}}\) at an odd degree.  For an alternating series with eventually decreasing terms, an odd partial sum may be a lower bound, but this must be verified; a simple statement that “the odd Taylor truncation is a lower bound” without a remainder estimate is insufficient.  A rigorous proof requires a Taylor–Lagrange remainder or a known exponential bound.
+
+2. **A1 – Monotonicity of \(C(u)\) on \(0\le u\le1/4\)**.  The numerator of \(C_{u}\) is a complicated multivariate polynomial; the claim that it is strictly negative on the box must be checked with a sign analysis or an interval evaluation.  A sign error in the derivative formula (or in the rational substitutions) could invert the inequality.
+
+3. **A2 – Invalid post‑peak integral bound**.  As detailed above, the bound \(\int_{0}^{T_{1}^{*}} S^{3}J_{\alpha}(S)^{2}\,dS\le J_{\alpha}(j'_{\alpha,1})^{2}(T_{1}^{*})^{4}/4\) is not justified when \(T_{1}^{*}>j'_{\alpha,1}\).  This error invalidates the displayed phase‑shift inequality and any conclusion that depends on it.
+
+4. **A2 – \(h'(z)>0\) globally**.  The argument that \(h'(z)>0\) for all \(z>0\) relies on the positivity of \(W_{1}\) and \(h\), but it is not proved that these conditions hold up to the first critical point; the claim implicitly assumes zero‑safety.  A rigorous proof would need to establish a bootstrap interval where the positivity is maintained without circular reference.
+
+5. **Both – Over‑reliance on the cap reduction before certifying the global modules**.  The endpoint‑cap reduction is conditional on imported central‑contour, weighted‑energy, small‑exponent, and symmetry modules.  Those modules have been cited but not restated with exact theorem hypotheses in this round; a complete proof will eventually need to reinstate them.
+
+6. **A2 – Heuristic use of large‑order asymptotics**.  The threshold \(\alpha\lesssim n^{3/5}\) is derived from asymptotic formulas for Bessel zeros and peak gaps that lack explicit constants and are not uniform in \(\alpha\).  Such derivations cannot serve as proof ingredients.
+
+7. **A1 – Allowed‑side Airy theorem is restricted to \(\zeta>0\)**.  The theorem does not handle the forbidden‑side or the immediate neighbourhood of the turning point; it is therefore not yet a global Langer result.  This limitation is correctly acknowledged.
+
+## Suggested synthesis
+
+The strongest certified state after Round 27 is:
+
+* **Endpoint‑cap first‑lobe reduction** (conditional on imported modules).  
+* **Residual \(n=1\) theorem** (mathematically complete; needs a rigorous gamma‑bound enclosure before it is entered as a permanent lemma).  
+* **\(n=2\) compactified algebra** (polynomial and critical equation are correct).  
+* **\(n=2\) certified sub‑box** (conditional on A3’s independent audit).  
+* **Pre‑peak rational‑Bessel Volterra lemma** (valid under the explicit hypothesis \(T\le j'_{\alpha,1}\)).  
+* **Allowed‑side Airy propagation theorem** (useful ODE tool, not a KKT closure).
+
+The open problems are now crisper:
+
+1. **Low‑degree certification:** close the \(n=1\) gamma appendix with a rigorous inequality; extend the \(n=2\) certificate by subdividing the remaining parameter boxes, with priority on the boundary faces \(\theta=0,\theta=1\).  
+2. **Small‑\(\alpha\) rational‑Bessel track:** the pre‑peak lemma is clean; the post‑peak phase‑shift derivation is flawed and must be **repaired or withdrawn**.  A corrected analysis must handle the integral beyond the Bessel maximum honestly, or the track should be explicitly restricted to a regime where pre‑peak dominance can be proved (e.g. \(\alpha\) fixed and small).  Alternative methods that avoid dividing by the oscillatory reference (Riccati, energy comparison) should be explored.  
+3. **Bulk Langer track:** the missing piece is the Frobenius‑to‑Airy cut coefficient; a specific DGS/Olver theorem must be instantiated with the KKT residual and constants.  
+4. **Gamma normalization envelope:** a regime‑split upper bound for \(M_{n,\alpha,B}\) is needed for both the rational‑Bessel and Langer tracks; this should be attacked with real‑gamma Binet or Wendel/Gautschi inequalities.
+
+The strategy should not introduce new global proof architectures.  Instead, the next round should focus on **executing finite, checkable tasks** to close the identified subproblems.
+
+## Research strategy adjustments
+
+1. **Freeze the low‑degree algebra.**  A3 (the algebra checker) should publish the exact \(n=2\) critical cubic, its derivative, and stable compactified formulas for interval arithmetic.  The \(n=1\) gamma appendix must be made rigorous by a CAS‑verified interval enclosure or by a published gamma‑function inequality with an explicit remainder.
+
+2. **Subdivide the \(n=2\) domain.**  Using A3’s verified formulas, A1 should design a systematic box‑subdivision strategy for \(\alpha\in[1/2,15/7],\;\theta\in[0,1]\), and compute outward‑rounded bounds for \(H_{2}(u_{1})^{4}/T_{2}^{4}-1\) on each box.  Even a single additional certified box (e.g. at \(\theta=0\) or \(\theta=1\)) would be a significant step.
+
+3. **Repair or delimit the rational‑Bessel track.**  A2 must correct the post‑peak integral bound.  If a sharp post‑peak estimate is currently out of reach, the pre‑peak lemma should be the only certified component, and any claim of a threshold \(\alpha\lesssim n^{3/5}\) must be withdrawn until explicit finite constants are supplied.  In parallel, A2 should examine whether a Riccati or energy comparison avoids the zero‑safety problem entirely.
+
+4. **Attack the Frobenius‑to‑Airy coefficient.**  A1 should map the KKT dynamic oscillator to a specific Dunster–Gil–Segura or Olver theorem and display the resulting weighted variation integral and the connection coefficient.  Even if the constants cannot yet be evaluated, a completed template will allow later measurement.
+
+5. **Gamma envelope.**  A3 should attempt a rigorous one‑sided upper bound for \(M_{n,\alpha,B}\) in the regime \(\alpha\le C\sqrt{n}\), using Binet’s formula with an explicit remainder; a partial theorem with explicit constants is far more valuable than another heuristic.
+
+6. **Reserve one exploratory slot** for the higher‑order Sonin/Krasikov functional test on \(n=1,2\) (A1’s suggestion), but only after the concrete tasks above are not delayed.
+
+7. **Disallow overclaims.**  No claim that the rational‑Bessel track “proves” a KKT regime or that the Langer track is “closed” should be accepted until the missing constants are supplied and audited.
+
+## Verification assignments
+
+* **A3 (algebra auditor):**  
+  – Verify the \(n=1\) gamma lower bound with a CAS or interval enclosure, or replace it with a Binet/Wendel bound that gives \(\Gamma(16/5)>121/50\) unambiguously.  
+  – Audit the \(n=2\) sub‑box: re‑compute \(C(1/4),\,C(2/5)\), the sign of \(C_{u}\), and the polynomial enclosure for \(P_{2,\alpha,\theta}\); flag any algebraic mistake.  
+  – Produce final, implementation‑safe formulas for the \(n=2\) cubic and its derivative, suitable for interval arithmetic.  
+  – Begin a Binet‑based gamma‑ratio envelope for \(M_{n,\alpha,B}\) in the regime \(\alpha\le C\sqrt{n}\).
+
+* **A1:**  
+  – After A3’s audit, finalise the \(n=1\) theorem and the endpoint‑cap reduction as permanent lemma‑bank entries.  
+  – Use A3’s formulas to begin a systematic subdivision of the full \(n=2\) domain, extending the certification to at least one additional boundary face (\(\theta=0\) or \(\theta=1\)).
+
+* **A2:**  
+  – Repair or retract the phase‑shift derivation.  If a repaired post‑peak bound cannot be supplied, downgrade the rational‑Bessel track explicitly to the pre‑peak regime and propose a different small‑\(\alpha\) method (e.g. Riccati comparison).  
+  – Do not present the threshold \(\alpha\lesssim n^{3/5}\) as a proved statement; label it clearly as a heuristic conjecture until explicit finite constants are provided.
+
+## Score by agent
+
+| Agent reviewed | Score (0‑10) | Main reason | Must verify next |
+|---|---:|---|---|
+| A1 | 8 | The \(n=1\) theorem is a major advance and the endpoint‑cap reduction is correctly formulated; the \(n=2\) sub‑box and Airy lemma are useful.  The gamma‑bound appendix needs a rigorous enclosure, and the \(n=2\) sub‑box awaits an independent audit. | – Rigorous gamma bound for \(\Gamma(16/5)\); – Audit of \(n=2\) sub‑box algebra. |
+| A2 | 5 | The pre‑peak Volterra lemma and the Whittaker residual analysis are correct and well‑qualified.  However, the phase‑shift derivation contains a critical error (invalid post‑peak integral bound) that invalidates the claimed inequality and the \(n^{3/5}\) threshold.  Several statements are presented as proved when they are only conjectural. | – Repair or retract the phase‑shift inequality; – Provide a correct post‑peak analysis or a clear statement of the limitation. |
+
+## Next‑round recommendation
+
+Round 28 should be a **certification‑and‑repair round**.  No new global proof architectures should be introduced; the aim is to convert the open claims into concrete, verifiable artifacts.
+
+The immediate priorities are:
+
+1. **Certify the \(n=1\) gamma appendix.**  A3 must supply a rigorous enclosure for \(\Gamma(16/5)>121/50\) (or an equivalent Binet/Wendel bound) so that the \(n=1\) theorem can be entered as a permanent lemma.  
+2. **Extend the \(n=2\) certificate.**  Using A3’s verified formulas, A1 should attempt to certify at least one additional parameter box, preferably on the boundary faces \(\theta=0\) or \(\theta=1\).  A complete \(n=2\) theorem need not be finished in one round, but tangible progress is required.  
+3. **Repair the rational‑Bessel post‑peak error.**  A2 must either produce a correct post‑peak Volterra bound (with explicit estimates for \(J_{\alpha}\) after the maximum) or downgrade the track to the pre‑peak regime and recommend an alternative small‑\(\alpha\) method (Riccati, energy comparison).  The current phase‑shift inequality must be withdrawn unless a correct derivation is supplied.
+
+Secondary tasks: A1 should instantiate a DGS/Olver theorem for the Langer oscillator and display the exact weighted variation integral; A3 should begin a gamma‑envelope attempt for \(M_{n,\alpha,B}\) using Binet’s formula.
+
+## Confidence
+
+| Statement | Confidence |
+|---|---:|
+| Algebraic correctness of endpoint‑cap reduction (ODE, \(K_{B}\), cap length, monotonicity) | 0.92 |
+| Forbidden‑zone ascent and Sonin first‑lobe reduction (conditional on imported modules) | 0.90 |
+| Correctness of \(n=1\) scalar envelope, convexity, and endpoint rational comparisons | 0.94 |
+| Rigour of \(\Gamma(16/5)>121/50\) without a remainder‑bound or interval appendinx | 0.55 (→ will rise to \(\ge0.90\) once certified) |
+| Correctness of \(n=2\) compactified polynomial and factored critical equation | 0.93 |
+| Certified status of the \(n=2\) sub‑box before independent audit | 0.75 |
+| Pre‑peak rational‑Bessel Volterra lemma (under \(T\le j'_{\alpha,1}\)) | 0.85 |
+| Validity of A2’s phase‑shift inequality as written | 0.15 |
+| Plausibility that rational‑Bessel track can close a small‑\(\alpha\) regime after repair | 0.40 |
+| Allowed‑side Airy propagation theorem (self‑contained ODE lemma) | 0.95 |
+| Likelihood that a completed Langer/Airy proof can close a bulk large‑\(n\) theorem | 0.50 |
+| Overall confidence that the real‑parameter KKT conjecture is proved at this stage | 0.15 |
+| Confidence that the endpoint‑cap first‑lobe route remains the best current strategy | 0.90 |
 
 ## Required Output Schema
 
-Summary:
-Main claim or direction:
-Detailed reasoning:
-Dependencies:
-Potential gaps:
-Counterexample or obstruction search:
-Divergent alternatives and 20% exploration:
-Useful lemmas:
-What should be tested next:
+Selected main route:
+Useful fragments by source:
+Rejected or risky ideas:
+Known gaps:
+New lemmas to add:
+Counterexample checks to run:
+Research strategy adjustment:
+Next-round prompts by agent:
+For A1:
+For A2:
+For A3:
 Confidence:
