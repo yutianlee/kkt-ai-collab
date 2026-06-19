@@ -12,7 +12,7 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 
 STATE_FILES = [
@@ -354,7 +354,7 @@ def judge_output_filename(round_index: int) -> str:
     return f"judge-{round_index:03d}.md"
 
 
-def output_schema(kind: str) -> str:
+def output_schema(kind: str, agent_ids: Iterable[str] | None = None) -> str:
     if kind == "review":
         return """Most valuable input from others:
 Claims that look correct:
@@ -368,7 +368,9 @@ Score by agent:
 Score every other active agent shown under `## Outputs To Review`. Do not omit this table.
 Next-round recommendation:"""
     if kind == "judge":
-        return """Selected main route:
+        ids = list(agent_ids or ("A1", "A2", "A3", "A4"))
+        agent_lines = "\n".join(f"For {agent_id}:" for agent_id in ids)
+        return f"""Selected main route:
 Useful fragments by source:
 Rejected or risky ideas:
 Known gaps:
@@ -376,10 +378,7 @@ New lemmas to add:
 Counterexample checks to run:
 Research strategy adjustment:
 Next-round prompts by agent:
-For A1:
-For A2:
-For A3:
-For A4:
+{agent_lines}
 Confidence:"""
     return """Summary:
 Main claim or direction:
@@ -777,7 +776,7 @@ Human instructions override prior AI suggestions when they are about research di
 
 ## Required Output Schema
 
-{output_schema("judge")}
+{output_schema("judge", responses.keys())}
 """
 
 
