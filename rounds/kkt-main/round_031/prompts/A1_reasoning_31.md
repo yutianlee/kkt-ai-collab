@@ -54059,6 +54059,17 @@ If the judge assigns this route, make it a bounded pilot only:
 
 Main Round 31 priorities should remain the $n=2$ boundary-face value certificates, the rational Bernstein interior grid, independent replay of A1's certificates, and repair of the gamma-ratio lemma.
 
+--- RECENT HUMAN NOTE: human/inbox/round_031_strategy_revised_audit.md ---
+# Round 31 Strategy-Revised Audit
+
+The incoming strategy proposes an adaptive lower-frequency Bessel quotient and a Riccati super-solution for low-degree boxes. Treat both as bounded pilots, not as a pivot.
+
+Adaptive Bessel quotient: useful idea for avoiding a reference zero, but it needs exact potential ordering, peak/zero ordering, quotient sign, Frobenius normalization, frequency penalty, and gamma-margin checks before it becomes a proof module.
+
+Riccati super-solution: promising for \(n=2\) value envelopes because it may preserve cancellations lost by factorwise bounds. It must be tested on one box, preferably \(Q_C\) or \(Q_E\), with exact defect signs and a full-ratio comparison.
+
+Judge recommendation: keep the endpoint-cap low-degree route as main. Allocate at most 10--15% of Round 32 to these pilots. Main tasks remain \(n=1\) gamma appendix, \(n=2\) box replay, boundary-face value tables, \(M_Q<2\) replay, and Langer transcript.
+
 ## Judge-Assigned Reasoning Prompt For This Agent
 
 Use the Stage A schema. Treat this bootstrap judge as the starting decision. Your task is to synthesize the finite-$\beta$ endpoint-cap proof route into a theorem-level outline.
